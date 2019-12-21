@@ -1,5 +1,7 @@
 import React from 'react';
 import Square from './Square';
+import { connect } from 'react-redux';
+import { clickSquare } from '../actions/index'
 
 class Board extends React.Component {
 
@@ -16,8 +18,7 @@ class Board extends React.Component {
         const squares = this.state.squares.slice(); //Create copy of squares array instead of changing the existing array in order to not mutate underlying data set
         squares[i] = ' ';
         this.setState({ squares: squares})
-        console.log('array', this.state.squares)
-        console.log('wut is grey', this.state.grey)
+        this.props.clickSquare()
     }
 
     renderSquare(i) {
@@ -28,8 +29,6 @@ class Board extends React.Component {
         />
         );
     }
-
-
 
     render() {
 
@@ -62,8 +61,20 @@ class Board extends React.Component {
             </div>
         )
     }
-
-
 }
 
-export default Board;
+
+const mapStateToProps = state => {
+    return { state }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        clickSquare: e => dispatch(clickSquare(e)) 
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Board)
