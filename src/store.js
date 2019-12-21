@@ -1,6 +1,7 @@
 import { createStore } from 'redux'
-import setShips from './reducers/setShips'
 
-const store = createStore(setShips)
+import allReducers from './reducers/index'
+
+const store = createStore(allReducers)
 
 export default store
