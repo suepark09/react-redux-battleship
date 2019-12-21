@@ -5,25 +5,12 @@ import { clickSquare } from '../actions/index'
 
 
 class Board extends React.Component {
-
-<<<<<<< HEAD
-    
-=======
-    constructor(props) {
-        super(props); 
-        this.state = {
-            squares: Array(100).fill(null), //creates a null array of 16 values
-            grey: false
-        }
-        // this.colorChange = this.colorChange.bind(this);
-    }
->>>>>>> master
-
     handleClick(i) {
-        console.log(this.props.state.squares, '****')
-        const squares = this.props.state.squares.slice(); //Create copy of squares array instead of changing the existing array in order to not mutate underlying data set
-        squares[i] = ' ';
-        this.setState({ squares: squares})
+        // console.log(this.props.state.squares, '****')
+        // const squares = this.props.state.squares.slice(); //Create copy of squares array instead of changing the existing array in order to not mutate underlying data set
+        // const squares = i.target
+        // squares[i] = ' ';
+        // this.setState({ squares: squares})
         this.props.clickSquare()
         
     }

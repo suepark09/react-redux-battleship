@@ -16,7 +16,7 @@ import {
 // }
 
 const clickSquare = (coordinate) => {
-
+console.log('clicked')
     return {
          type: CLICKED,
          payload: coordinate
