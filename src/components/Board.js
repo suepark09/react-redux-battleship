@@ -3,28 +3,24 @@ import Square from './Square';
 import { connect } from 'react-redux';
 import { clickSquare } from '../actions/index'
 
+
 class Board extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            squares: Array(16).fill(null), //creates a null array of 16 values
-            grey: false
-        }
-        // this.colorChange = this.colorChange.bind(this);
-    }
+    
 
     handleClick(i) {
-        const squares = this.state.squares.slice(); //Create copy of squares array instead of changing the existing array in order to not mutate underlying data set
+        console.log(this.props.state.squares, '****')
+        const squares = this.props.state.squares.slice(); //Create copy of squares array instead of changing the existing array in order to not mutate underlying data set
         squares[i] = ' ';
         this.setState({ squares: squares})
         this.props.clickSquare()
+        
     }
 
     renderSquare(i) {
         return (<Square 
-        color = {this.state.squares[i]}
-        value= {this.state.squares[i]} 
+        color = {this.props.state.squares[i]}
+        value= {this.props.state.squares[i]} 
         onClick={() => this.handleClick(i)}
         />
         );
