@@ -19,12 +19,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 84px;
+  height: 44px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 84px;
+  width: 44px;
 }
 
 .grey-square {
@@ -34,12 +34,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 84px;
+  height: 44px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 84px;
+  width: 44px;
 }
 
 .grey-square:focus {
@@ -49,6 +49,11 @@ ol, ul {
 .square:focus {
   outline: none;
 }
+
+.square:hover {
+  background-color: lightblue;
+}
+
 .kbd-navigation .square:focus {
   background: #ddd;
 }
