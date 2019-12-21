@@ -7,25 +7,22 @@ class Board extends React.Component {
         super(props);
         this.state = {
             squares: Array(16).fill(null), //creates a null array of 16 values
-            color: '#fff'
+            grey: false
         }
         // this.colorChange = this.colorChange.bind(this);
     }
 
     handleClick(i) {
         const squares = this.state.squares.slice(); //Create copy of squares array instead of changing the existing array in order to not mutate underlying data set
-        squares[i] = 'X';
-        this.setState({ squares: squares, color: '#eeeeee'})
-        console.log('wuts this', this.state.squares)
+        squares[i] = ' ';
+        this.setState({ squares: squares})
+        console.log('array', this.state.squares)
+        console.log('wut is grey', this.state.grey)
     }
-
-    // colorChange() {
-    //     console.log(this.state.color)
-    //     this.setState({ color: '#eeeeee' })
-    // }
 
     renderSquare(i) {
         return (<Square 
+        color = {this.state.squares[i]}
         value= {this.state.squares[i]} 
         onClick={() => this.handleClick(i)}
         />
@@ -35,6 +32,7 @@ class Board extends React.Component {
 
 
     render() {
+
         return (
             <div>
                 <div className="board-row">
