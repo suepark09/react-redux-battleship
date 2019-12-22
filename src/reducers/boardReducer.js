@@ -17,7 +17,7 @@ const initialState = {
 const boardReducer = (state = initialState, action) => {
     switch(action.type){
       case CLICKED: 
-      
+        console.log('reducer square clicked')
         return {
             ...state
         }
