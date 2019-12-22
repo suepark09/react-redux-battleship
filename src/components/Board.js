@@ -1,15 +1,20 @@
 import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
-import { clickSquare } from '../actions/index'
+// import { clickSquare } from '../actions/index'
 
 class Board extends React.Component {
+    clickSquare = (e) => {
+        console.log('you clicked', e.target.value)
+        this.props.clickSquare()
+    }
+
     render() {
         const { squares } = this.props.state.squares
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
-            squares[i].map((singleSquare, idx) => {
-                mappedBoard.push(<Square color={singleSquare.color} onClick={this.props.clickSquare} />)
+            squares[i].map((singleSquare) => {
+                mappedBoard.push(<Square coordinate={singleSquare.key} color={singleSquare.color} onClick={this.clickSquare} />)
             })
         }
 
