@@ -30,10 +30,11 @@ class Board extends React.Component {
         for (let i = 0; i < 10; i++) {
             squares[i].map((singleSquare, idx) => {
                 console.log('single square', singleSquare + idx)
-                mappedBoard.push(<Square />)
-            })}
+                mappedBoard.push(<Square color={singleSquare.color} />)
+            })
+        }
         return (
-            <div>
+            <div id="boardDiv">
                 { mappedBoard }
             </div>
         )
