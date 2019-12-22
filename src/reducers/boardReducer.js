@@ -2,7 +2,7 @@ import {CLICKED} from '../actions/actionTypes'
 
 const initialState = {
     // squares: {
-    // 0: [ {key: 1, color: 'grey-square'}, {key: 2}, {key: 3}, {key: 4}, {key: 5}, {key: 6}, {key: 7}, {key: 8}, {key: 9}, {key: 10} ],
+    // 0: [ {key: 1}, {key: 2}, {key: 3}, {key: 4}, {key: 5}, {key: 6}, {key: 7}, {key: 8}, {key: 9}, {key: 10} ],
     // 1: [ {key: 11}, {key: 12}, {key: 13}, {key: 14}, {key: 15}, {key: 16}, {key: 17}, {key: 18}, {key: 19}, {key: 20} ],
     // 2: [ {key: 21}, {key: 22}, {key: 23}, {key: 24}, {key: 25}, {key: 26}, {key: 27}, {key: 28}, {key: 29}, {key: 30} ],
     // 3: [ {key: 31}, {key: 32}, {key: 33}, {key: 34}, {key: 35}, {key: 36}, {key: 37}, {key: 38}, {key: 39}, {key: 40} ],
@@ -18,7 +18,7 @@ const initialState = {
         1: [ {key: '1A'}, {key: '1B'}, {key: '1C'}, {key: '1D'}, {key: '1E'}, {key: '1F'}, {key: '1G'}, {key: '1H'}, {key: '1I'}, {key: '1J'} ],
         2: [ {key: '2A'}, {key: '2B'}, {key: '2C'}, {key: '2D'}, {key: '2E'}, {key: '2F'}, {key: '2G'}, {key: '2H'}, {key: '2I'}, {key: '2J'} ],
         3: [ {key: '3A'}, {key: '3B'}, {key: '3C'}, {key: '3D'}, {key: '3E'}, {key: '3F'}, {key: '3G'}, {key: '3H'}, {key: '3I'}, {key: '3J'} ],
-        4: [ {key: '4A'}, {key: '4B'}, {key: '4C'}, {key: '4D', color: 'grey-square'}, {key: '4E'}, {key: '4F'}, {key: '4G'}, {key: '4H'}, {key: '4I'}, {key: '4J'} ],
+        4: [ {key: '4A'}, {key: '4B'}, {key: '4C'}, {key: '4D'}, {key: '4E'}, {key: '4F'}, {key: '4G'}, {key: '4H'}, {key: '4I'}, {key: '4J'} ],
         5: [ {key: '5A'}, {key: '5B'}, {key: '5C'}, {key: '5D'}, {key: '5E'}, {key: '5F'}, {key: '5G'}, {key: '5H'}, {key: '5I'}, {key: '5J'} ],
         6: [ {key: '6A'}, {key: '6B'}, {key: '6C'}, {key: '6D'}, {key: '6E'}, {key: '6F'}, {key: '6G'}, {key: '6H'}, {key: '6I'}, {key: '6J'} ],
         7: [ {key: '7A'}, {key: '7B'}, {key: '7C'}, {key: '7D'}, {key: '7E'}, {key: '7F'}, {key: '7G'}, {key: '7H'}, {key: '7I'}, {key: '7J'} ],
@@ -27,18 +27,14 @@ const initialState = {
         }
 }
 const boardReducer = (state = initialState, action) => {
+    // let newState = deepCopy(state)
     switch(action.type){
       case CLICKED: 
-        // console.log('YOU CLICKED', action.key)
-        // console.log('ARRAY TO FIND FROM', state.squares)
         let x = action.key.slice(0,1)
         let y = action.key.slice(1,2)
-        // console.log('SLICED', x + y)
         const findKey = state.squares[x].find(square => square.key = `${x}${y}`)
         console.log('FIND RESULT', findKey)
-        return {
-            ...state
-        }
+        return state
     default:
         return state;
     }
