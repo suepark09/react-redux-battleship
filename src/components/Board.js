@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 class Board extends React.Component {
     clickSquare = (e) => {
-        console.log('you clicked', e.target.value)
-        this.props.clickSquare()
+        this.props.clickSquare(e.target.value)
     }
 
     render() {
@@ -32,7 +31,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: () => dispatch({type: 'CLICKED'}) 
+        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}) 
     }
 }
 
