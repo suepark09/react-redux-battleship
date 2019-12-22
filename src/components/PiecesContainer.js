@@ -3,7 +3,6 @@ import Form from 'react-bootstrap/Form';
 export default function PiecesContainer () {
     const handleSelection = (e) => {
         console.log('you clicked:', e.target.value)
-        
     }
     return (
         <div>

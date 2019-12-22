@@ -24,14 +24,14 @@ class Board extends React.Component {
         );
     }
 
-    //object.keys.map(key => key.map(object => {return <><>}))
-
     render() {
-        console.log('%%%%%%%%', this.props.state.squares.squares)
-        const mappedBoard = Object.keys(this.props.state.squares.squares).map((square, i) => {
-            console.log('whats square', square)
-            return <Square key={i} color = {square[i]}  onClick={() => this.handleClick(i)} />
-        })
+        const { squares } = this.props.state.squares
+        const mappedBoard = []
+        for (let i = 0; i < 10; i++) {
+            squares[i].map((singleSquare, idx) => {
+                console.log('single square', singleSquare + idx)
+                mappedBoard.push(<Square />)
+            })}
         return (
             <div>
                 { mappedBoard }

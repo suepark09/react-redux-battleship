@@ -1,8 +1,8 @@
 import {CLICKED} from '../actions/actionTypes'
 
-const boardReducer = (state = {
+const initialState = {
     squares: {
-    0: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
+    0: [ {key: 1}, {key: 2}, {key: 3}, {key: 4}, {key: 5}, {key: 6}, {key: 7}, {key: 8}, {key: 9}, {key: 10} ],
     1: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
     2: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
     3: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
@@ -13,7 +13,8 @@ const boardReducer = (state = {
     8: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
     9: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ]
     }
-}, action) => {
+}
+const boardReducer = (state = initialState, action) => {
     switch(action.type){
       case CLICKED: 
       
