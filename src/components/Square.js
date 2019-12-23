@@ -8,6 +8,7 @@ class Square extends React.Component {
   render () {
     const state = this.props.state.squares.squares
     const btn_class = this.props.color ? 'grey-square' : 'square' // square is white background
+<<<<<<< HEAD
     // const hitShipClass = this.state.ship && this.state.clicked ? 'red' : 'square'
     
     
@@ -15,11 +16,23 @@ class Square extends React.Component {
     return (
       <button className={btn_class} value={this.props.coordinate} onClick={this.checkSquare}>
         {this.props.coordinate}
+=======
+    // if (this.props.active) {
+    //     return 
+    // }
+    const disabled = this.props.active ? '' : 'disabled'
+    console.log(disabled, '++++++++')
+    return (
+      
+      <button className={btn_class} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
+        {/* {this.props.coordinate} */}
+>>>>>>> master
       </button>
     )
   }
 }
 
+<<<<<<< HEAD
 const mapStateToProps = state => {
     return { state }
 }
@@ -40,3 +53,6 @@ export default connect(
 // export default Square
 
 
+=======
+export default Square
+>>>>>>> master

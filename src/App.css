@@ -19,12 +19,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 44px;
+  height: 24px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 44px;
+  width: 24px;
 }
 
 .grey-square {
@@ -34,12 +34,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 44px;
+  height: 24px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 44px;
+  width: 24px;
 }
 
 .red {
@@ -66,7 +66,7 @@ ol, ul {
   outline: none;
 }
 
-.square:hover {
+.square:hover:enabled {
   background-color: lightblue;
 }
 
@@ -83,4 +83,20 @@ ol, ul {
 
 #boardDiv {
   width: 440px;
+}
+
+.game-board {
+  width: 250px;
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions {
+  font-size: 10px;
+}
+
+.selector {
+  margin: 10px;
 }

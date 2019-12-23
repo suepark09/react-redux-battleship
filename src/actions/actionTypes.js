@@ -5,4 +5,8 @@
 // export const SELECT_SHIP = 'SELECT_SHIP';
 // export const SET_SHIP = 'SET_SHIP'
 export const CLICKED = 'CLICKED'
+<<<<<<< HEAD
 export const SHIPHIT = 'SHIPHIT'
+=======
+export const ACTIVATE = 'ACTIVATE'
+>>>>>>> master

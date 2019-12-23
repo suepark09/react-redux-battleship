@@ -1,8 +1,9 @@
-import { CLICKED, SHIPHIT } from '../actions/actionTypes'
+import { CLICKED, SHIPHIT, ACTIVATE } from '../actions/actionTypes'
 import hitShip from '../logic/logic'
 
 const initialState = {
   isPlaying: true,
+  active: false,
   squares: {
     0: [{ key: '0A', ship: true, clicked: false}, { key: '0B', ship: true, clicked: false}, { key: '0C', ship: false, clicked: false}, { key: '0D', ship: false, clicked: false }, { key: '0E', ship: false, clicked: false }, { key: '0F', ship: false, clicked: false }, { key: '0G', ship: false, clicked: false }, { key: '0H', ship: false, clicked: false }, { key: '0I', ship: false, clicked: false }, { key: '0J', ship: false, clicked: false }],
     1: [{ key: '1A', ship: false, clicked: false }, { key: '1B', ship: false, clicked: false }, { key: '1C', ship: false, clicked: false }, { key: '1D', ship: false, clicked: false }, { key: '1E', ship: false, clicked: false }, { key: '1F', ship: false, clicked: false }, { key: '1G', ship: false, clicked: false }, { key: '1H', ship: false, clicked: false }, { key: '1I', ship: false, clicked: false }, { key: '1J', ship: false, clicked: false }],
@@ -33,7 +34,16 @@ const boardReducer = (state = initialState, action) => {
         // console.log('you missed bro', findKey)
     }
       return state
-     
+
+    case ACTIVATE:
+        console.log('active?')
+
+    //   return {
+    //     active: true,
+    //   };
+      return {...state,
+        active: true
+        }
     default:
       return state
   }
