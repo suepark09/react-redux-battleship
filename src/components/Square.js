@@ -12,7 +12,7 @@ class Square extends React.Component {
     return (
       
       <button className={btn_class} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
-        {this.props.coordinate}
+        {/* {this.props.coordinate} */}
       </button>
     )
   }
