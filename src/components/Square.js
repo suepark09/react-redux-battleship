@@ -6,7 +6,7 @@ class Square extends React.Component {
     const btn_class = this.props.color ? 'grey-square' : 'square' // square is white background
     return (
       <button className={btn_class} value={this.props.coordinate} onClick={this.props.onClick}>
-        {this.props.coordinate}
+        {/* {this.props.coordinate} */}
       </button>
     )
   }
