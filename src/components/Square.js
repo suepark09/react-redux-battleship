@@ -10,6 +10,7 @@ class Square extends React.Component {
     const disabled = this.props.active ? '' : 'disabled'
     console.log(disabled, '++++++++')
     return (
+      
       <button className={btn_class} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
         {this.props.coordinate}
       </button>
