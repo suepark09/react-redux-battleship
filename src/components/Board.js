@@ -3,12 +3,14 @@ import Square from './Square';
 import { connect } from 'react-redux';
 // import { clickSquare } from '../actions/index'
 
+
 class Board extends React.Component {
     clickItem = (e) => {
         this.props.clickSquare(e.target.value)
     }
 
     render() {
+        // console.log(this.props.state, '***')
         const { squares } = this.props.state.squares
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
@@ -31,7 +33,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}) 
+        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}), 
+      
     }
 }
 
