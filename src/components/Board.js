@@ -8,12 +8,14 @@ class Board extends React.Component {
         this.props.clickSquare(e.target.value)
     }
 
+
     render() {
+
         const { squares } = this.props.state.squares
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             squares[i].map((singleSquare) => {
-                return mappedBoard.push(<Square key={singleSquare.key} coordinate={singleSquare.key} color={singleSquare.color} onClick={this.clickItem} />)
+                return mappedBoard.push(<Square key={singleSquare.key} coordinate={singleSquare.key} color={singleSquare.color} onClick={this.clickItem} active={this.props.state.squares.active}/>)
             })
         }
 
@@ -25,13 +27,15 @@ class Board extends React.Component {
     }
 }
 
+
+
 const mapStateToProps = state => {
     return { state }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}) 
+        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}),
     }
 }
 

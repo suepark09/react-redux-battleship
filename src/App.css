@@ -50,7 +50,7 @@ ol, ul {
   outline: none;
 }
 
-.square:hover {
+.square:hover:enabled {
   background-color: lightblue;
 }
 
