@@ -1,4 +1,6 @@
 import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
+import { saveState } from '../firebaseFunc'
+
 const initialState = {
   isPlaying: true,
   active: false,
@@ -50,6 +52,7 @@ const boardReducer = (state = initialState, action) => {
     case FIREBASE:
       console.log('firebase reducer')
       console.log('this should be the game state:', action.payload)
+      saveState(action.payload)
       return {...state}
     default:
       return state
