@@ -29,6 +29,7 @@ const boardReducer = (state = initialState, action) => {
       if(findKey.ship){
         findKey.clicked = true
         // console.log('ship hit', findKey, state)
+        
     } else {
         findKey.clicked = true
         // console.log('you missed bro', findKey)
