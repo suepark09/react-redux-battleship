@@ -8,6 +8,7 @@ import { incrementUser } from './firebaseFunc'
 import firebaseConfig from './firebaseConfig'
 import { connect } from 'react-redux'
 import './App.css'
+import { FIREBASE } from './actions/actionTypes'
 
 // connect App to store, save the game state to database on game start
 class App extends React.Component {
@@ -16,7 +17,7 @@ class App extends React.Component {
     firebase.initializeApp(firebaseConfig)
     incrementUser()
     console.log('will mount')
-    this.props.firebaseAction()
+    this.props.firebaseAction(this.props.state)
   }
 
   render () {
@@ -40,12 +41,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log('mapped state in props')
   return { state }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    firebaseAction: () => dispatch({type: 'FIREBASE'})
+    firebaseAction: (state) => dispatch({ type: FIREBASE, payload: state })
   }
 }
 

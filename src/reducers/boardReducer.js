@@ -51,6 +51,7 @@ const boardReducer = (state = initialState, action) => {
       }
     case FIREBASE:
       console.log('firebase reducer')
+      console.log('this should be the game state:', action.payload)
       return {...state}
     default:
       return state
