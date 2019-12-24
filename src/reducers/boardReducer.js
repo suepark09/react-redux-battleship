@@ -1,4 +1,8 @@
-import { CLICKED, ACTIVATE } from '../actions/actionTypes'
+import {
+  CLICKED,
+  ACTIVATE,
+  FIREBASE
+} from '../actions/actionTypes'
 
 const initialState = {
   // squares: {
@@ -38,7 +42,6 @@ const boardReducer = (state = initialState, action) => {
       return state
     case ACTIVATE:
       console.log('active?')
-
       //   return {
       //     active: true,
       //   };
@@ -46,6 +49,9 @@ const boardReducer = (state = initialState, action) => {
         ...state,
         active: true
       }
+    case FIREBASE:
+      console.log('firebase reducer')
+      return {...state}
     default:
       return state
   }
