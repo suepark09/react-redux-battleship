@@ -1,21 +1,61 @@
 import React from 'react'
 import '../App.css'
+import { connect } from 'react-redux';
 
 class Square extends React.Component {
-  render () {
-    const btn_class = this.props.color ? 'grey-square' : 'square' // square is white background
-    // if (this.props.active) {
-    //     return
-    // }
-    const disabled = this.props.active ? '' : 'disabled'
-    console.log(disabled, '++++++++')
-    return (
+    // state.squares[x].find(square => square.key === `${x}${y}`)
+//   checkSquare = () => { 
 
-      <button className={btn_class} value={this.props.coordinate} onClick={this.props.onClick} disabled={disabled}>
-        {/* {this.props.coordinate} */}
-      </button>
+//       const x = this.props.coordinate.slice(0, 1)
+//       const y = this.props.coordinate.slice(1, 2)
+//       const findKey = this.props.state.squares.squares[x].find(square => square.key === `${x}${y}`)
+//       if(findKey.ship){
+//           findKey.color = 'red'
+//       } else {
+//           findKey.color = 'grey'
+//       }
+//       const red_class = findKey.ship ? 'red' : 'grey-square'
+//       console.log( findKey , '+++in the state')
+      
+//     }
+
+  render () {
+
+    // console.log(this.props.square, 'know myslef')
+
+    let color = this.props.square.color ? 'grey-square' : 'square' 
+    console.log(this.props.square.ship)
+    if (this.props.square.ship && this.props.square.color) {
+        console.log('turns red')
+        color = 'red'
+    }
+   
+    
+    const disabled = this.props.active ? '' : 'disabled'
+   
+    
+    // console.log(disabled, '++++++++')
+    
+    return (
+      
+      <button className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
+        {/* {this.props.coordinate} */}   </button>
     )
   }
+}const mapStateToProps = state => {
+    return { state }
 }
 
-export default Square
+const mapDispatchToProps = dispatch => {
+    return {
+        checkSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}), 
+      
+    }
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Square)
+
+
+// export default Square

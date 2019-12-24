@@ -1,11 +1,6 @@
 
 import {
-  HIT_SHIP,
-  PLAYER_1_ATTACK,
-  PLAYER_2_ATTACK,
-  SET_IS_PLAYING,
-  SELECT_SHIP,
-  SET_SHIP,
+  SHIPHIT,
   CLICKED
 
 } from './actionTypes'
@@ -15,14 +10,24 @@ import {
 //     'Battleship': 4
 // }
 
-const clickSquare = (coordinate) => {
-  console.log('clicked')
-  return {
-    type: CLICKED,
-    payload: coordinate
-  }
+// const clickSquare = (coordinate) => {
+//   console.log('clicked')
+//   return {
+//     type: CLICKED,
+//     payload: coordinate
+//   }
+// }
+// export { clickSquare }
+
+const clickedShip = (enemy, enemyShip) => {
+    return {
+        type: SHIPHIT,
+        payload: {
+            enemy,
+            enemyShip
+        }
+    }
 }
-export { clickSquare }
 
 // export const hitShip = (enemy, enemyShip) => {
 //     return {
