@@ -3,19 +3,17 @@ import Square from './Square';
 import { connect } from 'react-redux';
 // import { clickSquare } from '../actions/index'
 
+
 class Board extends React.Component {
     clickItem = (e) => {
         this.props.clickSquare(e.target.value)
     }
-
-
-    render() {
-
-        const { squares } = this.props.state.squares
+    render() {     // console.log(this.props.state, '***')
+         const { squares } = this.props.state.squares
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             squares[i].map((singleSquare, idx) => {
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} onClick={this.clickItem} active={this.props.state.squares.active}/>)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active} />)
             })
         }
 
@@ -27,15 +25,14 @@ class Board extends React.Component {
     }
 }
 
-
-
 const mapStateToProps = state => {
     return { state }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}),
+        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}), 
+       
     }
 }
 

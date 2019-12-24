@@ -12,3 +12,6 @@ export function incrementUser () {
       })
     })
 }
+
+// saves a copy of the state on the database
+// export function write
