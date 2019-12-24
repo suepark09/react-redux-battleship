@@ -2,7 +2,7 @@ import React from 'react'
 import '../App.css'
 
 class Instructions extends React.Component {
-  render() {
+  render () {
     return (
       <ol>
         <li>Share this link with your opponent</li>
