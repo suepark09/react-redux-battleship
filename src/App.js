@@ -12,22 +12,18 @@ import { FIREBASE } from './actions/actionTypes'
 import StartModal from './components/StartModal'
 
 class App extends React.Component {
-
   componentDidMount () {
     firebase.initializeApp(firebaseConfig)
     incrementUser()
-    console.log('will mount', this.props.state.squares)
     this.props.firebaseAction(this.props.state.squares)
   }
 
   render () {
-
     const { squares } = this.props.state
-    console.log('render', squares.isPlaying)
 
     return (
       <div>
-        <StartModal props={ squares.isPlaying } />
+        <StartModal props={squares} />
         <h1>React-Redux-Battleship Game</h1>
         <div className='game'>
           <div className='game-info'>
@@ -46,7 +42,6 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('mapped state in props')
   return { state }
 }
 

@@ -2,11 +2,11 @@ import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
-  gameId: '',
+  gameId: null,
   isPlaying: false,
   active: false,
   squares: {
-    0: [{ key: '0A', ship: true, color: false}, { key: '0B', ship: true, color: false}, { key: '0C', ship: false, color: false}, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
+    0: [{ key: '0A', ship: true, color: false }, { key: '0B', ship: true, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
     1: [{ key: '1A', ship: false, color: false }, { key: '1B', ship: false, color: false }, { key: '1C', ship: false, color: false }, { key: '1D', ship: false, color: false }, { key: '1E', ship: false, color: false }, { key: '1F', ship: false, color: false }, { key: '1G', ship: false, color: false }, { key: '1H', ship: false, color: false }, { key: '1I', ship: false, color: false }, { key: '1J', ship: false, color: false }],
     2: [{ key: '2A', ship: false, color: false }, { key: '2B', ship: false, color: false }, { key: '2C', ship: false, color: false }, { key: '2D', ship: false, color: false }, { key: '2E', ship: false, color: false }, { key: '2F', ship: false, color: false }, { key: '2G', ship: false, color: false }, { key: '2H', ship: false, color: false }, { key: '2I', ship: false, color: false }, { key: '2J', ship: false, color: false }],
     3: [{ key: '3A', ship: false, color: false }, { key: '3B', ship: false, color: false }, { key: '3C', ship: false, color: false }, { key: '3D', ship: false, color: false }, { key: '3E', ship: false, color: false }, { key: '3F', ship: false, color: false }, { key: '3G', ship: false, color: false }, { key: '3H', ship: false, color: false }, { key: '3I', ship: false, color: false }, { key: '3J', ship: false, color: false }],
@@ -22,23 +22,22 @@ const initialState = {
 const deepCopy = (x) => JSON.parse(JSON.stringify(x))
 
 const boardReducer = (state = initialState, action) => {
-  let stateCopy = deepCopy(state)
+  const stateCopy = deepCopy(state)
   switch (action.type) {
     case CLICKED:
-       
+
       const x = action.key.slice(0, 1)
       const y = action.key.slice(1, 2)
 
-      const square = stateCopy.squares[x].find(square  => square.key === `${x}${y}`)
+      const square = stateCopy.squares[x].find(square => square.key === `${x}${y}`)
       // const index = stateCopy.squares[x].indexOf(square)
       // console.log(index, 'index')
       // console.log(square, 'before ****', stateCopy.squares[x])
-     
-    
-        square.color = true
-        // console.log('you missed bro', findKey)
-    
-    // console.log(square, 'after ****', stateCopy.squares[x])
+
+      square.color = true
+      // console.log('you missed bro', findKey)
+
+      // console.log(square, 'after ****', stateCopy.squares[x])
       return stateCopy
     case ACTIVATE:
       // console.log('active?')
