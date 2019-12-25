@@ -13,7 +13,8 @@ React application utilizing Redux.
 playerOneReady: true,
 playerTwoReady: false
 ~~~~
-- **Player 2** connects to the game
+- **Player 1** is shown a waiting screen and waits until **Player 2** connects
+- **Player 2** connects to the game, **Player 1** recieves notification that opponent has connected
 ~~~~
 playerOneReady: true,
 playerTwoReady: true
