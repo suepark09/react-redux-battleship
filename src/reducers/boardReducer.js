@@ -18,50 +18,43 @@ const initialState = {
     9: [{ key: '9A', ship: false, color: false }, { key: '9B', ship: false, color: false }, { key: '9C', ship: false, color: false }, { key: '9D', ship: false, color: false }, { key: '9E', ship: false, color: false }, { key: '9F', ship: false, color: false }, { key: '9G', ship: false, color: false }, { key: '9H', ship: false, color: false }, { key: '9I', ship: false, color: false }, { key: '9J', ship: false, color: false }]
   }
 }
+
+const deepCopy = (x) => JSON.parse(JSON.stringify(x))
+
 const boardReducer = (state = initialState, action) => {
-  // let newState = deepCopy(state)
+  let stateCopy = deepCopy(state)
   switch (action.type) {
     case CLICKED:
        
       const x = action.key.slice(0, 1)
       const y = action.key.slice(1, 2)
 
-      const square = state.squares[x].find(square  => square.key === `${x}${y}`)
-      // const index = state.squares[x].indexOf(square)
+      const square = stateCopy.squares[x].find(square  => square.key === `${x}${y}`)
+      // const index = stateCopy.squares[x].indexOf(square)
       // console.log(index, 'index')
-      // console.log(square, 'before ****', state.squares[x])
+      // console.log(square, 'before ****', stateCopy.squares[x])
      
     
         square.color = true
         // console.log('you missed bro', findKey)
     
-    // console.log(square, 'after ****', state.squares[x])
-      return {
-        ...state,
-        // state.squares[x].indexOf()
-      }
-
+    // console.log(square, 'after ****', stateCopy.squares[x])
+      return stateCopy
     case ACTIVATE:
       // console.log('active?')
       //   return {
       //     active: true,
       //   };
       return {
-        ...state,
+        ...stateCopy,
         active: true
       }
     case FIREBASE:
-      // console.log('firebase reducer')
-      // const newState = { gameId: gameId, ...state }
-      // const gameId = keyGen(action.payload)
       const gameId = keyGen(action.payload)
       console.log('REDUCER GAME ID:', gameId)
-      // update the game data on the database with the gameId
-      // find the key, push the new data
-      // return the new state with the gameId
-      return { gameId: gameId, ...state }
+      return { gameId: gameId, ...stateCopy }
     default:
-      return { ...state }
+      return stateCopy
   }
 }
 
