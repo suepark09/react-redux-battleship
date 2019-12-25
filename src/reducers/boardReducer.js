@@ -1,8 +1,9 @@
 import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
-import { saveState } from '../firebaseFunc'
+import { keyGen } from '../firebaseFunc'
 
 const initialState = {
-  isPlaying: true,
+  gameId: '',
+  isPlaying: false,
   active: false,
   squares: {
     0: [{ key: '0A', ship: true, color: false}, { key: '0B', ship: true, color: false}, { key: '0C', ship: false, color: false}, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
@@ -26,22 +27,22 @@ const boardReducer = (state = initialState, action) => {
       const y = action.key.slice(1, 2)
 
       const square = state.squares[x].find(square  => square.key === `${x}${y}`)
-      const index = state.squares[x].indexOf(square)
-      console.log(index, 'index')
-      console.log(square, 'before ****', state.squares[x])
+      // const index = state.squares[x].indexOf(square)
+      // console.log(index, 'index')
+      // console.log(square, 'before ****', state.squares[x])
      
     
         square.color = true
         // console.log('you missed bro', findKey)
     
-    console.log(square, 'after ****', state.squares[x])
+    // console.log(square, 'after ****', state.squares[x])
       return {
         ...state,
         // state.squares[x].indexOf()
       }
 
     case ACTIVATE:
-      console.log('active?')
+      // console.log('active?')
       //   return {
       //     active: true,
       //   };
@@ -50,12 +51,17 @@ const boardReducer = (state = initialState, action) => {
         active: true
       }
     case FIREBASE:
-      console.log('firebase reducer')
-      console.log('this should be the game state:', action.payload)
-      saveState(action.payload)
-      return {...state}
+      // console.log('firebase reducer')
+      // const newState = { gameId: gameId, ...state }
+      // const gameId = keyGen(action.payload)
+      const gameId = keyGen(action.payload)
+      console.log('REDUCER GAME ID:', gameId)
+      // update the game data on the database with the gameId
+      // find the key, push the new data
+      // return the new state with the gameId
+      return { gameId: gameId, ...state }
     default:
-      return state
+      return { ...state }
   }
 }
 

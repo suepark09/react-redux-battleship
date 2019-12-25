@@ -9,20 +9,25 @@ import firebaseConfig from './firebaseConfig'
 import { connect } from 'react-redux'
 import './App.css'
 import { FIREBASE } from './actions/actionTypes'
+import StartModal from './components/StartModal'
 
-// connect App to store, save the game state to database on game start
 class App extends React.Component {
 
   componentDidMount () {
     firebase.initializeApp(firebaseConfig)
     incrementUser()
-    console.log('will mount')
-    this.props.firebaseAction(this.props.state)
+    console.log('will mount', this.props.state.squares)
+    this.props.firebaseAction(this.props.state.squares)
   }
 
   render () {
+
+    const { squares } = this.props.state
+    console.log('render', squares.isPlaying)
+
     return (
       <div>
+        <StartModal props={ squares.isPlaying } />
         <h1>React-Redux-Battleship Game</h1>
         <div className='game'>
           <div className='game-info'>
@@ -47,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    firebaseAction: (state) => dispatch({ type: FIREBASE, payload: state })
+    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
   }
 }
 

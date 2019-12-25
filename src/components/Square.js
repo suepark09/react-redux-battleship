@@ -24,7 +24,7 @@ class Square extends React.Component {
     // console.log(this.props.square, 'know myslef')
 
     let color = this.props.square.color ? 'grey-square' : 'square' 
-    console.log(this.props.square.ship)
+    //console.log(this.props.square.ship)
     if (this.props.square.ship && this.props.square.color) {
         console.log('turns red')
         color = 'red'
