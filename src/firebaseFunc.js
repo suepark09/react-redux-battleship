@@ -5,10 +5,16 @@ import 'firebase/database'
 export function incrementUser () {
   const ref = firebase.database().ref('/')
   ref.once('value')
-    .then(function (snapshot) {
-      const currentUser = snapshot.val().user
+    .then(function (snap) {
+      const currentUser = snap.val().user
       firebase.database().ref('/').update({
         user: currentUser + 1
       })
     })
+}
+
+// saves a copy of the state on the database
+export function saveState (state) {
+  const ref = firebase.database().ref('/')
+  ref.push(state)
 }
