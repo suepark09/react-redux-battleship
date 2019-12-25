@@ -6,7 +6,7 @@ React application utilizing Redux.
 - `npm start`
 
 # Game Initialization
-- **Player 1** visits app (session is created for first time visitor)
+- **Player 1** visits app (OPTIONAL: session is created for first time visitor)
 - **Player 1** and **Player 2** initial state is saved to the database and a unique key is generated for the game
 - **Player 1** is then supplied a URL that corresponds to the unique key in the database and is prompted to share the URL with **Player 2**
 ~~~~
