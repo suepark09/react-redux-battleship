@@ -1,3 +1,10 @@
+# Battleship
+React application utilizing Redux.
+
+# Start Game
+- `npm install`
+- `npm start`
+
 # Game Initialization
 - **Player 1** visits app (session is created for first time visitor)
 - **Player 1** and **Player 2** initial state is saved to the database and a unique key is generated for the game
@@ -20,4 +27,10 @@ key: '0A',
 ship: true,
 color: false
 ~~~~
-- Once 17/100 squares are filled with ships, then game is ready to start
+- Once each player fills 17/100 squares with ships, then game is ready to start
+- At this point, the state saved on the database should look something like this:
+~~~~
+key: 'OA',
+ship: true || false,
+color: false
+~~~~
