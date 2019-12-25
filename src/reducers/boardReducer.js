@@ -2,7 +2,7 @@ import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
-  gameId: null,
+  gameId: '',
   isPlaying: false,
   active: false,
   squares: {
@@ -51,7 +51,9 @@ const boardReducer = (state = initialState, action) => {
     case FIREBASE:
       const gameId = keyGen(action.payload)
       console.log('REDUCER GAME ID:', gameId)
-      return { gameId: gameId, ...stateCopy }
+      stateCopy.gameId = gameId
+      console.log('new state', stateCopy)
+      return stateCopy
     default:
       return stateCopy
   }
