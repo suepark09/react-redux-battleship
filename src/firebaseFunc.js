@@ -13,8 +13,17 @@ export function incrementUser () {
     })
 }
 
-// saves a copy of the state on the database
-export function saveState (state) {
-  const ref = firebase.database().ref('/')
-  ref.push(state)
+export function keyGen (state) {
+  console.log('state passed into firebase', state)
+  const ref = firebase.database().ref('/battleship')
+  // get a key for a new game
+  const gameId = ref.push().key
+  console.log('FIREBASE FUNC GAME ID:', gameId)
+  state.gameId = gameId
+  console.log('updating to database...', state)
+  ref.child(gameId).update(state)
+  return gameId
 }
+
+// to clear database...
+// firebase.database().ref().remove()
