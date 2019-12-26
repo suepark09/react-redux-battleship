@@ -14,9 +14,8 @@ import StartModal from './components/StartModal'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
-} from "react-router-dom";
+  Route
+} from 'react-router-dom'
 
 class App extends React.Component {
   componentDidMount () {
@@ -48,9 +47,7 @@ class App extends React.Component {
               </div>
             </div>
           </Route>
-          <Route path='/game/:gameId'>
-            <PlayerTwo />
-          </Route>
+          <Route path='/game/:gameId' component={PlayerTwo} />
         </Switch>
       </Router>
     )

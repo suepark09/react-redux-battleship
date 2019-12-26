@@ -14,7 +14,7 @@ export default function StartModal (props) {
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>
-                Connect with your opponent by sharing this link: www.battleship.netlify.com/{props.props.gameId}
+                Connect with your opponent by sharing this link: www.sample.com/{props.props.gameId}
         </ModalBody>
         <ModalFooter>
           <Button color='primary' onClick={toggle}>Copy Link</Button>{' '}

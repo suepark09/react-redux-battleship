@@ -14,15 +14,19 @@ export function incrementUser () {
 }
 
 export function keyGen (state) {
-  console.log('state passed into firebase', state)
-  const ref = firebase.database().ref('/battleship')
+  // console.log('state passed into firebase', state)
+  const ref = firebase.database().ref('/game')
   // get a key for a new game
   const gameId = ref.push().key
-  console.log('FIREBASE FUNC GAME ID:', gameId)
+  // console.log('FIREBASE FUNC GAME ID:', gameId)
   state.gameId = gameId
-  console.log('updating to database...', state)
+  // console.log('updating to database...', state)
   ref.child(gameId).update(state)
   return gameId
+}
+
+export function fetchGameData (gameId) {
+  console.log('finding game on database with this id:', gameId)
 }
 
 // to clear database...
