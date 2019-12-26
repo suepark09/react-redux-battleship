@@ -2,6 +2,7 @@ import React from 'react'
 import Board from './components/Board'
 import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
+import PlayerTwo from './components/PlayerTwo'
 import * as firebase from 'firebase/app'
 import 'firebase/database'
 import { incrementUser } from './firebaseFunc'
@@ -10,6 +11,12 @@ import { connect } from 'react-redux'
 import './App.css'
 import { FIREBASE } from './actions/actionTypes'
 import StartModal from './components/StartModal'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 class App extends React.Component {
   componentDidMount () {
@@ -22,21 +29,30 @@ class App extends React.Component {
     const { squares } = this.props.state
 
     return (
-      <div>
-        <StartModal props={squares} />
-        <h1>React-Redux-Battleship Game</h1>
-        <div className='game'>
-          <div className='game-info'>
-            <PiecesContainer />
-          </div>
-          <div className='game-board'>
-            <Board />
-          </div>
-        </div>
-        <div className='instructions'>
-          <Instructions />
-        </div>
-      </div>
+      <Router>
+        <Switch>
+          <Route exact path='/'>
+            <div>
+              <StartModal props={squares} />
+              <h1>React-Redux-Battleship Game</h1>
+              <div className='game'>
+                <div className='game-info'>
+                  <PiecesContainer />
+                </div>
+                <div className='game-board'>
+                  <Board />
+                </div>
+              </div>
+              <div className='instructions'>
+                <Instructions />
+              </div>
+            </div>
+          </Route>
+          <Route path='/game/:gameId'>
+            <PlayerTwo />
+          </Route>
+        </Switch>
+      </Router>
     )
   }
 }
