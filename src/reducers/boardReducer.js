@@ -2,6 +2,8 @@ import { CLICKED, SHIPHIT, ACTIVATE } from '../actions/actionTypes'
 const initialState = {
   isPlaying: true,
   active: false,
+  index: null,
+  ship: {name: null, length: null},
   squares: {
     0: [{ key: '0A', ship: true, color: false}, { key: '0B', ship: true, color: false}, { key: '0C', ship: false, color: false}, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
     1: [{ key: '1A', ship: false, color: false }, { key: '1B', ship: false, color: false }, { key: '1C', ship: false, color: false }, { key: '1D', ship: false, color: false }, { key: '1E', ship: false, color: false }, { key: '1F', ship: false, color: false }, { key: '1G', ship: false, color: false }, { key: '1H', ship: false, color: false }, { key: '1I', ship: false, color: false }, { key: '1J', ship: false, color: false }],
@@ -25,18 +27,36 @@ const boardReducer = (state = initialState, action) => {
 
       const square = state.squares[x].find(square  => square.key === `${x}${y}`)
       const index = state.squares[x].indexOf(square)
-      console.log(index, 'index')
+      console.log('wuts x and y', x, y);
+      console.log(index, 'this is the index')
       console.log(square, 'before ****', state.squares[x])
-     
+
+        const test = { ...state.squares };
+        const col = index;
+        const ship = state.ship;
+            if (col + ship.length <= 10) {
+                for(let i = 0; i < ship.length; i++) {
+                    test[x][col + i].color = true; 
+                }
+            } else {
+                for(let i = ship.length; i > 0; i--) {
+                    test[x][10 - i].color = true;
+                }
+            }
+
     
-        square.color = true
+        // square.color = true
         // console.log('you missed bro', findKey)
     
     console.log(square, 'after ****', state.squares[x])
       return {
         ...state,
+        squares: test,
+        index: index //so that i can pass it to pieces container
         // state.squares[x].indexOf()
       }
+
+
 
     case ACTIVATE:
       console.log('active?')
@@ -44,9 +64,11 @@ const boardReducer = (state = initialState, action) => {
       //   return {
       //     active: true,
       //   };
+      console.log('wut is ship!!!!', action.payload)
       return {
         ...state,
-        active: true
+        active: true,
+        ship: action.payload //so that i can grab ship info and use it here or in board file
       }
     default:
       return state
