@@ -60,13 +60,7 @@ const boardReducer = (state = initialState, action) => {
 
 
 
-    case ACTIVATE:
-      console.log('active?')
-      console.log('what is square?', square)
-      square.color = true
-
- 
-      return stateCopy
+    
     case ACTIVATE:
       // console.log('active?')
       //   return {
