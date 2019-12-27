@@ -6,17 +6,24 @@ import * as firebase from 'firebase/app'
 import 'firebase/database'
 import { incrementUser } from './firebaseFunc'
 import firebaseConfig from './firebaseConfig'
+import { connect } from 'react-redux'
 import './App.css'
+import { FIREBASE } from './actions/actionTypes'
+import StartModal from './components/StartModal'
 
 class App extends React.Component {
   componentDidMount () {
     firebase.initializeApp(firebaseConfig)
     incrementUser()
+    this.props.firebaseAction(this.props.state.squares)
   }
 
   render () {
+    const { squares } = this.props.state
+
     return (
       <div>
+        <StartModal props={squares} />
         <h1>React-Redux-Battleship Game</h1>
         <div className='game'>
           <div className='game-info'>
@@ -34,4 +41,14 @@ class App extends React.Component {
   }
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return { state }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

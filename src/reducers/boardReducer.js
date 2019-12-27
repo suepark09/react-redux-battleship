@@ -1,11 +1,14 @@
-import { CLICKED, SHIPHIT, ACTIVATE } from '../actions/actionTypes'
+import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
+import { keyGen } from '../firebaseFunc'
+
 const initialState = {
-  isPlaying: true,
+  gameId: '',
+  isPlaying: false,
   active: false,
   index: null,
   ship: {name: null, length: null},
   squares: {
-    0: [{ key: '0A', ship: true, color: false}, { key: '0B', ship: true, color: false}, { key: '0C', ship: false, color: false}, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
+    0: [{ key: '0A', ship: true, color: false }, { key: '0B', ship: true, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
     1: [{ key: '1A', ship: false, color: false }, { key: '1B', ship: false, color: false }, { key: '1C', ship: false, color: false }, { key: '1D', ship: false, color: false }, { key: '1E', ship: false, color: false }, { key: '1F', ship: false, color: false }, { key: '1G', ship: false, color: false }, { key: '1H', ship: false, color: false }, { key: '1I', ship: false, color: false }, { key: '1J', ship: false, color: false }],
     2: [{ key: '2A', ship: false, color: false }, { key: '2B', ship: false, color: false }, { key: '2C', ship: false, color: false }, { key: '2D', ship: false, color: false }, { key: '2E', ship: false, color: false }, { key: '2F', ship: false, color: false }, { key: '2G', ship: false, color: false }, { key: '2H', ship: false, color: false }, { key: '2I', ship: false, color: false }, { key: '2J', ship: false, color: false }],
     3: [{ key: '3A', ship: false, color: false }, { key: '3B', ship: false, color: false }, { key: '3C', ship: false, color: false }, { key: '3D', ship: false, color: false }, { key: '3E', ship: false, color: false }, { key: '3F', ship: false, color: false }, { key: '3G', ship: false, color: false }, { key: '3H', ship: false, color: false }, { key: '3I', ship: false, color: false }, { key: '3J', ship: false, color: false }],
@@ -17,11 +20,14 @@ const initialState = {
     9: [{ key: '9A', ship: false, color: false }, { key: '9B', ship: false, color: false }, { key: '9C', ship: false, color: false }, { key: '9D', ship: false, color: false }, { key: '9E', ship: false, color: false }, { key: '9F', ship: false, color: false }, { key: '9G', ship: false, color: false }, { key: '9H', ship: false, color: false }, { key: '9I', ship: false, color: false }, { key: '9J', ship: false, color: false }]
   }
 }
+
+const deepCopy = (x) => JSON.parse(JSON.stringify(x))
+
 const boardReducer = (state = initialState, action) => {
-  // let newState = deepCopy(state)
+  const stateCopy = deepCopy(state)
   switch (action.type) {
     case CLICKED:
-       
+
       const x = action.key.slice(0, 1)
       const y = action.key.slice(1, 2)
 
@@ -43,10 +49,6 @@ const boardReducer = (state = initialState, action) => {
                     test[x][10 - i].color = true;
                 }
             }
-
-    
-        // square.color = true
-        // console.log('you missed bro', findKey)
     
     console.log(square, 'after ****', state.squares[x])
       return {
@@ -60,18 +62,30 @@ const boardReducer = (state = initialState, action) => {
 
     case ACTIVATE:
       console.log('active?')
+      console.log('what is square?', square)
+      square.color = true
 
+ 
+      return stateCopy
+    case ACTIVATE:
+      // console.log('active?')
       //   return {
       //     active: true,
       //   };
       console.log('wut is ship!!!!', action.payload)
       return {
-        ...state,
+        ...stateCopy,
         active: true,
         ship: action.payload //so that i can grab ship info and use it here or in board file
       }
+    case FIREBASE:
+      const gameId = keyGen(action.payload)
+      console.log('REDUCER GAME ID:', gameId)
+      stateCopy.gameId = gameId
+      console.log('new state', stateCopy)
+      return stateCopy
     default:
-      return state
+      return stateCopy
   }
 }
 

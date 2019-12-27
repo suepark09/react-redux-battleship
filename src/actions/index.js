@@ -1,7 +1,7 @@
-
 import {
   SHIPHIT,
-  CLICKED
+  CLICKED,
+  FIREBASE
 
 } from './actionTypes'
 
@@ -49,31 +49,11 @@ const clickedShip = (enemy, enemyShip) => {
 //     }
 // }
 
-// export function setIsPlaying(isPlaying) {
-//     return { type: SET_IS_PLAYING, payload: isPlaying };
-// };
+const firebaseAction = () => {
+  console.log('firebase action')
+  return {
+    type: FIREBASE,
+  }
+}
 
-// export const PLAYER2ATTACK = (coordinates) => {
-//     return(dispatch) => {
-//         dispatch({
-//             type: PLAYER_2_ATTACK,
-//             payload: coordinates
-//         });
-//         dispatch(setIsPlaying(false))
-//     }
-// }
-
-// export function selectShip(ship) {
-//     return { type: SELECT_SHIP, payload: ship };
-//   };
-
-//   export function setShip(player, shipName, coordinates)  {
-//     return {
-//       type: SET_SHIP,
-//       payload: {
-//         player,
-//         shipName,
-//         coordinates,
-//       }
-//     };
-//   };
+export { clickSquare, firebaseAction }

@@ -1,28 +1,27 @@
 import React from 'react'
 import '../App.css'
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 
 class Square extends React.Component {
-    // state.squares[x].find(square => square.key === `${x}${y}`)
-//   checkSquare = () => { 
+  // state.squares[x].find(square => square.key === `${x}${y}`)
+//   checkSquare = () => {
 
-//       const x = this.props.coordinate.slice(0, 1)
-//       const y = this.props.coordinate.slice(1, 2)
-//       const findKey = this.props.state.squares.squares[x].find(square => square.key === `${x}${y}`)
-//       if(findKey.ship){
-//           findKey.color = 'red'
-//       } else {
-//           findKey.color = 'grey'
-//       }
-//       const red_class = findKey.ship ? 'red' : 'grey-square'
-//       console.log( findKey , '+++in the state')
-      
-//     }
+  //       const x = this.props.coordinate.slice(0, 1)
+  //       const y = this.props.coordinate.slice(1, 2)
+  //       const findKey = this.props.state.squares.squares[x].find(square => square.key === `${x}${y}`)
+  //       if(findKey.ship){
+  //           findKey.color = 'red'
+  //       } else {
+  //           findKey.color = 'grey'
+  //       }
+  //       const red_class = findKey.ship ? 'red' : 'grey-square'
+  //       console.log( findKey , '+++in the state')
+
+  //     }
 
 
 
   render () {
-
     // console.log(this.props.square, 'know myslef')
 
     let color = this.props.square.color ? 'grey-square' : 'square' 
@@ -32,11 +31,10 @@ class Square extends React.Component {
         console.log('HUR')
     }
     if (this.props.square.ship && this.props.square.color) {
-        console.log('turns red')
-        color = 'red'
+      console.log('turns red')
+      color = 'red'
     }
-   
-    
+
     const disabled = this.props.active ? '' : 'disabled'
     
     // console.log(disabled, '++++++++')
@@ -55,20 +53,19 @@ class Square extends React.Component {
         {/* {this.props.coordinate} */}   </button>
     )
   }
-}const mapStateToProps = state => {
-    return { state }
+} const mapStateToProps = state => {
+  return { state }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-        checkSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}), 
-      
-    }
+  return {
+    checkSquare: (squareKey) => dispatch({ type: 'CLICKED', key: squareKey })
+
+  }
 }
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Square)
-
 
 // export default Square
