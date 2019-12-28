@@ -2,8 +2,12 @@
 
 // export const HIT_SHIP = 'HIT_SHIP';
 // export const PLAYER_1_ATTACK = 'PLAYER_1_ATTACK';
-export const CLICKED = 'CLICKED'
-export const SHIPHIT = 'SHIPHIT'
+export const SETSHIP = 'SETSHIP'
+export const P1ATTACK = 'P1ATTACK'
+export const P2ATTACK = 'P2ATTACK'
 export const ACTIVATE = 'ACTIVATE'
+export const DEACTIVATE_BOARD = 'DEACTIVATE_BOARD' //after placing down ship
 export const FIREBASE = 'FIREBASE'
 export const ORIENTATION = 'ORIENTATION'
+export const CLICKED = 'CLICKED'
+
