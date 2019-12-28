@@ -39,7 +39,6 @@ patrolBoat = (e) => {
     this.props.activate(this.ships[4])
 }
 
-
  render() {
     return (
         <div>
@@ -54,8 +53,7 @@ patrolBoat = (e) => {
             </div>
           </Form>
           <h1>Orientation</h1>
-            <button className='selector'>Horizontal</button>
-            <button className='selector'>Vertical</button>
+            <button onClick={this.props.orientation} className='selector'>Orientation</button>
         </div>
       )
  }
@@ -69,7 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        activate: (ship) => dispatch({type: 'ACTIVATE' , payload: ship})
+        activate: (ship) => dispatch({type: 'ACTIVATE' , payload: ship}),
+        orientation: () => dispatch({type: 'ORIENTATION'})
     }
 }
 
