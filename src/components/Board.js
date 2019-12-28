@@ -91,7 +91,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}), 
+        clickSquare: (squareKey) => dispatch({type: 'SETSHIP', key: squareKey}, {type: 'P1ATTACK', key: squareKey}, {type: 'P2ATTACK', key: squareKey} )
        
     }
 }

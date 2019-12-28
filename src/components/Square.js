@@ -3,21 +3,6 @@ import '../App.css'
 import { connect } from 'react-redux'
 
 class Square extends React.Component {
-  // state.squares[x].find(square => square.key === `${x}${y}`)
-//   checkSquare = () => {
-
-  //       const x = this.props.coordinate.slice(0, 1)
-  //       const y = this.props.coordinate.slice(1, 2)
-  //       const findKey = this.props.state.squares.squares[x].find(square => square.key === `${x}${y}`)
-  //       if(findKey.ship){
-  //           findKey.color = 'red'
-  //       } else {
-  //           findKey.color = 'grey'
-  //       }
-  //       const red_class = findKey.ship ? 'red' : 'grey-square'
-  //       console.log( findKey , '+++in the state')
-
-  //     }
 
 
 
@@ -44,7 +29,7 @@ class Square extends React.Component {
     // const mouseOver = (event) => {
     //     event.target.style.background = 'red';
     // }
-
+    
     // const mouseOut = (e) => {
     //     e.target.style.background = '';
     // }   
@@ -62,7 +47,7 @@ class Square extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkSquare: (squareKey) => dispatch({ type: 'CLICKED', key: squareKey })
+    // checkSquare: (squareKey) => dispatch({ type: 'P1ATTACK', key: squareKey })
 
   }
 }

@@ -16,6 +16,7 @@ class PiecesContainer extends React.Component {
  aircraftCarrier = (e) => {
     console.log('you clicked on aircraft carrier', e.target.value)
     this.props.activate(this.ships[0])
+    this.props.deactivate()
   }
 
 battleship = (e) => {
@@ -73,7 +74,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        activate: (ship) => dispatch({type: 'ACTIVATE' , payload: ship})
+        activate: (ship) => dispatch({type: 'ACTIVATE' , payload: ship}),
+        deactivate: () => dispatch({type: 'DEACTIVATE_BOARD'})
     }
 }
 
