@@ -15,7 +15,6 @@ class PiecesContainer extends React.Component {
     }
  aircraftCarrier = (e) => {
     console.log('you clicked on aircraft carrier', e.target.value)
-    //grab keys
     this.props.activate(this.ships[0])
   }
 
@@ -38,6 +37,10 @@ patrolBoat = (e) => {
     console.log('you clicked on patrol boat', e.target.value)
     this.props.activate(this.ships[4])
 }
+
+// active state of radio button should be true 
+// once you click on a button, state of button should revert false AFTER you place 
+// a ship on the board
 
 
  render() {

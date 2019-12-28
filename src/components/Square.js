@@ -30,6 +30,9 @@ class Square extends React.Component {
         color = 'green'
         console.log('HUR')
     }
+
+    //HIT COLOR
+    
     if (this.props.square.ship && this.props.square.color) {
       console.log('turns red')
       color = 'red'

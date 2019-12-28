@@ -40,6 +40,28 @@ const boardReducer = (state = initialState, action) => {
         const test = { ...state.squares };
         const col = index;
         const ship = state.ship;
+
+
+    //after user puts down a piece
+    // board state changes to deactive until
+    //another radio button is clicked
+
+    //PREVENTS OVERLAPPING OF PIECES
+        if (col + ship.length <= 10) {
+            for(let i = 0; i < ship.length; i++) {
+                if (test[x][col + i].color) {
+                    return state
+                }
+            }
+        } else {
+            for(let i = ship.length; i > 0; i--) {
+                if (test[x][col + i].color) {
+                    return state
+                }
+            }
+        }
+
+        //PIECE PLACEMENT ON BOARD
             if (col + ship.length <= 10) {
                 for(let i = 0; i < ship.length; i++) {
                     test[x][col + i].color = true; 
@@ -49,6 +71,10 @@ const boardReducer = (state = initialState, action) => {
                     test[x][10 - i].color = true;
                 }
             }
+
+        //ONE-TIME PLACEMENT
+            // if (test[x][col + i].color) 
+
     
     console.log(square, 'after ****', state.squares[x])
       return {
@@ -58,14 +84,8 @@ const boardReducer = (state = initialState, action) => {
         // state.squares[x].indexOf()
       }
 
-
-
     
     case ACTIVATE:
-      // console.log('active?')
-      //   return {
-      //     active: true,
-      //   };
       console.log('wut is ship!!!!', action.payload)
       return {
         ...stateCopy,
