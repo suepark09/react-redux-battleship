@@ -1,4 +1,4 @@
-import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
+import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE, DEACTIVATE_BOARD } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
@@ -92,6 +92,11 @@ const boardReducer = (state = initialState, action) => {
         active: true,
         ship: action.payload //so that i can grab ship info and use it here or in board file
       }
+    case DEACTIVATE_BOARD:
+        return {
+            ...stateCopy,
+            active: false
+        }
     case FIREBASE:
       const gameId = keyGen(action.payload)
       console.log('REDUCER GAME ID:', gameId)
