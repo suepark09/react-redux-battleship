@@ -17,22 +17,14 @@ const socket = io.connect("http://localhost:5000")
 class App extends React.Component {
   constructor() {
     super()
-    this.state = { msg: "", chat: [] }
+    this.state = { msg: "", chat: [], nickname: "" }
   }
 
-  onTextChange = e => {
-    this.setState({ msg: e.target.value })
-  }
-
-  onMessageSubmit = () => {
-    socket.emit('chat message', this.state.msg)
-    this.setState({ msg: "" })
-  }
   componentDidMount () {
-    socket.on('chat message', ({ id, msg }) => {
+    socket.on('chat message', ({ nickname, msg }) => {
       // Add new messages to existing messages in "chat"
       this.setState({
-        chat: [...this.state.chat, { id, msg }]
+        chat: [...this.state.chat, { nickname, msg }]
       })
     })
     firebase.initializeApp(firebaseConfig)
@@ -40,11 +32,21 @@ class App extends React.Component {
     this.props.firebaseAction(this.props.state.squares)
   }
 
+  onTextChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  onMessageSubmit = () => {
+    const { nickname, msg } = this.state
+    socket.emit('chat message', { nickname, msg })
+    this.setState({ msg: "" })
+  }
+
   renderChat() {
     const { chat } = this.state
-    return chat.map(({ id, msg }, idx) => (
+    return chat.map(({ nickname, msg }, idx) => (
       <div key={idx}>
-        <span style={{ color: "green" }}>{id}:</span>
+        <span style={{ color: "green" }}>{nickname}:</span>
         <span>{msg}</span>
       </div>
     ))
@@ -69,7 +71,18 @@ class App extends React.Component {
           <Instructions />
         </div>
         <div>
-          <input onChange={e => this.onTextChange(e)} value={this.state.msg} />
+          <span>Nickname</span>
+          <input 
+            name="nickname"
+            onChange={e => this.onTextChange(e)}
+            value={this.state.nickname}
+          />
+          <span>Message</span>
+          <input 
+            name="msg"
+            onChange={e => this.onTextChange(e)} 
+            value={this.state.msg} 
+          />
           <button onClick={this.onMessageSubmit}>Send</button>
           <div>{this.renderChat()}</div>
         </div>

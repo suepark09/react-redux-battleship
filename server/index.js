@@ -6,9 +6,9 @@ const io = require('socket.io')(server)
 io.on('connection', socket => {
   const { id } = socket.client
   console.log(`User connected: ${id}`)
-  socket.on('chat message', msg => {
-    console.log(`${id}: ${msg}`)
-    io.emit('chat message', msg)
+  socket.on('chat message', ({ nickname, msg }) => {
+    console.log(`${nickname}: ${msg}`)
+    io.emit('chat message', { nickname, msg})
   })
 })
 const PORT = process.env.PORT || 5000
