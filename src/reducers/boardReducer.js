@@ -1,10 +1,11 @@
-import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE, DEACTIVATE_BOARD } from '../actions/actionTypes'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
   gameId: '',
   isPlaying: false,
   active: false,
+  isHorizontal: true,
   index: null,
   ship: {name: null, length: null},
   squares: {
@@ -83,8 +84,13 @@ const boardReducer = (state = initialState, action) => {
         index: index //so that i can pass it to pieces container
         // state.squares[x].indexOf()
       }
-
-    
+    case ORIENTATION:
+        let orientation = !stateCopy.isHorizontal
+        console.log(orientation, 'orientation')
+    return {
+        ...stateCopy,
+        isHorizontal: orientation
+      }
     case ACTIVATE:
       console.log('wut is ship!!!!', action.payload)
       return {

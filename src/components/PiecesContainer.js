@@ -40,10 +40,11 @@ patrolBoat = (e) => {
     console.log('what is activate', this.props.activate)
 }
 
+
+
 // active state of radio button should be true 
 // once you click on a button, state of button should revert false AFTER you place 
 // a ship on the board
-
 
  render() {
     return (
@@ -59,8 +60,7 @@ patrolBoat = (e) => {
             </div>
           </Form>
           <h1>Orientation</h1>
-            <button className='selector'>Horizontal</button>
-            <button className='selector'>Vertical</button>
+            <button onClick={this.props.orientation} className='selector'>Orientation</button>
         </div>
       )
  }
@@ -75,7 +75,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         activate: (ship) => dispatch({type: 'ACTIVATE' , payload: ship}),
+        orientation: () => dispatch({type: 'ORIENTATION'}),
         deactivate: () => dispatch({type: 'DEACTIVATE_BOARD'})
+
     }
 }
 
