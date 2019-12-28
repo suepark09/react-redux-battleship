@@ -1,4 +1,4 @@
-import { SETSHIP, P1ATTACK, P2ATTACK, ACTIVATE, FIREBASE } from '../actions/actionTypes'
+import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE, DEACTIVATE_BOARD } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
@@ -26,59 +26,77 @@ const deepCopy = (x) => JSON.parse(JSON.stringify(x))
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
   switch (action.type) {
-    case SETSHIP:
+    case CLICKED:
+
       const x = action.key.slice(0, 1)
       const y = action.key.slice(1, 2)
-      const square = stateCopy.squares[x].find(square  => square.key === `${x}${y}`)
-      const index = stateCopy.squares[x].indexOf(square)
+
+      const square = state.squares[x].find(square  => square.key === `${x}${y}`)
+      const index = state.squares[x].indexOf(square)
       console.log('wuts x and y', x, y);
       console.log(index, 'this is the index')
       console.log(square, 'before ****', state.squares[x])
-        const test = { ...stateCopy.squares };
+
+        const test = { ...state.squares };
         const col = index;
         const ship = state.ship;
+
+
+    //after user puts down a piece
+    // board state changes to deactive until
+    //another radio button is clicked
+
+    //PREVENTS OVERLAPPING OF PIECES
+        if (col + ship.length <= 10) {
+            for(let i = 0; i < ship.length; i++) {
+                if (test[x][col + i].color) {
+                    return state
+                }
+            }
+        } else {
+            for(let i = ship.length; i > 0; i--) {
+                if (test[x][col + i].color) {
+                    return state
+                }
+            }
+        }
+
+        //PIECE PLACEMENT ON BOARD
             if (col + ship.length <= 10) {
                 for(let i = 0; i < ship.length; i++) {
                     test[x][col + i].color = true; 
-                    // test[x][col + i].ship = true; 
                 }
             } else {
                 for(let i = ship.length; i > 0; i--) {
                     test[x][10 - i].color = true;
-                    // test[x][col + i].ship = true; 
-
                 }
             }
-    console.log(square, 'after ****', stateCopy.squares[x])
+
+        //ONE-TIME PLACEMENT
+            // if (test[x][col + i].color) 
+
+    
+    console.log(square, 'after ****', state.squares[x])
       return {
-        ...stateCopy,
+        ...state,
         squares: test,
         index: index //so that i can pass it to pieces container
         // state.squares[x].indexOf()
       }
-    case P1ATTACK:
-        const a = action.key.slice(0, 1)
-        const b = action.key.slice(1, 2)
-        const attackSquare1 = stateCopy.squares[a].find(square => square.key === `${a}${b}`)
-        attackSquare1.color = true;
-        return stateCopy
-    case P2ATTACK:
-        const o = action.key.slice(0, 1)
-        const p = action.key.slice(1, 2)
-        const attackSquare2 = stateCopy.squares[o].find(square => square.key === `${o}${p}`)
-        attackSquare2.color = true;
-        return stateCopy
+
+    
     case ACTIVATE:
-      // console.log('active?')
-      //   return {
-      //     active: true,
-      //   };
       console.log('wut is ship!!!!', action.payload)
       return {
         ...stateCopy,
         active: true,
         ship: action.payload //so that i can grab ship info and use it here or in board file
       }
+    case DEACTIVATE_BOARD:
+        return {
+            ...stateCopy,
+            active: false
+        }
     case FIREBASE:
       const gameId = keyGen(action.payload)
       console.log('REDUCER GAME ID:', gameId)
