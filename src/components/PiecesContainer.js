@@ -36,6 +36,7 @@ destroyer = (e) => {
 patrolBoat = (e) => {
     console.log('you clicked on patrol boat', e.target.value)
     this.props.activate(this.ships[4])
+    console.log('what is activate', this.props.activate)
 }
 
 // active state of radio button should be true 

@@ -52,6 +52,7 @@ class Board extends React.Component {
         if (col + shipLength <= 10) {
             for(let i = 0; i < shipLength; i++) {
                 colHovers.push(i + col);
+                console.log(colHovers)
             }
         } else {
             for(let i = shipLength; i > 0; i--) {
