@@ -115,3 +115,8 @@ ol, ul {
 .selector {
   margin: 10px;
 }
+
+.chat {
+  border: 1px solid black;
+  height: 100vh;
+}
