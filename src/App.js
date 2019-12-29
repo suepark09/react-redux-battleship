@@ -11,6 +11,7 @@ import './App.css'
 import { FIREBASE } from './actions/actionTypes'
 import StartModal from './components/StartModal'
 import io from 'socket.io-client'
+import Container from 'react-bootstrap/Container'
 
 const socket = io.connect("http://localhost:5000")
 
@@ -57,35 +58,41 @@ class App extends React.Component {
 
     return (
       <div>
-        <StartModal props={squares} />
-        <h1>React-Redux-Battleship Game</h1>
-        <div className='game'>
-          <div className='game-info'>
-            <PiecesContainer />
-          </div>
-          <div className='game-board'>
-            <Board />
-          </div>
-        </div>
-        <div className='instructions'>
-          <Instructions />
-        </div>
-        <div>
-          <span>Nickname</span>
-          <input 
-            name="nickname"
-            onChange={e => this.onTextChange(e)}
-            value={this.state.nickname}
-          />
-          <span>Message</span>
-          <input 
-            name="msg"
-            onChange={e => this.onTextChange(e)} 
-            value={this.state.msg} 
-          />
-          <button onClick={this.onMessageSubmit}>Send</button>
-          <div>{this.renderChat()}</div>
-        </div>
+        <Container className="d-flex">
+            <div>
+              <StartModal props={squares} />
+                <h1>React-Redux-Battleship Game</h1>
+                  <div className='game'>
+                    <div className='game-info'>
+                      <PiecesContainer />
+                    </div>
+                  <div className='game-board'>
+                      <Board />
+                  </div>
+                  </div>
+                  <div className='instructions'>
+                      <Instructions />
+                  </div>
+            </div>
+            <div className='text-center'>
+              <div className='chat'>
+                <span>Name</span>
+                <input 
+                  name="nickname"
+                  onChange={e => this.onTextChange(e)}
+                  value={this.state.nickname}
+                />
+                <span>Message</span>
+                <input 
+                  name="msg"
+                  onChange={e => this.onTextChange(e)} 
+                  value={this.state.msg} 
+                />
+                <button onClick={this.onMessageSubmit}>Send</button>
+                <div>{this.renderChat()}</div>
+              </div>
+            </div>
+        </Container>
       </div>
     )
   }
