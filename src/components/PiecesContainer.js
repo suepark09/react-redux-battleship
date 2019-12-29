@@ -50,13 +50,13 @@ patrolBoat = (e) => {
         <div>
           <h1>Your Ships</h1>
           <Form>
-            <div key='inline-radio' className='mb-3'>
-              <Form.Check inline name='ship' type='radio' label='2' value='2' onClick={this.patrolBoat} />
-              <Form.Check inline name='ship' type='radio' label='3' value='3' onClick={this.destroyer} />
-              <Form.Check inline name='ship' type='radio' label='3' value='3' onClick={this.submarine} />
-              <Form.Check inline name='ship' type='radio' label='4' value='4' onClick={this.battleship} />
-              <Form.Check inline name='ship' type='radio' label='5' value='5' onClick={this.aircraftCarrier} />
-            </div>
+            <ul key='inline-radio' className='mb-3 list-unstyled'>
+              <li><Form.Check inline name='ship' type='radio' label='2' value='2' onClick={this.patrolBoat} /></li>
+              <li><Form.Check inline name='ship' type='radio' label='3' value='3' onClick={this.destroyer} /></li>
+              <li><Form.Check inline name='ship' type='radio' label='3' value='3' onClick={this.submarine} /></li>
+              <li><Form.Check inline name='ship' type='radio' label='4' value='4' onClick={this.battleship} /></li>
+              <li><Form.Check inline name='ship' type='radio' label='5' value='5' onClick={this.aircraftCarrier} /></li>
+            </ul>
           </Form>
           <h1>Orientation</h1>
             <button onClick={this.props.orientation} className='selector'>Orientation</button>

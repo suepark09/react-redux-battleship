@@ -89,7 +89,7 @@ class App extends React.Component {
                   value={this.state.msg} 
                 />
                 <button onClick={this.onMessageSubmit}>Send</button>
-                <div>{this.renderChat()}</div>
+                <div className='text-left'>{this.renderChat()}</div>
               </div>
             </div>
         </Container>

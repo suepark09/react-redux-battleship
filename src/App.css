@@ -119,4 +119,5 @@ ol, ul {
 .chat {
   border: 1px solid black;
   height: 100vh;
+  width: 20vw;
 }
