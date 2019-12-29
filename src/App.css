@@ -110,6 +110,10 @@ ol, ul {
 
 .instructions {
   font-size: 10px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selector {

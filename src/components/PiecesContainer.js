@@ -48,7 +48,7 @@ patrolBoat = (e) => {
  render() {
     return (
         <div>
-          <h1>Your Ships</h1>
+          <h3>Your Ships</h3>
           <Form>
             <ul key='inline-radio' className='mb-3 list-unstyled'>
               <li><Form.Check inline name='ship' type='radio' label='2' value='2' onClick={this.patrolBoat} /></li>
@@ -58,7 +58,7 @@ patrolBoat = (e) => {
               <li><Form.Check inline name='ship' type='radio' label='5' value='5' onClick={this.aircraftCarrier} /></li>
             </ul>
           </Form>
-          <h1>Orientation</h1>
+          <h3>Orientation</h3>
             <button onClick={this.props.orientation} className='selector'>Orientation</button>
         </div>
       )

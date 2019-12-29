@@ -58,8 +58,9 @@ class App extends React.Component {
 
     return (
       <div>
-        <Container className="d-flex">
-            <div>
+        <div className='d-flex'>
+            <div className='d-flex'>
+              <div>
               <StartModal props={squares} />
                 <h1>React-Redux-Battleship Game</h1>
                   <div className='game'>
@@ -70,6 +71,7 @@ class App extends React.Component {
                       <Board />
                   </div>
                   </div>
+                </div>
                   <div className='instructions'>
                       <Instructions />
                   </div>
@@ -92,7 +94,7 @@ class App extends React.Component {
                 <div className='text-left'>{this.renderChat()}</div>
               </div>
             </div>
-        </Container>
+        </div>
       </div>
     )
   }
