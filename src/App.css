@@ -110,6 +110,10 @@ ol, ul {
 
 .instructions {
   font-size: 10px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selector {
@@ -119,4 +123,5 @@ ol, ul {
 .chat {
   border: 1px solid black;
   height: 100vh;
+  width: 20vw;
 }
