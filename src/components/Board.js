@@ -3,17 +3,19 @@ import Square from './Square';
 import { connect } from 'react-redux';
 // import { clickSquare } from '../actions/index'
 
+const initialState = {
+    currentHoverX: null,
+    currentHoverY: null
+}
 
 class Board extends React.Component {
 
-    state = {
-        currentHoverX: null,
-        currentHoverY: null
-    }
+    state = initialState
    
 
     clickItem = (e) => {
         this.props.clickSquare(e.target.value);
+        this.setState(initialState)
     }
 
     mouseOver = (e) => {
@@ -72,6 +74,8 @@ class Board extends React.Component {
                 }
             }
         }
+
+        console.log('render')
 
         
         // // for horizontal hover

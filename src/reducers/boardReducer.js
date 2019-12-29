@@ -23,9 +23,16 @@ const initialState = {
 }
 
 const deepCopy = (x) => JSON.parse(JSON.stringify(x))
-
+const deactivateBoard = (state = initialState, action) => {
+    return {
+        ...state,
+        active: false
+    }
+}
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
+ 
+  
   switch (action.type) {
     case CLICKED:
 
@@ -42,11 +49,6 @@ const boardReducer = (state = initialState, action) => {
         const col = index;
         const ship = state.ship;
 
-
-    //after user puts down a piece
-    // board state changes to deactive until
-    //another radio button is clicked
-
     //PREVENTS OVERLAPPING OF PIECES
         if (col + ship.length <= 10) {
             for(let i = 0; i < ship.length; i++) {
@@ -55,8 +57,8 @@ const boardReducer = (state = initialState, action) => {
                 }
             }
         } else {
-            for(let i = ship.length; i > 0; i--) {
-                if (test[x][col + i].color) {
+            for(let i = 0; i < ship.length; i++) {
+                if (test[x][10 - ship.length + i].color) {
                     return state
                 }
             }
@@ -66,16 +68,19 @@ const boardReducer = (state = initialState, action) => {
             if (col + ship.length <= 10) {
                 for(let i = 0; i < ship.length; i++) {
                     test[x][col + i].color = true; 
+                    // state = deactivateBoard(state, null)
+                    state = {
+                        ...state,
+                        active: false
+                    }
+                    // console.log('wut is asdf', deactivateBoard())
                 }
             } else {
                 for(let i = ship.length; i > 0; i--) {
                     test[x][10 - i].color = true;
+                    state = deactivateBoard(state, null)
                 }
             }
-
-        //ONE-TIME PLACEMENT
-            // if (test[x][col + i].color) 
-
     
     console.log(square, 'after ****', state.squares[x])
       return {

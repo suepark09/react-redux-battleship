@@ -16,7 +16,6 @@ class PiecesContainer extends React.Component {
  aircraftCarrier = (e) => {
     console.log('you clicked on aircraft carrier', e.target.value)
     this.props.activate(this.ships[0])
-    this.props.deactivate()
   }
 
 battleship = (e) => {
