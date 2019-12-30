@@ -41,15 +41,31 @@ const boardReducer = (state = initialState, action) => {
         const test = { ...state.squares };
         const col = index;
         const ship = state.ship;
-            if (col + ship.length <= 10) {
-                for(let i = 0; i < ship.length; i++) {
-                    test[x][col + i].color = true; 
+
+            if(stateCopy.isHorizontal){
+                if (col + ship.length <= 10) {
+                    for(let i = 0; i < ship.length; i++) {
+                        test[x][col + i].color = true; 
+                    }
+                } else {
+                    for(let i = ship.length; i > 0; i--) {
+                        test[x][10 - i].color = true;
+                    }
                 }
             } else {
-                for(let i = ship.length; i > 0; i--) {
-                    test[x][10 - i].color = true;
+                if (col + ship.length <= 10) {
+                    for(let i = 0; i < ship.length; i++) {
+                        test[parseInt(x) + i][index].color = true;   
+                    }
+                } else {
+                    for(let i = ship.length; i > 0; i--) {
+                        test[parseInt(x - 1) + i][index].color = true;
+    
+                    }
                 }
             }
+           
+           
     
     console.log(square, 'after ****', state.squares[x])
       return {
@@ -64,7 +80,6 @@ const boardReducer = (state = initialState, action) => {
     return {
         ...stateCopy,
         isHorizontal: orientation
-
     }
     case ACTIVATE:
       // console.log('active?')

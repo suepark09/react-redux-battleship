@@ -73,6 +73,8 @@ class Board extends React.Component {
             }
         }
 
+  
+
     
       
         for (let i = 0; i < 10; i++) { 
