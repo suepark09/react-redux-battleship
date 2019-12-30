@@ -15,13 +15,15 @@ class Square extends React.Component {
         color = 'green'
         console.log('HUR')
     }
+
+    //HIT COLOR
+    
     if (this.props.square.ship && this.props.square.color) {
       console.log('turns red')
       color = 'red'
     }
 
     const disabled = this.props.active ? '' : 'disabled'
-    
     return (
       //do if else statements? if ship name is x then
       // activate this mouseover function
@@ -35,7 +37,7 @@ class Square extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    checkSquare: (squareKey) => dispatch({ type: 'CLICKED', key: squareKey })
+    // checkSquare: (squareKey) => dispatch({ type: 'P1ATTACK', key: squareKey })
 
   }
 }
