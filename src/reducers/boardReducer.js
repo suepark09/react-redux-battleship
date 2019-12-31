@@ -53,15 +53,22 @@ const boardReducer = (state = initialState, action) => {
                     }
                 }
             } else {
-                if (col + ship.length <= 10) {
+                if (parseInt(x) + ship.length <= 10 ) {
                     for(let i = 0; i < ship.length; i++) {
                         test[parseInt(x) + i][index].color = true;   
                     }
                 } else {
-                    for(let i = ship.length; i > 0; i--) {
-                        test[parseInt(x - 1) + i][index].color = true;
-    
+
+                    if(parseInt(x) === 9){
+                        for(let i = ship.length; i > 0; i--) {
+                            test[parseInt(x) - ship.length + i][index].color = true;
+                        }
+                    } else {
+                        for(let i = ship.length; i > 0; i--) {
+                            test[parseInt(x) ][index].color = true;
+                        }
                     }
+                   
                 }
             }
            
