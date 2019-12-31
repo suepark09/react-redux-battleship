@@ -23,9 +23,16 @@ const initialState = {
 }
 
 const deepCopy = (x) => JSON.parse(JSON.stringify(x))
-
+const deactivateBoard = (state = initialState, action) => {
+    return {
+        ...state,
+        active: false
+    }
+}
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
+ 
+  
   switch (action.type) {
     case CLICKED:
 
@@ -46,34 +53,55 @@ const boardReducer = (state = initialState, action) => {
                 if (col + ship.length <= 10) {
                     for(let i = 0; i < ship.length; i++) {
                         test[x][col + i].color = true; 
+                        state = deactivateBoard(state, null)
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
                         test[x][10 - i].color = true;
+                        state = deactivateBoard(state, null)
                     }
                 }
             } else {
                 if (parseInt(x) + ship.length <= 10 ) {
                     for(let i = 0; i < ship.length; i++) {
                         test[parseInt(x) + i][index].color = true;   
+                        state = deactivateBoard(state, null)
                     }
                 } else {
 
                     if(parseInt(x) === 9){
                         for(let i = ship.length; i > 0; i--) {
                             test[parseInt(x) - ship.length + i][index].color = true;
+                            state = deactivateBoard(state, null)
                         }
                     } else {
                         for(let i = ship.length; i > 0; i--) {
                             let m = 9;
                             test[parseInt(m) - ship.length + i][index].color = true;
+                            state = deactivateBoard(state, null)
                         }
                     }
                    
                 }
             }
            
-           
+        //PIECE PLACEMENT ON BOARD
+            // if (col + ship.length <= 10) {
+            //     for(let i = 0; i < ship.length; i++) {
+            //         test[x][col + i].color = true; 
+            //         // state = deactivateBoard(state, null)
+            //         state = {
+            //             ...state,
+            //             active: false
+            //         }
+            //         // console.log('wut is asdf', deactivateBoard())
+            //     }
+            // } else {
+            //     for(let i = ship.length; i > 0; i--) {
+            //         test[x][10 - i].color = true;
+            //         state = deactivateBoard(state, null)
+            //     }
+            // }
     
     console.log(square, 'after ****', state.squares[x])
       return {

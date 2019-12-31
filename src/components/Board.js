@@ -3,17 +3,19 @@ import Square from './Square';
 import { connect } from 'react-redux';
 // import { clickSquare } from '../actions/index'
 
+const initialState = {
+    currentHoverX: null,
+    currentHoverY: null
+}
 
 class Board extends React.Component {
 
-    state = {
-        currentHoverX: null,
-        currentHoverY: null
-    }
+    state = initialState
    
 
     clickItem = (e) => {
         this.props.clickSquare(e.target.value);
+        this.setState(initialState)
     }
 
     mouseOver = (e) => {
@@ -73,7 +75,19 @@ class Board extends React.Component {
             }
         }
 
-  
+
+        
+        // // for horizontal hover
+        // for (let i = 0; i < 10; i++) { 
+        //     squares[i].map((singleSquare, idx) => {
+   
+        //         if(i === this.state.currentHoverX && colHovers.includes(idx)) { //expression turns true if idx is in colhovers
+        //             return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+        //         }
+
+        //         return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+        //     })
+        // }
 
     
       
