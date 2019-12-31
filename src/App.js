@@ -21,7 +21,7 @@ class App extends React.Component {
   componentDidMount () {
     // firebase.initializeApp(firebaseConfig)
     incrementUser()
-    this.props.firebaseAction(this.props.state.squares)
+    // this.props.firebaseAction(this.props.state.squares)
   }
 
   render () {

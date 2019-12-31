@@ -18,7 +18,7 @@ export function incrementUser () {
 
 export function keyGen (state) {
   // get a key for a new game
-  console.log('SAVING THIS STATE TO DATABASE', state)
+  //console.log('SAVING THIS STATE TO DATABASE', state)
   const gameId = firebase.database().ref('/game').push().key
   state.gameId = gameId
   firebase.database().ref('/game').child(gameId).update(state)
@@ -27,10 +27,11 @@ export function keyGen (state) {
 
 export function fetchGameData (gameId) {
   console.log('finding game on database with this id:', gameId)
-  const gameResult = firebase.database().ref('/game').orderByKey().equalTo(gameId).on('value', function (snap) {
-    console.log('found this game', snap.val())
+  firebase.database().ref('/game').orderByKey().equalTo(gameId).on('value', function (snap) {
+    console.log('found this game', snap.val()[gameId])
+    const result = snap.val()
+    return result[gameId]
   })
-  return gameResult
 }
 
 // to clear database...
