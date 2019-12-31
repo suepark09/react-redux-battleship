@@ -65,7 +65,8 @@ const boardReducer = (state = initialState, action) => {
                         }
                     } else {
                         for(let i = ship.length; i > 0; i--) {
-                            test[parseInt(x) ][index].color = true;
+                            let m = 9;
+                            test[parseInt(m) - ship.length + i][index].color = true;
                         }
                     }
                    
