@@ -6,18 +6,15 @@ import { connect } from 'react-redux'
 function StartModal (props) {
   const url = window.location.href
   const [modal, setModal] = useState(false)
-  const toggle = () => setModal(!modal)
-  const backdrop = true
-  const handleClick = () => {
-    // console.log('CLICK')
-    // console.log('CREATING NEW GAME', props.state.squares)
+  const toggle = () => {
+    setModal(!modal)
     props.firebaseAction(props.state.squares)
   }
+  const backdrop = true
 
   return (
     <div>
       <Button color='danger' onClick={toggle}>START</Button>
-      <Button color='danger' onClick={handleClick}>TESTING</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>

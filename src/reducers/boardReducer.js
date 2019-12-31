@@ -1,12 +1,15 @@
-import { CLICKED, SHIPHIT, ACTIVATE, FIREBASE } from '../actions/actionTypes'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
   gameId: '',
   isPlaying: false,
   active: false,
+  isHorizontal: true,
+  index: null,
+  ship: {name: null, length: null},
   squares: {
-    0: [{ key: '0A', ship: true, color: false }, { key: '0B', ship: true, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
+    0: [{ key: '0A', ship: false, color: false }, { key: '0B', ship: false, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
     1: [{ key: '1A', ship: false, color: false }, { key: '1B', ship: false, color: false }, { key: '1C', ship: false, color: false }, { key: '1D', ship: false, color: false }, { key: '1E', ship: false, color: false }, { key: '1F', ship: false, color: false }, { key: '1G', ship: false, color: false }, { key: '1H', ship: false, color: false }, { key: '1I', ship: false, color: false }, { key: '1J', ship: false, color: false }],
     2: [{ key: '2A', ship: false, color: false }, { key: '2B', ship: false, color: false }, { key: '2C', ship: false, color: false }, { key: '2D', ship: false, color: false }, { key: '2E', ship: false, color: false }, { key: '2F', ship: false, color: false }, { key: '2G', ship: false, color: false }, { key: '2H', ship: false, color: false }, { key: '2I', ship: false, color: false }, { key: '2J', ship: false, color: false }],
     3: [{ key: '3A', ship: false, color: false }, { key: '3B', ship: false, color: false }, { key: '3C', ship: false, color: false }, { key: '3D', ship: false, color: false }, { key: '3E', ship: false, color: false }, { key: '3F', ship: false, color: false }, { key: '3G', ship: false, color: false }, { key: '3H', ship: false, color: false }, { key: '3I', ship: false, color: false }, { key: '3J', ship: false, color: false }],
@@ -20,34 +23,157 @@ const initialState = {
 }
 
 const deepCopy = (x) => JSON.parse(JSON.stringify(x))
-
+const deactivateBoard = (state = initialState, action) => {
+    return {
+        ...state,
+        active: false
+    }
+}
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
+ 
+  
   switch (action.type) {
     case CLICKED:
 
       const x = action.key.slice(0, 1)
       const y = action.key.slice(1, 2)
 
-      const square = stateCopy.squares[x].find(square => square.key === `${x}${y}`)
-      // const index = stateCopy.squares[x].indexOf(square)
-      // console.log(index, 'index')
-      // console.log(square, 'before ****', stateCopy.squares[x])
+      const square = state.squares[x].find(square  => square.key === `${x}${y}`)
+      const index = state.squares[x].indexOf(square)
+      console.log('wuts x and y', x, y);
+      console.log(index, 'this is the index')
+      console.log(square, 'before ****', state.squares[x])
 
-      square.color = true
-      // console.log('you missed bro', findKey)
+        const test = { ...state.squares };
+        const col = index;
+        const ship = state.ship;
 
-      // console.log(square, 'after ****', stateCopy.squares[x])
-      return stateCopy
+        if(stateCopy.isHorizontal){
+            if (col + ship.length <= 10) {
+                for(let i = 0; i < ship.length; i++) {
+                    if (test[x][col + i].color) {
+                        return state
+                    } 
+                }
+            } else {
+                for(let i = ship.length; i > 0; i--) {
+
+                    if(test[x][10 - i].color){
+                        return state
+                    }
+                }
+            }
+        } else {
+            if (parseInt(x) + ship.length <= 10 ) {
+                for(let i = 0; i < ship.length; i++) {
+                    if(test[parseInt(x) + i][index].color){
+                        return state
+                    } 
+                }
+            } else {
+                if(parseInt(x) === 9){
+                    for(let i = ship.length; i > 0; i--) {
+                        if(test[parseInt(x) - ship.length + i][index].color){
+                            return state
+                        } 
+                    }
+                } else {
+                    for(let i = ship.length; i > 0; i--) {
+                        let m = 9;
+                        if(test[parseInt(x) - ship.length + i][index].color ||  test[parseInt(m) - ship.length + i][index].color){
+                            return state
+                        } 
+                    }
+                }
+               
+            }
+        }
+
+            if(stateCopy.isHorizontal){
+                if (col + ship.length <= 10) {
+                    for(let i = 0; i < ship.length; i++) {      
+                            test[x][col + i].color = true; 
+                            test[x][col + i].ship = true; 
+                            state = deactivateBoard(state, null)
+                    }
+                } else {
+                    for(let i = ship.length; i > 0; i--) {
+                            test[x][10 - i].color = true;
+                            test[x][10 - i].ship = true;
+                            state = deactivateBoard(state, null)
+                    }
+                }
+            } else {
+                if (parseInt(x) + ship.length <= 10 ) {
+                    for(let i = 0; i < ship.length; i++) {
+                            test[parseInt(x) + i][index].color = true;   
+                            test[parseInt(x) + i][index].ship = true;   
+                            state = deactivateBoard(state, null)
+                    }
+                } else {
+                    if(parseInt(x) === 9){
+                        for(let i = ship.length; i > 0; i--) {
+                                test[parseInt(x) - ship.length + i][index].color = true;
+                                test[parseInt(x) - ship.length + i][index].ship = true;
+                                state = deactivateBoard(state, null)
+                        }
+                    } else {
+                        for(let i = ship.length; i > 0; i--) {
+                            let m = 9;
+                                test[parseInt(m) - ship.length + i][index].color = true;
+                                test[parseInt(m) - ship.length + i][index].ship = true;
+                                state = deactivateBoard(state, null)
+                        }
+                    }
+                   
+                }
+            }
+           
+        //PIECE PLACEMENT ON BOARD
+            // if (col + ship.length <= 10) {
+            //     for(let i = 0; i < ship.length; i++) {
+            //         test[x][col + i].color = true; 
+            //         // state = deactivateBoard(state, null)
+            //         state = {
+            //             ...state,
+            //             active: false
+            //         }
+            //         // console.log('wut is asdf', deactivateBoard())
+            //     }
+            // } else {
+            //     for(let i = ship.length; i > 0; i--) {
+            //         test[x][10 - i].color = true;
+            //         state = deactivateBoard(state, null)
+            //     }
+            // }
+    
+    console.log(square, 'after ****', state.squares[x])
+      return {
+        ...state,
+        squares: test,
+        index: index //so that i can pass it to pieces container
+        // state.squares[x].indexOf()
+      }
+    case ORIENTATION:
+        let orientation = !stateCopy.isHorizontal
+        console.log(orientation, 'orientation')
+    return {
+        ...stateCopy,
+        isHorizontal: orientation
+    }
     case ACTIVATE:
-      // console.log('active?')
-      //   return {
-      //     active: true,
-      //   };
+      console.log('wut is ship!!!!', action.payload)
       return {
         ...stateCopy,
-        active: true
+        active: true,
+        ship: action.payload //so that i can grab ship info and use it here or in board file
       }
+    case DEACTIVATE_BOARD:
+        return {
+            ...stateCopy,
+            active: false
+        }
     case FIREBASE:
       const gameId = keyGen(action.payload)
       //console.log('REDUCER GAME ID:', gameId)

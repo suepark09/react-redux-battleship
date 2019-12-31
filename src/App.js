@@ -16,40 +16,99 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import io from 'socket.io-client'
+import Container from 'react-bootstrap/Container'
+
+const socket = io.connect("http://localhost:5000")
 
 class App extends React.Component {
+  constructor() {
+    super()
+    this.state = { msg: "", chat: [], nickname: "" }
+  }
+
   componentDidMount () {
+    socket.on('chat message', ({ nickname, msg }) => {
+      // Add new messages to existing messages in "chat"
+      this.setState({
+        chat: [...this.state.chat, { nickname, msg }]
+      })
+    })
     // firebase.initializeApp(firebaseConfig)
     incrementUser()
     // this.props.firebaseAction(this.props.state.squares)
+  }
+
+  onTextChange = e => {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  onMessageSubmit = () => {
+    const { nickname, msg } = this.state
+    socket.emit('chat message', { nickname, msg })
+    this.setState({ msg: "" })
+  }
+
+  renderChat() {
+    const { chat } = this.state
+    return chat.map(({ nickname, msg }, idx) => (
+      <div key={idx}>
+        <span style={{ color: "green" }}>{nickname}:</span>
+        <span>{msg}</span>
+      </div>
+    ))
   }
 
   render () {
     const { squares } = this.props.state
 
     return (
-      <Router>
-        <Switch>
-          <Route exact path='/'>
-            <div>
+    <Router>
+      <Switch>
+      <Route exact path='/'>
+      <div>
+        <div className='d-flex'>
+            <div className='d-flex'>
+              <div>
               <StartModal props={squares} />
-              <h1>React-Redux-Battleship Game</h1>
-              <div className='game'>
-                <div className='game-info'>
-                  <PiecesContainer />
+                <h1>React-Redux-Battleship Game</h1>
+                  <div className='game'>
+                    <div className='game-info'>
+                      <PiecesContainer />
+                    </div>
+                  <div className='game-board'>
+                      <Board />
+                  </div>
+                  </div>
                 </div>
-                <div className='game-board'>
-                  <Board />
-                </div>
-              </div>
-              <div className='instructions'>
-                <Instructions />
+                  <div className='instructions'>
+                      <Instructions />
+                  </div>
+            </div>
+            <div className='text-center'>
+              <div className='chat'>
+                <span>Name</span>
+                <input 
+                  name="nickname"
+                  onChange={e => this.onTextChange(e)}
+                  value={this.state.nickname}
+                />
+                <span>Message</span>
+                <input 
+                  name="msg"
+                  onChange={e => this.onTextChange(e)} 
+                  value={this.state.msg} 
+                />
+                <button onClick={this.onMessageSubmit}>Send</button>
+                <div className='text-left'>{this.renderChat()}</div>
               </div>
             </div>
-          </Route>
-          <Route path='/game/:gameId' component={PlayerTwo} />
-        </Switch>
-      </Router>
+        </div>
+      </div>
+      </Route>
+      <Route path='/game/:gameId' component={PlayerTwo} />
+      </Switch>
+    </Router>
     )
   }
 }

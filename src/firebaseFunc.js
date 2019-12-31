@@ -28,7 +28,7 @@ export function keyGen (state) {
 export function fetchGameData (gameId) {
   console.log('finding game on database with this id:', gameId)
   firebase.database().ref('/game').orderByKey().equalTo(gameId).on('value', function (snap) {
-    console.log('found this game', snap.val()[gameId])
+    console.log('DATABASE QUERY RESULT', snap.val()[gameId])
     const result = snap.val()
     return result[gameId]
   })
