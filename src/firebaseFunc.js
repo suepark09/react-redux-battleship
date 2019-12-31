@@ -1,28 +1,33 @@
 import * as firebase from 'firebase/app'
 import 'firebase/database'
+import firebaseConfig from './firebaseConfig'
 
-// incrementUser is a useless function in this app, just here to make sure it's connected to the database
+firebase.initializeApp(firebaseConfig)
+
+const rootRef = firebase.database().ref('/')
+const gameRef = firebase.database().ref('/game')
+
 export function incrementUser () {
-  const ref = firebase.database().ref('/')
-  ref.once('value')
+  rootRef.once('value')
     .then(function (snap) {
       const currentUser = snap.val().user
-      firebase.database().ref('/').update({
-        user: currentUser + 1
-      })
+      rootRef.update({ user: currentUser + 1 })
     })
 }
 
 export function keyGen (state) {
-  console.log('state passed into firebase', state)
-  const ref = firebase.database().ref('/battleship')
-  // get a key for a new game
-  const gameId = ref.push().key
-  console.log('FIREBASE FUNC GAME ID:', gameId)
+  const gameId = gameRef.push().key
   state.gameId = gameId
-  console.log('updating to database...', state)
-  ref.child(gameId).update(state)
+  gameRef.child(gameId).update(state)
   return gameId
+}
+
+export function fetchGameData (gameId) {
+  console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
+  gameRef.orderByKey().equalTo(gameId).on('value', function (snap) {
+    console.log('DATABASE QUERY RESULT', snap.val()[gameId])
+    return snap.val()[gameId]
+  })
 }
 
 // to clear database...

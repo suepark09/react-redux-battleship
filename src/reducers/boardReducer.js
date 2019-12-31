@@ -176,9 +176,9 @@ const boardReducer = (state = initialState, action) => {
         }
     case FIREBASE:
       const gameId = keyGen(action.payload)
-      console.log('REDUCER GAME ID:', gameId)
+      //console.log('REDUCER GAME ID:', gameId)
       stateCopy.gameId = gameId
-      console.log('new state', stateCopy)
+      //console.log('new state', stateCopy)
       return stateCopy
     default:
       return stateCopy
