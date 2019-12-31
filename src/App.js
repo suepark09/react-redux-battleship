@@ -11,7 +11,7 @@ import './App.css'
 import { FIREBASE } from './actions/actionTypes'
 import StartModal from './components/StartModal'
 import io from 'socket.io-client'
-import Container from 'react-bootstrap/Container'
+// import Container from 'react-bootstrap/Container'
 
 const socket = io.connect("http://localhost:5000")
 
@@ -89,8 +89,9 @@ class App extends React.Component {
                   name="msg"
                   onChange={e => this.onTextChange(e)} 
                   value={this.state.msg} 
+                  id="myInput"
                 />
-                <button onClick={this.onMessageSubmit}>Send</button>
+                <button onClick={this.onMessageSubmit} id="myBtn">Click to Send</button>
                 <div className='text-left'>{this.renderChat()}</div>
               </div>
             </div>
