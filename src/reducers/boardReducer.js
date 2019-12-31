@@ -49,38 +49,59 @@ const boardReducer = (state = initialState, action) => {
         const col = index;
         const ship = state.ship;
 
-    //PREVENTS OVERLAPPING OF PIECES
-        if (col + ship.length <= 10) {
-            for(let i = 0; i < ship.length; i++) {
-                if (test[x][col + i].color) {
-                    return state
-                }
-            }
-        } else {
-            for(let i = 0; i < ship.length; i++) {
-                if (test[x][10 - ship.length + i].color) {
-                    return state
-                }
-            }
-        }
-
-        //PIECE PLACEMENT ON BOARD
-            if (col + ship.length <= 10) {
-                for(let i = 0; i < ship.length; i++) {
-                    test[x][col + i].color = true; 
-                    // state = deactivateBoard(state, null)
-                    state = {
-                        ...state,
-                        active: false
+            if(stateCopy.isHorizontal){
+                if (col + ship.length <= 10) {
+                    for(let i = 0; i < ship.length; i++) {
+                        test[x][col + i].color = true; 
+                        state = deactivateBoard(state, null)
                     }
-                    // console.log('wut is asdf', deactivateBoard())
+                } else {
+                    for(let i = ship.length; i > 0; i--) {
+                        test[x][10 - i].color = true;
+                        state = deactivateBoard(state, null)
+                    }
                 }
             } else {
-                for(let i = ship.length; i > 0; i--) {
-                    test[x][10 - i].color = true;
-                    state = deactivateBoard(state, null)
+                if (parseInt(x) + ship.length <= 10 ) {
+                    for(let i = 0; i < ship.length; i++) {
+                        test[parseInt(x) + i][index].color = true;   
+                        state = deactivateBoard(state, null)
+                    }
+                } else {
+
+                    if(parseInt(x) === 9){
+                        for(let i = ship.length; i > 0; i--) {
+                            test[parseInt(x) - ship.length + i][index].color = true;
+                            state = deactivateBoard(state, null)
+                        }
+                    } else {
+                        for(let i = ship.length; i > 0; i--) {
+                            let m = 9;
+                            test[parseInt(m) - ship.length + i][index].color = true;
+                            state = deactivateBoard(state, null)
+                        }
+                    }
+                   
                 }
             }
+           
+        //PIECE PLACEMENT ON BOARD
+            // if (col + ship.length <= 10) {
+            //     for(let i = 0; i < ship.length; i++) {
+            //         test[x][col + i].color = true; 
+            //         // state = deactivateBoard(state, null)
+            //         state = {
+            //             ...state,
+            //             active: false
+            //         }
+            //         // console.log('wut is asdf', deactivateBoard())
+            //     }
+            // } else {
+            //     for(let i = ship.length; i > 0; i--) {
+            //         test[x][10 - i].color = true;
+            //         state = deactivateBoard(state, null)
+            //     }
+            // }
     
     console.log(square, 'after ****', state.squares[x])
       return {
@@ -95,7 +116,7 @@ const boardReducer = (state = initialState, action) => {
     return {
         ...stateCopy,
         isHorizontal: orientation
-      }
+    }
     case ACTIVATE:
       console.log('wut is ship!!!!', action.payload)
       return {
