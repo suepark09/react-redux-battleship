@@ -18,12 +18,22 @@ class Square extends React.Component {
 
     //HIT COLOR
     
-    if (this.props.square.ship && this.props.square.color) {
-      console.log('turns red')
-      color = 'red'
-    }
+    // if (this.props.square.ship && this.props.square.color) {
+    //   console.log('turns red')
+    //   color = 'red'
+    // }
 
     const disabled = this.props.active ? '' : 'disabled'
+    
+    // console.log(disabled, '++++++++')
+    // const mouseOver = (event) => {
+    //     event.target.style.background = 'red';
+    // }
+    
+    // const mouseOut = (e) => {
+    //     e.target.style.background = '';
+    // }   
+
     return (
       //do if else statements? if ship name is x then
       // activate this mouseover function
