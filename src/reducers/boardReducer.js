@@ -49,41 +49,81 @@ const boardReducer = (state = initialState, action) => {
         const col = index;
         const ship = state.ship;
 
-            if(stateCopy.isHorizontal){
-                if (col + ship.length <= 10) {
-                    for(let i = 0; i < ship.length; i++) {
-                        test[x][col + i].color = true; 
-                        test[x][col + i].ship = true; 
-                        state = deactivateBoard(state, null)
+        if(stateCopy.isHorizontal){
+            if (col + ship.length <= 10) {
+                for(let i = 0; i < ship.length; i++) {
+                    if (test[x][col + i].color) {
+                        return state
+                    } 
+                }
+            } else {
+                for(let i = ship.length; i > 0; i--) {
+
+                    if(test[x][10 - i].color){
+                        return state
+                    }
+                }
+            }
+        } else {
+            if (parseInt(x) + ship.length <= 10 ) {
+                for(let i = 0; i < ship.length; i++) {
+                    if(test[parseInt(x) + i][index].color){
+                        return state
+                    } 
+                }
+            } else {
+                if(parseInt(x) === 9){
+                    for(let i = ship.length; i > 0; i--) {
+                        if(test[parseInt(x) - ship.length + i][index].color){
+                            return state
+                        } 
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
-                        test[x][10 - i].color = true;
-                        test[x][10 - i].ship = true;
-                        state = deactivateBoard(state, null)
+                        let m = 9;
+                        if(test[parseInt(x) - ship.length + i][index].color ||  test[parseInt(m) - ship.length + i][index].color){
+                            return state
+                        } 
+                    }
+                }
+               
+            }
+        }
+
+            if(stateCopy.isHorizontal){
+                if (col + ship.length <= 10) {
+                    for(let i = 0; i < ship.length; i++) {      
+                            test[x][col + i].color = true; 
+                            test[x][col + i].ship = true; 
+                            state = deactivateBoard(state, null)
+                    }
+                } else {
+                    for(let i = ship.length; i > 0; i--) {
+                            test[x][10 - i].color = true;
+                            test[x][10 - i].ship = true;
+                            state = deactivateBoard(state, null)
                     }
                 }
             } else {
                 if (parseInt(x) + ship.length <= 10 ) {
                     for(let i = 0; i < ship.length; i++) {
-                        test[parseInt(x) + i][index].color = true;   
-                        test[parseInt(x) + i][index].ship = true;   
-                        state = deactivateBoard(state, null)
+                            test[parseInt(x) + i][index].color = true;   
+                            test[parseInt(x) + i][index].ship = true;   
+                            state = deactivateBoard(state, null)
                     }
                 } else {
-
                     if(parseInt(x) === 9){
                         for(let i = ship.length; i > 0; i--) {
-                            test[parseInt(x) - ship.length + i][index].color = true;
-                            test[parseInt(x) - ship.length + i][index].ship = true;
-                            state = deactivateBoard(state, null)
+                                test[parseInt(x) - ship.length + i][index].color = true;
+                                test[parseInt(x) - ship.length + i][index].ship = true;
+                                state = deactivateBoard(state, null)
                         }
                     } else {
                         for(let i = ship.length; i > 0; i--) {
                             let m = 9;
-                            test[parseInt(m) - ship.length + i][index].color = true;
-                            test[parseInt(m) - ship.length + i][index].ship = true;
-                            state = deactivateBoard(state, null)
+                                test[parseInt(m) - ship.length + i][index].color = true;
+                                test[parseInt(m) - ship.length + i][index].ship = true;
+                                state = deactivateBoard(state, null)
                         }
                     }
                    
