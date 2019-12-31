@@ -9,7 +9,7 @@ const initialState = {
   index: null,
   ship: {name: null, length: null},
   squares: {
-    0: [{ key: '0A', ship: true, color: false }, { key: '0B', ship: true, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
+    0: [{ key: '0A', ship: false, color: false }, { key: '0B', ship: false, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
     1: [{ key: '1A', ship: false, color: false }, { key: '1B', ship: false, color: false }, { key: '1C', ship: false, color: false }, { key: '1D', ship: false, color: false }, { key: '1E', ship: false, color: false }, { key: '1F', ship: false, color: false }, { key: '1G', ship: false, color: false }, { key: '1H', ship: false, color: false }, { key: '1I', ship: false, color: false }, { key: '1J', ship: false, color: false }],
     2: [{ key: '2A', ship: false, color: false }, { key: '2B', ship: false, color: false }, { key: '2C', ship: false, color: false }, { key: '2D', ship: false, color: false }, { key: '2E', ship: false, color: false }, { key: '2F', ship: false, color: false }, { key: '2G', ship: false, color: false }, { key: '2H', ship: false, color: false }, { key: '2I', ship: false, color: false }, { key: '2J', ship: false, color: false }],
     3: [{ key: '3A', ship: false, color: false }, { key: '3B', ship: false, color: false }, { key: '3C', ship: false, color: false }, { key: '3D', ship: false, color: false }, { key: '3E', ship: false, color: false }, { key: '3F', ship: false, color: false }, { key: '3G', ship: false, color: false }, { key: '3H', ship: false, color: false }, { key: '3I', ship: false, color: false }, { key: '3J', ship: false, color: false }],
@@ -53,11 +53,13 @@ const boardReducer = (state = initialState, action) => {
                 if (col + ship.length <= 10) {
                     for(let i = 0; i < ship.length; i++) {
                         test[x][col + i].color = true; 
+                        test[x][col + i].ship = true; 
                         state = deactivateBoard(state, null)
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
                         test[x][10 - i].color = true;
+                        test[x][10 - i].ship = true;
                         state = deactivateBoard(state, null)
                     }
                 }
@@ -65,6 +67,7 @@ const boardReducer = (state = initialState, action) => {
                 if (parseInt(x) + ship.length <= 10 ) {
                     for(let i = 0; i < ship.length; i++) {
                         test[parseInt(x) + i][index].color = true;   
+                        test[parseInt(x) + i][index].ship = true;   
                         state = deactivateBoard(state, null)
                     }
                 } else {
@@ -72,12 +75,14 @@ const boardReducer = (state = initialState, action) => {
                     if(parseInt(x) === 9){
                         for(let i = ship.length; i > 0; i--) {
                             test[parseInt(x) - ship.length + i][index].color = true;
+                            test[parseInt(x) - ship.length + i][index].ship = true;
                             state = deactivateBoard(state, null)
                         }
                     } else {
                         for(let i = ship.length; i > 0; i--) {
                             let m = 9;
                             test[parseInt(m) - ship.length + i][index].color = true;
+                            test[parseInt(m) - ship.length + i][index].ship = true;
                             state = deactivateBoard(state, null)
                         }
                     }
