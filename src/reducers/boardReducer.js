@@ -106,13 +106,13 @@ const boardReducer = (state = initialState, action) => {
             if(stateCopy.isHorizontal){
                 if (col + ship.length <= 10) {
                     for(let i = 0; i < ship.length; i++) {      
-                            test[x][col + i].color = true; 
+                            // test[x][col + i].color = true; 
                             test[x][col + i].ship = true; 
                             state = deactivateBoard(state, null)
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
-                            test[x][10 - i].color = true;
+                            // test[x][10 - i].color = true;
                             test[x][10 - i].ship = true;
                             state = deactivateBoard(state, null)
                     }
@@ -120,21 +120,21 @@ const boardReducer = (state = initialState, action) => {
             } else {
                 if (parseInt(x) + ship.length <= 10 ) {
                     for(let i = 0; i < ship.length; i++) {
-                            test[parseInt(x) + i][index].color = true;   
+                            // test[parseInt(x) + i][index].color = true;   
                             test[parseInt(x) + i][index].ship = true;   
                             state = deactivateBoard(state, null)
                     }
                 } else {
                     if(parseInt(x) === 9){
                         for(let i = ship.length; i > 0; i--) {
-                                test[parseInt(x) - ship.length + i][index].color = true;
+                                // test[parseInt(x) - ship.length + i][index].color = true;
                                 test[parseInt(x) - ship.length + i][index].ship = true;
                                 state = deactivateBoard(state, null)
                         }
                     } else {
                         for(let i = ship.length; i > 0; i--) {
                             let m = 9;
-                                test[parseInt(m) - ship.length + i][index].color = true;
+                                // test[parseInt(m) - ship.length + i][index].color = true;
                                 test[parseInt(m) - ship.length + i][index].ship = true;
                                 state = deactivateBoard(state, null)
                         }
@@ -176,6 +176,8 @@ const boardReducer = (state = initialState, action) => {
       console.log(attackSquare1, "attack ship!!!")
       return stateCopy
     case P2ATTACK:
+    
+    
       const o = action.key.slice(0, 1)
       const p = action.key.slice(1, 2)
       const attackSquare2 = stateCopy.squares[o].find(square => square.key === `${o}${p}`)
