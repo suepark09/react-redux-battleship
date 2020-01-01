@@ -22,12 +22,17 @@ export function keyGen (state) {
   return gameId
 }
 
+// export function fetchGameData (gameId) {
+//   console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
+//   gameRef.orderByKey().equalTo(gameId).on('value', function (snap) {
+//     console.log('DATABASE QUERY RESULT', snap.val()[gameId])
+//     return snap.val()[gameId]
+//   })
+// }
+
 export function fetchGameData (gameId) {
   console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
-  gameRef.orderByKey().equalTo(gameId).on('value', function (snap) {
-    console.log('DATABASE QUERY RESULT', snap.val()[gameId])
-    return snap.val()[gameId]
-  })
+  return gameRef.orderByKey().equalTo(gameId).once('value')
 }
 
 // to clear database...
