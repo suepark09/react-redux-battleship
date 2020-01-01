@@ -108,6 +108,14 @@ ol, ul {
   align-items: center;
 }
 
+.second-board {
+  width: 250px;
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
 .instructions {
   font-size: 10px;
   height: 100vh;

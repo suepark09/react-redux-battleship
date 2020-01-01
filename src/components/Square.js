@@ -7,7 +7,7 @@ class Square extends React.Component {
 
 
   render () {
-    // console.log(this.props.square, 'know myslef')
+   
 
     let color = this.props.square.color ? 'grey-square' : 'square' 
 
@@ -18,10 +18,10 @@ class Square extends React.Component {
 
     //HIT COLOR
     
-    // if (this.props.square.ship && this.props.square.color) {
-    //   console.log('turns red')
-    //   color = 'red'
-    // }
+    if (this.props.square.ship && this.props.square.color) {
+      console.log('turns red')
+      color = 'red'
+    }
 
     const disabled = this.props.active ? '' : 'disabled'
     

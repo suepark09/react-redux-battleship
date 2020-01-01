@@ -4,6 +4,8 @@ import Chat from './components/Chat'
 import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
+import Board2 from './components/Board2'
+
 //import * as firebase from 'firebase/app'
 import 'firebase/database'
 import { incrementUser } from './firebaseFunc'
@@ -49,6 +51,9 @@ class App extends React.Component {
                     </div>
                   <div className='game-board'>
                       <Board />
+                  </div>
+                  <div className='second-board'>
+                      <Board2 />
                   </div>
                   </div>
                 </div>

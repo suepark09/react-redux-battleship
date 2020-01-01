@@ -10,4 +10,5 @@ export const DEACTIVATE_BOARD = 'DEACTIVATE_BOARD' //after placing down ship
 export const FIREBASE = 'FIREBASE'
 export const ORIENTATION = 'ORIENTATION'
 export const CLICKED = 'CLICKED'
+export const CLICKED2 = 'CLICKED2'
 
