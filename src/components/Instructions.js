@@ -4,7 +4,8 @@ import '../App.css'
 class Instructions extends React.Component {
   render () {
     return (
-      <ol>
+      <ol className="instruction-list">
+        <h5 className="instructions-title">Instructions</h5>
         <li>Share this link with your opponent</li>
         <li>Select your ship to place it</li>
         <li>Choose the orientation: Horizontal or Vertical</li>
