@@ -3,7 +3,7 @@ import Square from './Square'
 
 export default class PlayerTwoOpponent extends Component {
     state = {}
-
+// async...needs to have the search results populate first before you can map
     componentDidMount() {
         if (this.props.gameData) {
             console.log('PLAYER TWO OPPONENT PROPS:', this.props)
