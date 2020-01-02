@@ -27,7 +27,7 @@ function StartModal (props) {
 
   return (
     <div>
-      <Button color='danger' onClick={toggle}>START</Button>
+      <Button id="start-modal-btn" onClick={toggle}>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>

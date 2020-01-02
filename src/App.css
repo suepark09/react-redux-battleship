@@ -1,8 +1,165 @@
 body {
-  margin: 20px;
+  /* margin: 20px; */
+  font-family: 'Cairo', sans-serif;
+  background-color: #171E25 !important;
 }
+
+h1 {
+  margin-top: 15px !important;
+  font-size: 23pt !important;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+  font-weight: 300;
+  color: white;
+}
+
+h5 {
+  font-family: 'Cairo', sans-serif;
+  color: white;
+}
+
+.app-container {
+  /* border: 1px solid red; */
+  /* width: 600px; */
+  justify-content: space-between;
+  padding-left: 20px;
+  /* height: 100vh; */
+}
+
+.game-container {
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; */
+  /* border: 1px solid blue; */
+  margin-right: 10px;
+  width: 68vw;
+}
+
+.chat-container {
+  /* padding-top: 30px; */
+  position: fixed;
+  right: 0;
+  margin-left: 18px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly; */
+  border-left: 8px solid #1D2A35;
+  border-right: 8px solid #1D2A35;
+  border-bottom: 8px solid #1D2A35;
+  width: 29vw;
+  height: 100vh;
+}
+
+.name-container {
+  background: #1D2A35;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nickname-title {
+  padding-bottom: 5px;
+  color: #64B2F4;
+}
+
+.chat-text {
+  /* border: 3px solid green; */
+  padding: 15px;
+  height: 40vh;
+  color: white;
+}
+
+.chat-message-container {
+  /* border: 3px solid green;  */
+  position: fixed;
+  bottom: 0;
+  height: 90px;
+  left: 71.2%;
+  /* padding-left: 15px; */
+  background: #1D2A35;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 29vw;
+}
+
+#message-input {
+  width: 78%;
+  background: #171E25;
+  height: 38px;
+  border-radius: 3px;
+  border: none;
+  color: white; 
+  margin-left: 0;
+  padding-left: 10px;
+}
+
+#nickname-input {
+  padding-left: 10px;
+  height: 38px;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  border-radius: 3px;
+  background: #171E25;
+  width: 80%;
+}
+
+input:focus, textarea:focus, select:focus{
+  outline: none;
+}
+
+#send-msg-btn:focus {outline:0 !important;}
+
+#send-msg-btn {
+  color: white;
+  background: #64B2F4;
+  height: 36px;
+  border-radius: 0px 3px 3px 0px;
+  border: none;
+  width: 60px;
+}
+
+.start-btn-container {
+  margin-top: 5px;
+  /* border: 1px solid rgba(128, 0, 128, 0.637); */
+  padding-left: 15px;
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center; */
+}
+
+.ship-config-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #1D2A35;
+  -webkit-box-shadow: -1px 6px 15px -5px rgba(0,0,0,0.56); 
+  box-shadow: -1px 6px 15px -5px rgba(0,0,0,0.56);
+}
+
+.ship-orientation-container {
+  text-align: center;
+  padding: 5px;
+}
+
+.ship-selection-container {
+  text-align: center;
+  padding: 5px;
+}
+
+form {
+  padding-top: 7px;
+}
+
 ol, ul {
   padding-left: 30px;
+  color: white;
 }
 .board-row:after {
   clear: both;
@@ -13,48 +170,48 @@ ol, ul {
   margin-bottom: 10px;
 }
 .square {
-  background: white;
-  border: 1px solid #999;
+  background: #1D2A35;
+  border: 1px solid #5da6e3;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 24px;
+  height: 36px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 24px;
+  width: 36px;
 }
 
 .grey-square {
-  background: #eeeeee;
+  background: linear-gradient(45deg, rgba(100,174,244,1) 0%, rgba(100,178,244,1) 100%);
   border: 1px solid #999;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 24px;
+  height: 36px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 24px;
+  width: 36px;
 }
 
 .green {
-  background: lightgreen;
-  border: 1px solid #999;
+  background: #f6ff54;
+  border: 1px solid #64b2f4;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 24px;
+  height: 36px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 24px;
+  width: 36px;
 }
 
 .red {
@@ -64,12 +221,12 @@ ol, ul {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 24px;
+  height: 36px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 24px;
+  width: 36px;
 }
 
 
@@ -81,6 +238,11 @@ ol, ul {
   outline: none;
 }
 
+#piece-btn {
+  border-radius: 4px !important;
+  
+}
+
 /* .square:hover:enabled {
   background-color: lightblue;
 } */
@@ -88,12 +250,23 @@ ol, ul {
 .kbd-navigation .square:focus {
   background: #ddd;
 }
+
+.title {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
 .game {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  /* border: red solid 5px; */
+  margin-top: 10px;
 }
 .game-info {
-  margin-left: 20px;
+    /* border: red solid 5px; */
+    width: 100%;
+  /* margin-left: 20px; */
 }
 
 #boardDiv {
@@ -101,7 +274,7 @@ ol, ul {
 }
 
 .game-board {
-  width: 250px;
+  width: 360px;
   display: flex;
   margin: 20px;
   justify-content: center;
@@ -109,19 +282,43 @@ ol, ul {
 }
 
 .second-board {
-  width: 250px;
+  width: 360px;
   display: flex;
   margin: 20px;
   justify-content: center;
   align-items: center;
 }
 
-.instructions {
+
+.instructions-title {
+  color:#64B2F4;
+}
+
+.instructions-container {
   font-size: 10px;
-  height: 100vh;
+  /* height: 100vh; */
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: solid red 1px; */
+  padding: 10px;
+  margin-right: 18px;
+}
+
+.instructions {
+  /* border: solid pink 1px; */
+}
+
+.game-instructions-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.instruction-list {
+  font-size: 11pt;
 }
 
 .selector {
@@ -129,7 +326,30 @@ ol, ul {
 }
 
 .chat {
-  border: 1px solid black;
   height: 100vh;
-  width: 20vw;
+}
+
+#orientation-btn {
+  color: #64B2F4;
+  padding: 5px 15px 5px 15px;
+  background-color: #1D2A35;
+  border-radius: 3px;
+  border: 1px solid #64B2F4;
+}
+
+/* #orientation-btn:hover {
+  color: white;
+  background: #64B2F4;
+} */
+
+#start-modal-btn {
+  color: #64B2F4;
+  padding: 5px 15px 5px 15px;
+  background-color: #1D2A35;
+  border-radius: 3px;
+  border: 1px solid #64B2F4;
+}
+
+.list-unstyled {
+  padding-top: 5px;
 }

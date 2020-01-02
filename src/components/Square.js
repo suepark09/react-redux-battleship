@@ -37,7 +37,7 @@ class Square extends React.Component {
     return (
       //do if else statements? if ship name is x then
       // activate this mouseover function
-      <button onMouseOut= {this.props.mouseOut} onMouseOver= {this.props.mouseOver} className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
+      <button id="piece-btn" onMouseOut= {this.props.mouseOut} onMouseOver= {this.props.mouseOver} className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
         {/* {this.props.coordinate} */}   </button>
     )
   }

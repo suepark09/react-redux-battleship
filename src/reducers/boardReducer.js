@@ -1,13 +1,14 @@
-import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK } from '../actions/actionTypes'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
   gameId: '',
   isPlaying: false,
   active: false,
+  activeBtn: [true, true, true, true, true],
   isHorizontal: true,
   index: null,
-  ship: {name: null, length: null},
+  ship: {id: null, name: null, length: null},
   squares: {
     0: [{ key: '0A', ship: false, color: false }, { key: '0B', ship: false, color: false }, { key: '0C', ship: false, color: false }, { key: '0D', ship: false, color: false }, { key: '0E', ship: false, color: false }, { key: '0F', ship: false, color: false }, { key: '0G', ship: false, color: false }, { key: '0H', ship: false, color: false }, { key: '0I', ship: false, color: false }, { key: '0J', ship: false, color: false }],
     1: [{ key: '1A', ship: false, color: false }, { key: '1B', ship: false, color: false }, { key: '1C', ship: false, color: false }, { key: '1D', ship: false, color: false }, { key: '1E', ship: false, color: false }, { key: '1F', ship: false, color: false }, { key: '1G', ship: false, color: false }, { key: '1H', ship: false, color: false }, { key: '1I', ship: false, color: false }, { key: '1J', ship: false, color: false }],
@@ -37,11 +38,22 @@ const initialState = {
 
 const deepCopy = (x) => JSON.parse(JSON.stringify(x))
 const deactivateBoard = (state = initialState, action) => {
+    const newActiveBtn = state.activeBtn.slice()
+    newActiveBtn[action.index] = false
     return {
         ...state,
-        active: false
+        active: false,
+        activeBtn: newActiveBtn
     }
 }
+
+// const deactivateBtn = (state = initialState, action) => {
+//     return {
+//         ...state,
+//         activeBtn: false
+//     }
+// }
+
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
  
@@ -61,6 +73,8 @@ const boardReducer = (state = initialState, action) => {
         const test = { ...state.squares };
         const col = index;
         const ship = state.ship;
+
+        //PREVENTS OVERLAPPING OF PIECES
 
         if(stateCopy.isHorizontal){
             if (col + ship.length <= 10) {
@@ -108,13 +122,13 @@ const boardReducer = (state = initialState, action) => {
                     for(let i = 0; i < ship.length; i++) {      
                             // test[x][col + i].color = true; 
                             test[x][col + i].ship = true; 
-                            state = deactivateBoard(state, null)
+                            // state = deactivateBoard(state, null)
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
                             // test[x][10 - i].color = true;
                             test[x][10 - i].ship = true;
-                            state = deactivateBoard(state, null)
+                            // state = deactivateBoard(state, null)
                     }
                 }
             } else {
@@ -122,46 +136,34 @@ const boardReducer = (state = initialState, action) => {
                     for(let i = 0; i < ship.length; i++) {
                             // test[parseInt(x) + i][index].color = true;   
                             test[parseInt(x) + i][index].ship = true;   
-                            state = deactivateBoard(state, null)
+                            // state = deactivateBoard(state, null)
                     }
                 } else {
                     if(parseInt(x) === 9){
                         for(let i = ship.length; i > 0; i--) {
                                 // test[parseInt(x) - ship.length + i][index].color = true;
                                 test[parseInt(x) - ship.length + i][index].ship = true;
-                                state = deactivateBoard(state, null)
+                                // state = deactivateBoard(state, null)
                         }
                     } else {
                         for(let i = ship.length; i > 0; i--) {
                             let m = 9;
                                 // test[parseInt(m) - ship.length + i][index].color = true;
                                 test[parseInt(m) - ship.length + i][index].ship = true;
-                                state = deactivateBoard(state, null)
+                                // state = deactivateBoard(state, null)
                         }
                     }
-                   
                 }
+               
             }
-           
-        //PIECE PLACEMENT ON BOARD
-            // if (col + ship.length <= 10) {
-            //     for(let i = 0; i < ship.length; i++) {
-            //         test[x][col + i].color = true; 
-            //         // state = deactivateBoard(state, null)
-            //         state = {
-            //             ...state,
-            //             active: false
-            //         }
-            //         // console.log('wut is asdf', deactivateBoard())
-            //     }
-            // } else {
-            //     for(let i = ship.length; i > 0; i--) {
-            //         test[x][10 - i].color = true;
-            //         state = deactivateBoard(state, null)
-            //     }
-            // }
-    
+        // }
+
+        state = deactivateBoard(state, {index: state.ship.id})
+
+       
+        
     console.log(square, 'after ****', state.squares[x])
+    console.log(state, test, 'kekkekekeke')
       return {
         ...state,
         squares: test,
@@ -201,6 +203,12 @@ const boardReducer = (state = initialState, action) => {
         return {
             ...stateCopy,
             active: false
+        }
+    case DEACTIVATE_BUTTON:
+        return {
+            ...stateCopy,
+            activeBtn: false,
+            ship: action.payload
         }
     case FIREBASE:
       const gameId = keyGen(action.payload)
