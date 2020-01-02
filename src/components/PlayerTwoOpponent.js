@@ -15,8 +15,7 @@ class PlayerTwoOpponent extends Component {
         }
 
         return (
-            <div>
-                <p>PLAYER ONE BOARD</p>
+            <div id="boardDiv">
                 { mappedBoard }
             </div>
         )
@@ -27,6 +26,12 @@ const mapStateToProps = state => {
     return { state }
   }
 
+  const mapDispatchToProps = dispatch => {
+    return {
+    }
+  }
+
   export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps
   )(PlayerTwoOpponent)

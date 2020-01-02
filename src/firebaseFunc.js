@@ -35,5 +35,12 @@ export function fetchGameData (gameId) {
   return gameRef.orderByKey().equalTo(gameId).once('value')
 }
 
+export function listenGameData (gameId) {
+  console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
+  return gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
+    console.log(snap.val()[gameId])
+  })
+}
+
 // to clear database...
 // firebase.database().ref().remove()
