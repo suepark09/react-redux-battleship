@@ -1,4 +1,4 @@
-import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, DEACTIVATE_BUTTON } from '../actions/actionTypes'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, DEACTIVATE_BUTTON, UPDATE_STATE } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
@@ -232,6 +232,10 @@ const boardReducer = (state = initialState, action) => {
       stateCopy.gameId = gameId
       //console.log('new state', stateCopy)
       return stateCopy
+    case UPDATE_STATE:
+        const newGameData = action.game
+        console.log('REDUCER LATEST GAME STATE', newGameData)
+        return newGameData
     default:
       return stateCopy
   }

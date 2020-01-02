@@ -11,4 +11,5 @@ export const DEACTIVATE_BUTTON = 'DEACTIVATE_BUTTON'
 export const FIREBASE = 'FIREBASE'
 export const ORIENTATION = 'ORIENTATION'
 export const CLICKED = 'CLICKED'
+export const UPDATE_STATE = 'UPDATE_STATE'
 

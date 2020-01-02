@@ -1,32 +1,32 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Square from './Square'
 
-export default class PlayerTwoOpponent extends Component {
-    state = {}
-// async...needs to have the search results populate first before you can map
-    componentDidMount() {
-        if (this.props.gameData) {
-            console.log('PLAYER TWO OPPONENT PROPS:', this.props)
-            const { squares } = this.props.gameData
-            this.setState( squares )
-            console.log('STATE:', this.state)
-        }
-    }
+class PlayerTwoOpponent extends Component {
 
     render() {
-
-        // const mappedBoard = []
-        // for (let i = 0; i < 10; i++) {
-        //     squares[i].map((singleSquare, idx) => {
-        //         return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
-        //     })
-        // }
+        console.log('PLAYER TWO OPPONENT STATE', this.props.state)
+        const { squares } = this.props.state.squares
+        const mappedBoard = []
+        for (let i = 0; i < 10; i++) {
+            squares[i].map((singleSquare, idx) => {
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
+            })
+        }
 
         return (
             <div>
                 <p>PLAYER ONE BOARD</p>
-                {/* { mappedBoard } */}
+                { mappedBoard }
             </div>
         )
     }
 }
+
+const mapStateToProps = state => {
+    return { state }
+  }
+
+  export default connect(
+    mapStateToProps
+  )(PlayerTwoOpponent)
