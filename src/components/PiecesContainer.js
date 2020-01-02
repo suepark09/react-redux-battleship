@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import P1counter from './P1counter'
 import { connect } from 'react-redux'
 class PiecesContainer extends React.Component {
 
@@ -73,6 +74,9 @@ patrolBoat = (e) => {
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
             <button id="orientation-btn" onClick={this.props.orientation} className='selector'>Rotate Ship</button>
+            </div>
+            <div className="ship-orientation-container">
+                <P1counter counter={this.props.state.p2total}/>
             </div>
           
           
