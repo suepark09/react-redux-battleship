@@ -84,14 +84,14 @@ const boardReducer = (state = initialState, action) => {
         if(stateCopy.isHorizontal){
             if (col + ship.length <= 10) {
                 for(let i = 0; i < ship.length; i++) {
-                    if (test[x][col + i].color) {
+                    if (test[x][col + i].giveColor) {
                         return state
                     } 
                 }
             } else {
                 for(let i = ship.length; i > 0; i--) {
 
-                    if(test[x][10 - i].color){
+                    if(test[x][10 - i].giveColor){
                         return state
                     }
                 }
@@ -99,21 +99,21 @@ const boardReducer = (state = initialState, action) => {
         } else {
             if (parseInt(x) + ship.length <= 10 ) {
                 for(let i = 0; i < ship.length; i++) {
-                    if(test[parseInt(x) + i][index].color){
+                    if(test[parseInt(x) + i][index].giveColor){
                         return state
                     } 
                 }
             } else {
                 if(parseInt(x) === 9){
                     for(let i = ship.length; i > 0; i--) {
-                        if(test[parseInt(x) - ship.length + i][index].color){
+                        if(test[parseInt(x) - ship.length + i][index].giveColor){
                             return state
                         } 
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
                         let m = 9;
-                        if(test[parseInt(x) - ship.length + i][index].color ||  test[parseInt(m) - ship.length + i][index].color){
+                        if(test[parseInt(x) - ship.length + i][index].giveColor ||  test[parseInt(m) - ship.length + i][index].giveColor){
                             return state
                         } 
                     }
@@ -127,12 +127,16 @@ const boardReducer = (state = initialState, action) => {
                     for(let i = 0; i < ship.length; i++) {      
                             // test[x][col + i].color = true; 
                             test[x][col + i].ship = true; 
+                         
+                            console.log("*(()*)*)*)*)*)*))*)*",test[x][col + i] )
+                            test[x][col + i]["giveColor"] = true; 
                             // state = deactivateBoard(state, null)
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
                             // test[x][10 - i].color = true;
                             test[x][10 - i].ship = true;
+                            test[x][10 + i]["giveColor"] = true; 
                             // state = deactivateBoard(state, null)
                     }
                 }
@@ -141,6 +145,8 @@ const boardReducer = (state = initialState, action) => {
                     for(let i = 0; i < ship.length; i++) {
                             // test[parseInt(x) + i][index].color = true;   
                             test[parseInt(x) + i][index].ship = true;   
+                            test[parseInt(x) + i][index]["giveColor"] = true; 
+                            
                             // state = deactivateBoard(state, null)
                     }
                 } else {
@@ -148,6 +154,7 @@ const boardReducer = (state = initialState, action) => {
                         for(let i = ship.length; i > 0; i--) {
                                 // test[parseInt(x) - ship.length + i][index].color = true;
                                 test[parseInt(x) - ship.length + i][index].ship = true;
+                                test[parseInt(x) - ship.length + i][index] = true; 
                                 // state = deactivateBoard(state, null)
                         }
                     } else {
@@ -155,6 +162,7 @@ const boardReducer = (state = initialState, action) => {
                             let m = 9;
                                 // test[parseInt(m) - ship.length + i][index].color = true;
                                 test[parseInt(m) - ship.length + i][index].ship = true;
+                                test[parseInt(m) - ship.length + i][index]["giveColor"] = true; 
                                 // state = deactivateBoard(state, null)
                         }
                     }
@@ -163,7 +171,9 @@ const boardReducer = (state = initialState, action) => {
             }
         // }
 
+       
         state = deactivateBoard(state, {index: state.ship.id})
+       
 
        
         

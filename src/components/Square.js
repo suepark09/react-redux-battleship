@@ -9,7 +9,7 @@ class Square extends React.Component {
   render () {
    
 
-    let color = this.props.square.color || this.props.square.ship ? 'grey-square' : 'square' 
+    let color = this.props.square.color || this.props.square.giveColor? 'grey-square' : 'square' 
 
     if (this.props.hovered) {
         color = 'green'
