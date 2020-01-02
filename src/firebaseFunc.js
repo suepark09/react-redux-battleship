@@ -36,9 +36,9 @@ export function fetchGameData (gameId) {
 }
 
 export function listenGameData (gameId) {
-  console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
-  return gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
-    console.log(snap.val()[gameId])
+  gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
+    console.log(snap.val())
+    return snap.val()
   })
 }
 

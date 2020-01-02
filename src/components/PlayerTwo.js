@@ -8,33 +8,56 @@ import 'firebase/database'
 class PlayerTwo extends Component {
   componentDidMount () {
     const { gameId } = this.props.match.params
-    console.log('FETCHING DATA',fetchGameData(gameId))
+    
     fetchGameData(gameId)
       .then((data) =>{
         const gameData = data.val()[gameId]
         this.props.updateState(gameData)
       })
       .catch((error) => console.error('Error fetching game data:', error))
+    //this.props.updateState(listenGameData(gameId))
   }
 
   componentDidUpdate (prevState) {
-    console.log('inside the did update lifecycle', prevState)
-    if (this.props.state !== prevState) {
-      const { gameId } = this.props.match.params
-      fetchGameData(gameId)
-      .then((data) =>{
-        const gameData = data.val()[gameId]
-        this.props.updateState(gameData)
-      })
-      .catch((error) => console.error('Error fetching game data:', error))
+    const { gameId } = this.props.match.params
+    console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
+    console.log('TO NEWEST STATE',listenGameData(gameId))
   }
-  }
+
+  // componentDidMount () {
+  //   const { gameId } = this.props.match.params
+  //   console.log('FETCHING DATA',fetchGameData(gameId))
+  //   fetchGameData(gameId)
+  //     .then((data) =>{
+  //       const gameData = data.val()[gameId]
+  //       this.props.updateState(gameData)
+  //     })
+  //     .catch((error) => console.error('Error fetching game data:', error))
+  // }
+
+  // componentDidUpdate (prevState) {
+  //   console.log('inside the did update lifecycle', prevState)
+  //   if (this.props.state !== prevState) {
+  //     const { gameId } = this.props.match.params
+  //     fetchGameData(gameId)
+  //     .then((data) =>{
+  //       const gameData = data.val()[gameId]
+  //       this.props.updateState(gameData)
+  //     })
+  //     .catch((error) => console.error('Error fetching game data:', error))
+  // }
+  // }
 
   render () {
     return (
-      <div className='game-board'>
-        <PlayerTwoOpponent />
-      </div>
+      <React.Fragment>
+        <div className='game-board'>
+          <PlayerTwoOpponent />
+        </div>
+        <div className='game-board'>
+          <PlayerTwoOpponent />
+        </div>
+      </React.Fragment>
     )
   }
 }
