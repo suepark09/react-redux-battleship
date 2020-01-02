@@ -33,8 +33,8 @@ class Chat extends React.Component {
         const { chat } = this.state
         return chat.map(({ nickname, msg }, idx) => (
           <div key={idx}>
-            <span style={{ color: "green" }}>{nickname}:</span>
-            <span>{msg}</span>
+            <span style={{ color: "#f6ff54" }}>{nickname}:</span>
+            <span> {msg}</span>
           </div>
         ))
       }
@@ -43,22 +43,34 @@ class Chat extends React.Component {
     render() {
 
         return (
-            <div className='text-center'>
+            <div className='text-center chat-container'>
               <div className='chat'>
-                <span>Name</span>
+              <div className='name-container'>
+                  <div>
+                    <h5 className="nickname-title">Create nickname to chat!</h5>
                 <input 
+                  id="nickname-input"
+                  placeholder="  Create nickname"
                   name="nickname"
                   onChange={e => this.onTextChange(e)}
                   value={this.state.nickname}
                 />
-                <span>Message</span>
-                <input 
+                  </div>
+              </div>
+              <div className='text-left chat-text'>{this.renderChat()}</div>
+              <div className= "chat-message-container">
+                <div>
+                <input id="message-input"
                   name="msg"
+                  placeholder="  Send a message"
                   onChange={e => this.onTextChange(e)} 
                   value={this.state.msg} 
                 />
-                <button onClick={this.onMessageSubmit}>Send</button>
-                <div className='text-left'>{this.renderChat()}</div>
+                <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
+                </div>
+                
+              </div>
+              
               </div>
             </div>
         )

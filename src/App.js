@@ -37,28 +37,37 @@ class App extends React.Component {
     <Router>
       <Switch>
       <Route exact path='/'>
-      <div>
-        <div className='d-flex'>
-            <div className='d-flex'>
-              <div>
-              <StartModal props={squares} />
-                <h1>React-Redux-Battleship Game</h1>
-                  <div className='game'>
-                    <div className='game-info'>
-                      <PiecesContainer />
-                    </div>
-                  <div className='game-board'>
-                      <Board />
+      <React.Fragment>
+        <div className='d-flex app-container'>   
+          <div className= 'game-container'>
+            <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
+            
+              <div className="game-instructions-container">
+                <div className='game-info'>
+                    <PiecesContainer />
                   </div>
+                <div className='game'>
+                  <div className='game-board'>
+                    <Board />
+                  </div>
+                  <div className='instructions-container'>
+                    <div className="instructions">
+                      <Instructions />
+                    </div>
+                    <div className="start-btn-container">
+                      <StartModal props={squares} />
+                    </div>
                   </div>
                 </div>
-                  <div className='instructions'>
-                      <Instructions />
-                  </div>
-            </div>
+              </div>
+              
+            
+              </div>
+                  
+         
             <Chat />
         </div>
-      </div>
+      </React.Fragment>
       </Route>
       <Route path='/game/:gameId' component={PlayerTwo} />
       </Switch>
