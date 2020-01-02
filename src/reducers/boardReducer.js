@@ -136,7 +136,7 @@ const boardReducer = (state = initialState, action) => {
                     for(let i = ship.length; i > 0; i--) {
                             // test[x][10 - i].color = true;
                             test[x][10 - i].ship = true;
-                            test[x][10 + i]["giveColor"] = true; 
+                            test[x][10 - i]["giveColor"] = true; 
                             // state = deactivateBoard(state, null)
                     }
                 }
