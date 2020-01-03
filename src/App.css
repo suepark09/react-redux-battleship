@@ -47,7 +47,7 @@ h5 {
   border-left: 8px solid #1D2A35;
   border-right: 8px solid #1D2A35;
   border-bottom: 8px solid #1D2A35;
-  width: 29vw;
+  width: 25vw;
   height: 100vh;
 }
 
@@ -79,15 +79,31 @@ h5 {
   position: fixed;
   bottom: 0;
   height: 90px;
-  left: 71.2%;
+  left: 75.0%;
   /* padding-left: 15px; */
   background: #1D2A35;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 29vw;
-
+  width: 25vw;
   
+}
+
+.box {
+  background: #64b2f4;
+  height: 23px;
+  width: 23px;
+  margin: 1px;
+  border-radius: 2px;
+}
+
+.piece-label {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  width: 39%;
+  /* border: red solid 1px; */
+  padding: 5px;
 }
 
 #message-input {
@@ -140,7 +156,8 @@ input:focus, textarea:focus, select:focus{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 5px;
+  height: 185px;
+  padding: 15px;
   border-radius: 5px;
   background-color: #1D2A35;
   -webkit-box-shadow: -1px 6px 15px -5px rgba(0,0,0,0.56); 
@@ -148,13 +165,26 @@ input:focus, textarea:focus, select:focus{
 }
 
 .ship-orientation-container {
-  text-align: center;
-  padding: 5px;
+  padding: 5px 5px 5px 20px;
+  border-left: #171E25 solid 1px;
+  width: 34%;
 }
 
 .ship-selection-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   text-align: center;
   padding: 5px;
+  padding-left: 15px;
+  width: 48%;
+  /* height: 100px; */
+  /* border: 1px solid red; */
+}
+
+.radio {
+  visibility:hidden;
+  margin-left: -37px;
 }
 
 form {
@@ -330,9 +360,9 @@ ol, ul {
   font-size: 11pt;
 }
 
-.selector {
+/* .selector {
   margin: 10px;
-}
+} */
 
 .chat {
   height: 100vh;
@@ -340,10 +370,17 @@ ol, ul {
 
 #orientation-btn {
   color: #64B2F4;
+  margin-top: 13px;
   padding: 5px 15px 5px 15px;
   background-color: #1D2A35;
   border-radius: 3px;
   border: 1px solid #64B2F4;
+}
+
+.opponent-ship-count {
+  margin-top: 7px;
+  font-size: 23pt;
+  color: #64B2F4;
 }
 
 /* #orientation-btn:hover {
@@ -361,4 +398,6 @@ ol, ul {
 
 .list-unstyled {
   padding-top: 5px;
+  display: flex;
+  flex-wrap: wrap;
 }
