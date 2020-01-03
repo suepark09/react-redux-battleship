@@ -3,6 +3,7 @@ import { keyGen } from '../firebaseFunc'
 
 const initialState = {
   gameId: '',
+  hideInstructions: false, 
   isPlaying: false,
   active: false,
   activeP1: true,

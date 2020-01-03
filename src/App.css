@@ -67,8 +67,9 @@ h5 {
 
 .chat-text {
   /* border: 3px solid green; */
+  overflow-y: scroll;
   padding: 15px;
-  height: 40vh;
+  height: 70vh;
   color: white;
 }
 
@@ -296,12 +297,20 @@ ol, ul {
 
 .instructions-container {
   font-size: 10px;
-  /* height: 100vh; */
   width: 50%;
-  display: flex;
+  display: flex; /* otherwise its display flex */
   flex-direction: column;
   justify-content: center;
-  /* border: solid red 1px; */
+  padding: 10px;
+  margin-right: 18px;
+}
+
+.instructions-container2 {
+  font-size: 10px;
+  width: 50%;
+  display: none; 
+  flex-direction: column;
+  justify-content: center;
   padding: 10px;
   margin-right: 18px;
 }
@@ -352,4 +361,12 @@ ol, ul {
 
 .list-unstyled {
   padding-top: 5px;
+}
+
+input:invalid {
+  border: 2px dashed red;
+}
+
+input:invalid:required {
+  background-image: linear-gradient(to right, pink, lightgreen);
 }

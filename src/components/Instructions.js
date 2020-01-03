@@ -2,6 +2,7 @@ import React from 'react'
 import '../App.css'
 
 class Instructions extends React.Component {
+
   render () {
     return (
       <ol className="instruction-list">

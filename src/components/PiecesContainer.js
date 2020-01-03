@@ -45,10 +45,6 @@ patrolBoat = (e) => {
 
 
 
-// active state of radio button should be true 
-// once you click on a button, state of button should revert false AFTER you place 
-// a ship on the board
-
  render() {
 
     // for orientation, vertical is false and horizontal

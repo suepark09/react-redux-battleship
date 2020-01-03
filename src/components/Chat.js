@@ -19,6 +19,13 @@ class Chat extends React.Component {
         })
       }
 
+    //   validateInput = () => {
+    //       const nicknameInput = document.getElementById("nickname-input").value;
+    //       if (nicknameInput == "") {
+    //           alert('nothing here!')
+    //       }
+    //   }
+
       onTextChange = e => {
         this.setState({ [e.target.name]: e.target.value })
       }
@@ -27,6 +34,7 @@ class Chat extends React.Component {
         const { nickname, msg } = this.state
         socket.emit('chat message', { nickname, msg })
         this.setState({ msg: "" })
+        
       }
     
       renderChat() {
@@ -38,14 +46,28 @@ class Chat extends React.Component {
           </div>
         ))
       }
+
+      scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+      }
+      
+      componentDidMount() {
+        this.scrollToBottom();
+      }
+      
+      componentDidUpdate() {
+        this.scrollToBottom();
+      }
     
 
     render() {
 
         return (
             <div className='text-center chat-container'>
+            {/* <form> */}
               <div className='chat'>
               <div className='name-container'>
+                  
                   <div>
                     <h5 className="nickname-title">Create nickname to chat!</h5>
                 <input 
@@ -54,10 +76,18 @@ class Chat extends React.Component {
                   name="nickname"
                   onChange={e => this.onTextChange(e)}
                   value={this.state.nickname}
-                />
+                required/>
                   </div>
               </div>
-              <div className='text-left chat-text'>{this.renderChat()}</div>
+              <div className='text-left chat-text'>
+                  {this.renderChat()}
+                  <div style={{ float:"left", border: "red 1px solid"}}
+             ref={(el) => { this.messagesEnd = el; }}>
+            </div>
+            </div>
+
+         
+
               <div className= "chat-message-container">
                 <div>
                 <input id="message-input"
@@ -65,13 +95,14 @@ class Chat extends React.Component {
                   placeholder="  Send a message"
                   onChange={e => this.onTextChange(e)} 
                   value={this.state.msg} 
-                />
+                required/>
                 <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
                 </div>
                 
               </div>
               
               </div>
+              {/* </form> */}
             </div>
         )
     }

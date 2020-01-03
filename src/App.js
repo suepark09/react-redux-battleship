@@ -26,10 +26,29 @@ import {
 
 class App extends React.Component {
 
+  constructor (props) {
+    super(props);
+    this.state = {
+      hideInstructions: true
+    }
+  }
+
+
+
   componentDidMount () {
     // firebase.initializeApp(firebaseConfig)
     // incrementUser()
     // this.props.firebaseAction(this.props.state.squares)
+  }
+
+   // Create ready test button
+  // if button is clicked set variable to true, which then changes the class from
+  // display: flex to none. 
+
+  testButton = () => {
+
+    this.setState({hideInstructions: !this.state.hideInstructions})
+
   }
 
   render () {
@@ -55,14 +74,22 @@ class App extends React.Component {
                   <div className='second-board'>
                       <Board2 />
                   </div>
-                  <div className='instructions-container'>
+                  <div className={ this.hideInstructions }>
+
+                  {this.state.hideInstructions 
+                  &&  
                     <div className="instructions">
                       <Instructions />
                     </div>
+                  }
                     <div className="start-btn-container">
                       <StartModal props={squares} />
+                      <button onClick={this.testButton}>Hide Instructions Test Btn</button>
                     </div>
                   </div>
+                  
+                  
+
                 </div>
               </div>
               
