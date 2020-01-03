@@ -20,15 +20,15 @@ class PlayerTwo extends Component {
       .catch((error) => console.error('Error fetching game data:', error))
   }
 
-  // componentDidUpdate (prevState) {
-  //   const { gameId } = this.props.match.params
-  //   console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
-  //   console.log('TO GLOBAL STATE',this.props.state.squares)
-  //   console.log('TO NEWEST STATE',listenGameData(gameId))
-  //   if (this.props.state.squares !== prevState) {
-  //     console.log('GLOBAL STATE DOES NOT EQUAL PREVIOUS STATE')
-  //   }
-  // }
+  componentDidUpdate (prevState) {
+    const { gameId } = this.props.match.params
+    console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
+    console.log('TO GLOBAL STATE',this.props.state.squares)
+    console.log('TO NEWEST STATE',listenGameData(gameId))
+    if (this.props.state.squares !== prevState) {
+      console.log('GLOBAL STATE DOES NOT EQUAL PREVIOUS STATE')
+    }
+  }
 
   // componentDidMount () {
   //   const { gameId } = this.props.match.params
