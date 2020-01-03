@@ -37,8 +37,8 @@ export function fetchGameData (gameId) {
 
 export function listenGameData (gameId) {
   gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
-    console.log(snap.val())
-    return snap.val()
+    console.log('SOMETHING IN DATABASE CHANGED',snap.val())
+    snap.val()
   })
 }
 

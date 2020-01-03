@@ -5,12 +5,12 @@ import Square from './Square'
 class PlayerTwoOpponent extends Component {
 
     render() {
-        console.log('PLAYER TWO OPPONENT STATE', this.props.state)
+        console.log('PLAYER TWO PROPS', this.props)
         const { squares } = this.props.state.squares
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             squares[i].map((singleSquare, idx) => {
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} onClick={ this.props.clickSquare } coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
             })
         }
 

@@ -6,23 +6,29 @@ import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
 
 class PlayerTwo extends Component {
+  clickSquare = (clickedSquare) => {
+    console.log('You clicked', clickedSquare)
+  }
+
   componentDidMount () {
     const { gameId } = this.props.match.params
-    
     fetchGameData(gameId)
       .then((data) =>{
         const gameData = data.val()[gameId]
         this.props.updateState(gameData)
       })
       .catch((error) => console.error('Error fetching game data:', error))
-    //this.props.updateState(listenGameData(gameId))
   }
 
-  componentDidUpdate (prevState) {
-    const { gameId } = this.props.match.params
-    console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
-    console.log('TO NEWEST STATE',listenGameData(gameId))
-  }
+  // componentDidUpdate (prevState) {
+  //   const { gameId } = this.props.match.params
+  //   console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
+  //   console.log('TO GLOBAL STATE',this.props.state.squares)
+  //   console.log('TO NEWEST STATE',listenGameData(gameId))
+  //   if (this.props.state.squares !== prevState) {
+  //     console.log('GLOBAL STATE DOES NOT EQUAL PREVIOUS STATE')
+  //   }
+  // }
 
   // componentDidMount () {
   //   const { gameId } = this.props.match.params
@@ -51,11 +57,11 @@ class PlayerTwo extends Component {
   render () {
     return (
       <React.Fragment>
-        <div className='game-board'>
+        {/* <div className='game-board'>
           <PlayerTwoOpponent />
-        </div>
+        </div> */}
         <div className='game-board'>
-          <PlayerTwoOpponent />
+          <PlayerTwoOpponent clickSquare={ this.clickSquare } />
         </div>
       </React.Fragment>
     )
