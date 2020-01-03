@@ -33,10 +33,17 @@ class App extends React.Component {
     this.props.updateState(snapVal)
   }
 
+  closeModalHandler = () => {
+    console.log('closed modal')
+    //this.componentDidMount()
+  }
+
   componentDidMount () {
     const gameId = this.props.state.gameId
-    const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
-    listenGameData('-LxbW9ynLu16kMN4t3CB', changeSnapValueBoundToMe)
+    if (gameId) {
+      const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
+      listenGameData(gameId, changeSnapValueBoundToMe)
+    }
   }
 
   render () {
@@ -67,7 +74,7 @@ class App extends React.Component {
                       <Instructions />
                     </div>
                     <div className="start-btn-container">
-                      <StartModal props={squares} />
+                      <StartModal props={squares} closeModalHandler={ this.closeModalHandler }/>
                     </div>
                   </div>
                 </div>

@@ -254,7 +254,7 @@ const boardReducer = (state = initialState, action) => {
       return stateCopy
     case UPDATE_STATE:
         const newGameData = action.game
-        console.log('REDUCER LATEST GAME STATE', newGameData)
+        //console.log('REDUCER LATEST GAME STATE', newGameData)
         return newGameData
     default:
       return stateCopy

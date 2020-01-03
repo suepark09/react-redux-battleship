@@ -11,6 +11,7 @@ function StartModal (props) {
     setModal(!modal)
     props.firebaseAction(props.state.squares)
   }
+
   const backdrop = true
 
   const handleCopyLink = () => {

@@ -18,16 +18,16 @@ class PlayerTwo extends Component {
   }
 
   changeSnapValue (gameId, snapVal) {
-    console.log('changeSnapValue:', gameId, snapVal)
+    // console.log('changeSnapValue:', gameId, snapVal)
     this.props.updateState(snapVal)
   }
 
   componentDidUpdate (prevState) {
     const { gameId } = this.props.match.params
-    console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
-    console.log('TO GLOBAL STATE',this.props.state.squares)
+    // console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
+    // console.log('TO GLOBAL STATE',this.props.state.squares)
     const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
-    console.log('TO NEWEST STATE',listenGameData(gameId, changeSnapValueBoundToMe))
+    // console.log('TO NEWEST STATE',listenGameData(gameId, changeSnapValueBoundToMe))
 
 
     // console.log('TO NEWEST STATE',listenGameData(gameId, function(gameId, snapVal) {
@@ -35,7 +35,7 @@ class PlayerTwo extends Component {
     // }))
 
     if (this.props.state.squares !== prevState) {
-      console.log('GLOBAL STATE DOES NOT EQUAL PREVIOUS STATE')
+      // console.log('GLOBAL STATE DOES NOT EQUAL PREVIOUS STATE')
     }
   }
 
