@@ -34,14 +34,9 @@ class App extends React.Component {
   }
 
   componentDidMount () {
-    // firebase.initializeApp(firebaseConfig)
-    // incrementUser()
-    // this.props.firebaseAction(this.props.state.squares)
-
     const gameId = this.props.state.gameId
     const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
     listenGameData('-LxbW9ynLu16kMN4t3CB', changeSnapValueBoundToMe)
-    // this.props.updateState()
   }
 
   render () {
