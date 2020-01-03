@@ -27,16 +27,8 @@ export function fetchGameData (gameId) {
   return gameRef.orderByKey().equalTo(gameId).once('value')
 }
 
-function isFn (f) {
-  return typeof f === 'function'
-}
-
 export function listenGameData (gameId, callbackFn) {
-  console.assert(isFn(callbackFn), 'hey man - you need to pass a function to listenGameData')
-  gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
-    console.log('SOMETHING IN DATABASE CHANGED',snap.val())
-    callbackFn(gameId, snap.val())
-  })
+  gameRef.orderByKey().equalTo(gameId).on('child_changed', snap => callbackFn(gameId, snap.val()))
 }
 
 // to clear database...

@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Square from './Square'
 
-class PlayerTwoOpponent extends Component {
+class PlayerTwoOwn extends Component {
 
     render() {
-        console.log('PLAYER TWO OPPONENT PROPS', this.props)
+        console.log('PLAYER TWO OWN PROPS', this.props)
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
-            this.props.state.squares.squares[i].map((singleSquare, idx) => {
+            this.props.state.squares.squares2[i].map((singleSquare, idx) => {
                 return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
             })
         }
@@ -33,4 +33,4 @@ const mapStateToProps = state => {
   export default connect(
     mapStateToProps,
     mapDispatchToProps
-  )(PlayerTwoOpponent)
+  )(PlayerTwoOwn)

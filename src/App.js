@@ -5,12 +5,9 @@ import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
-<<<<<<< HEAD
 import { UPDATE_STATE } from './actions/actionTypes'
 import { listenGameData } from './firebaseFunc'
-=======
 import TurnDisplay from './components/TurnDisplay'
->>>>>>> master
 
 //import * as firebase from 'firebase/app'
 import 'firebase/database'
@@ -32,21 +29,26 @@ import {
 
 class App extends React.Component {
 
-  changeSnapValue (gameId, snapVal) {
-    console.log('changeSnapValue:', gameId, snapVal)
+  updateToDbState (gameId, snapVal) {
+    console.log('updateToDbState:', gameId, snapVal)
     this.props.updateState(snapVal)
   }
 
   closeModalHandler = () => {
     console.log('closed modal')
     //this.componentDidMount()
+    // const gameId = this.props.state.gameId
+    // if (gameId) {
+    //   const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+    //   listenGameData(gameId, updateToDbStateBoundToMe)
+    // }
   }
 
   componentDidMount () {
     const gameId = this.props.state.gameId
     if (gameId) {
-      const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
-      listenGameData(gameId, changeSnapValueBoundToMe)
+      const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+      listenGameData(gameId, updateToDbStateBoundToMe)
     }
   }
 

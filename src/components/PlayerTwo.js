@@ -1,74 +1,40 @@
 import React, { Component } from 'react'
-import { fetchGameData, listenGameData } from '../firebaseFunc'
+import { listenGameData } from '../firebaseFunc'
 import { connect } from 'react-redux';
 import PlayerTwoOpponent from './PlayerTwoOpponent'
+import PlayerTwoOwn from './PlayerTwoOwn'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
 
 class PlayerTwo extends Component {
 
-  componentDidMount () {
-    const { gameId } = this.props.match.params
-    fetchGameData(gameId)
-      .then((data) =>{
-        const gameData = data.val()[gameId]
-        this.props.updateState(gameData)
-      })
-      .catch((error) => console.error('Error fetching game data:', error))
-  }
-
-  changeSnapValue (gameId, snapVal) {
-    // console.log('changeSnapValue:', gameId, snapVal)
+  updateToDbState (gameId, snapVal) {
+    console.log('SOMETHING IN DATABASE CHANGED:', gameId, snapVal)
     this.props.updateState(snapVal)
   }
 
-  componentDidUpdate (prevState) {
+  componentDidMount () {
     const { gameId } = this.props.match.params
-    // console.log('COMPARING PREVIOUS STATE',prevState.state.squares)
-    // console.log('TO GLOBAL STATE',this.props.state.squares)
-    const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
-    // console.log('TO NEWEST STATE',listenGameData(gameId, changeSnapValueBoundToMe))
-
-
-    // console.log('TO NEWEST STATE',listenGameData(gameId, function(gameId, snapVal) {
-    //   console.log('i am being called when snap value changes', gameId, snapVal)
-    // }))
-
-    if (this.props.state.squares !== prevState) {
-      // console.log('GLOBAL STATE DOES NOT EQUAL PREVIOUS STATE')
+    // fetchGameData(gameId)
+    //   .then((data) =>{
+    //     const gameData = data.val()[gameId]
+    //     this.props.updateState(gameData)
+    //   })
+    //   .catch((error) => console.error('Error fetching game data:', error))
+    if (gameId) {
+      const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+      listenGameData(gameId, updateToDbStateBoundToMe)
     }
   }
-
-  // componentDidMount () {
-  //   const { gameId } = this.props.match.params
-  //   console.log('FETCHING DATA',fetchGameData(gameId))
-  //   fetchGameData(gameId)
-  //     .then((data) =>{
-  //       const gameData = data.val()[gameId]
-  //       this.props.updateState(gameData)
-  //     })
-  //     .catch((error) => console.error('Error fetching game data:', error))
-  // }
-
-  // componentDidUpdate (prevState) {
-  //   console.log('inside the did update lifecycle', prevState)
-  //   if (this.props.state !== prevState) {
-  //     const { gameId } = this.props.match.params
-  //     fetchGameData(gameId)
-  //     .then((data) =>{
-  //       const gameData = data.val()[gameId]
-  //       this.props.updateState(gameData)
-  //     })
-  //     .catch((error) => console.error('Error fetching game data:', error))
-  // }
-  // }
 
   render () {
     return (
       <React.Fragment>
-        {/* <div className='game-board'>
-          <PlayerTwoOpponent />
-        </div> */}
+        <h5>Player Two</h5>
+        <div className='game-board'>
+          <PlayerTwoOwn />
+        </div>
+        <h5>Player One</h5>
         <div className='game-board'>
           <PlayerTwoOpponent />
         </div>

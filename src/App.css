@@ -129,11 +129,11 @@ input:focus, textarea:focus, select:focus{
 
 .start-btn-container {
   margin-top: 5px;
-  /* border: 1px solid rgba(128, 0, 128, 0.637); */
+  border: 1px solid rgba(128, 0, 128, 0.637);
   padding-left: 15px;
-  /* display: flex;
+  display: flex;
   flex-direction: row;
-  justify-content: center; */
+  justify-content: center;
 }
 
 .ship-config-container {
