@@ -10,7 +10,7 @@ class PlayerTwoOpponent extends Component {
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             squares[i].map((singleSquare, idx) => {
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} onClick={ this.props.clickSquare } coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} />)
             })
         }
 

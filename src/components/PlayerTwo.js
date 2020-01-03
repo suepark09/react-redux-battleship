@@ -6,9 +6,6 @@ import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
 
 class PlayerTwo extends Component {
-  clickSquare = (clickedSquare) => {
-    console.log('You clicked', clickedSquare)
-  }
 
   componentDidMount () {
     const { gameId } = this.props.match.params
@@ -61,7 +58,7 @@ class PlayerTwo extends Component {
           <PlayerTwoOpponent />
         </div> */}
         <div className='game-board'>
-          <PlayerTwoOpponent clickSquare={ this.clickSquare } />
+          <PlayerTwoOpponent />
         </div>
       </React.Fragment>
     )
