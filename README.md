@@ -5,6 +5,10 @@ React application utilizing Redux.
 - `npm install`
 - `npm start`
 
+# Technologies
+- Firebase Realtime Database
+- React/Redux
+
 # Game Initialization
 - **Player 1** visits app (OPTIONAL: session is created for first time visitor)
 - **Player 1** and **Player 2** initial state is saved to the database and a unique key is generated for the game
