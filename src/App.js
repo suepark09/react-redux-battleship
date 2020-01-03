@@ -5,8 +5,12 @@ import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
+<<<<<<< HEAD
 import { UPDATE_STATE } from './actions/actionTypes'
 import { listenGameData } from './firebaseFunc'
+=======
+import TurnDisplay from './components/TurnDisplay'
+>>>>>>> master
 
 //import * as firebase from 'firebase/app'
 import 'firebase/database'
@@ -76,8 +80,11 @@ class App extends React.Component {
                     <div className="start-btn-container">
                       <StartModal props={squares} closeModalHandler={ this.closeModalHandler }/>
                     </div>
+                    
                   </div>
+              
                 </div>
+              
               </div>
               
             

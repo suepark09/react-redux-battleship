@@ -1,6 +1,7 @@
 import React from 'react'
 import io from 'socket.io-client'
 import '../App.css'
+import TurnDisplay from './TurnDisplay'
 
 const socket = io.connect("http://localhost:5000")
 
@@ -45,7 +46,12 @@ class Chat extends React.Component {
         return (
             <div className='text-center chat-container'>
               <div className='chat'>
+              <div className='turn-display'>
+              <TurnDisplay/>
+              </div>
               <div className='name-container'>
+             
+             
                   <div>
                     <h5 className="nickname-title">Create nickname to chat!</h5>
                 <input 
