@@ -35,13 +35,26 @@ export function fetchGameData (gameId) {
   return gameRef.orderByKey().equalTo(gameId).once('value')
 }
 
-export function listenGameData (gameId) {
+function isFn (f) {
+  return typeof f === 'function'
+}
+
+export function listenGameData (gameId, callbackFn) {
+  console.assert(isFn(callbackFn), 'hey man - you need to pass a function to listenGameData')
+  
   gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
     console.log('SOMETHING IN DATABASE CHANGED',snap.val())
     // IDEALLY THE CODE IN THIS CALLBACK THIS WOULD RETURN snap.val() WHICH IS THE LATEST GAME STATE
-    snap.val()
+    callbackFn(gameId ,snap.val())
   })
 }
+
+// export function listenGameData (gameId) {
+//   gameRef.orderByKey().equalTo(gameId).on('child_changed')
+//     .then(function (snap) {
+//       return snap.val()
+//     })
+// }
 
 // to clear database...
 // firebase.database().ref().remove()
