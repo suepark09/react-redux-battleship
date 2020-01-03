@@ -5,6 +5,8 @@ import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
+import { UPDATE_STATE } from './actions/actionTypes'
+import { listenGameData } from './firebaseFunc'
 
 //import * as firebase from 'firebase/app'
 import 'firebase/database'
@@ -26,10 +28,20 @@ import {
 
 class App extends React.Component {
 
+  changeSnapValue (gameId, snapVal) {
+    console.log('changeSnapValue:', gameId, snapVal)
+    this.props.updateState(snapVal)
+  }
+
   componentDidMount () {
     // firebase.initializeApp(firebaseConfig)
     // incrementUser()
     // this.props.firebaseAction(this.props.state.squares)
+
+    const gameId = this.props.state.gameId
+    const changeSnapValueBoundToMe = this.changeSnapValue.bind(this)
+    listenGameData('-LxbW9ynLu16kMN4t3CB', changeSnapValueBoundToMe)
+    // this.props.updateState()
   }
 
   render () {
@@ -87,7 +99,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
+    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState }),
+    updateState: (gameData) => dispatch({ type: UPDATE_STATE, game: gameData })
   }
 }
 

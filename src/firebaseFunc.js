@@ -41,11 +41,11 @@ function isFn (f) {
 
 export function listenGameData (gameId, callbackFn) {
   console.assert(isFn(callbackFn), 'hey man - you need to pass a function to listenGameData')
-  
+
   gameRef.orderByKey().equalTo(gameId).on('child_changed', function (snap) {
     console.log('SOMETHING IN DATABASE CHANGED',snap.val())
     // IDEALLY THE CODE IN THIS CALLBACK THIS WOULD RETURN snap.val() WHICH IS THE LATEST GAME STATE
-    callbackFn(gameId ,snap.val())
+    callbackFn(gameId, snap.val())
   })
 }
 

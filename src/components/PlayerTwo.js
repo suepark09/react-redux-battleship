@@ -19,6 +19,7 @@ class PlayerTwo extends Component {
 
   changeSnapValue (gameId, snapVal) {
     console.log('changeSnapValue:', gameId, snapVal)
+    this.props.updateState(snapVal)
   }
 
   componentDidUpdate (prevState) {
