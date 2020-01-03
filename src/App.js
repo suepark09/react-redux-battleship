@@ -5,6 +5,7 @@ import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
+import TurnDisplay from './components/TurnDisplay'
 
 //import * as firebase from 'firebase/app'
 import 'firebase/database'
@@ -62,8 +63,11 @@ class App extends React.Component {
                     <div className="start-btn-container">
                       <StartModal props={squares} />
                     </div>
+                    
                   </div>
+              
                 </div>
+              
               </div>
               
             
