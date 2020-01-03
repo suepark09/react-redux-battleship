@@ -16,6 +16,7 @@ h1 {
 h5 {
   font-family: 'Cairo', sans-serif;
   color: white;
+  margin-bottom: 0 !important;
 }
 
 .app-container {
@@ -70,6 +71,7 @@ h5 {
   padding: 15px;
   height: 40vh;
   color: white;
+  
 }
 
 .chat-message-container {
@@ -84,6 +86,8 @@ h5 {
   flex-direction: column;
   justify-content: center;
   width: 29vw;
+
+  
 }
 
 #message-input {
@@ -254,6 +258,11 @@ ol, ul {
 .title {
   padding: 10px;
   margin-bottom: 20px;
+}
+
+.turn-display{
+  padding-top:13px;
+  background: #1D2A35;
 }
 
 .game {

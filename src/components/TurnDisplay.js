@@ -19,7 +19,7 @@ class TurnDisplay extends Component {
         }
 
         return (
-            <div>
+            <div className='turn-display'>
                 <h5>{turn}</h5>
             </div>
         )

@@ -67,9 +67,7 @@ class App extends React.Component {
                   </div>
               
                 </div>
-                <div>
-                    <TurnDisplay />
-                  </div>
+              
               </div>
               
             
