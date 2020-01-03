@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { listenGameData } from '../firebaseFunc'
+import { fetchGameData, listenGameData } from '../firebaseFunc'
 import { connect } from 'react-redux';
 import PlayerTwoOpponent from './PlayerTwoOpponent'
 import PlayerTwoOwn from './PlayerTwoOwn'
@@ -15,12 +15,10 @@ class PlayerTwo extends Component {
 
   componentDidMount () {
     const { gameId } = this.props.match.params
-    // fetchGameData(gameId)
-    //   .then((data) =>{
-    //     const gameData = data.val()[gameId]
-    //     this.props.updateState(gameData)
-    //   })
-    //   .catch((error) => console.error('Error fetching game data:', error))
+    fetchGameData(gameId)
+      .then((data)=>{
+        this.props.updateState(data.val()[gameId])
+      })
     if (gameId) {
       const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
       listenGameData(gameId, updateToDbStateBoundToMe)
