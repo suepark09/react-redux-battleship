@@ -8,6 +8,7 @@ function StartModal (props) {
   const backdrop = true
   const [modal, setModal] = useState(false)
   const [link, setLink] = useState('')
+  const [displayBtn, setDisplayBtn] = useState('start-modal-btn')
 
   const toggle = () => {
     setModal(!modal)
@@ -18,6 +19,7 @@ function StartModal (props) {
     props.createGameInstance(props.state.squares)
     const gameLink = url + 'game/' + props.props.gameId
     setLink(gameLink)
+    setDisplayBtn('start-modal-btn-hidden')
   }
 
   const handleCopyLink = () => {
@@ -33,7 +35,8 @@ function StartModal (props) {
 
   return (
     <div>
-      <Button id="start-modal-btn" onClick={ ()=> handleStartGame() }>{ props.state.squares.gameId ? link : 'Start Game' }</Button>
+    <h5>{ link }</h5>
+    <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>
