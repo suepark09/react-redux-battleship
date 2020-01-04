@@ -16,6 +16,7 @@ const initialState = {
   isHorizontal: true,
   isHorizontal2: true,
   index: null,
+  index2: null,
   ship: {id: null, name: null, length: null},
   ship2: {id: null, name: null, length: null},
   p1total: 17,
@@ -61,12 +62,12 @@ const deactivateBoard = (state = initialState, action) => {
 }
 const deactivateBoard2 = (state = initialState, action) => {
     const newActiveBtn2 = state.activeBtn2.slice()
-    newActiveBtn2[action.index] = false
     const newVisibleLabel2 = state.visibleLabel2.slice()
+    newActiveBtn2[action.index2] = false
     return {
         ...state,
         active2: false,
-        visibleLabel2: newVisibleLabel2 ,
+        visibleLabel2: newVisibleLabel2,
         activeBtn2: newActiveBtn2
     }
 }
@@ -185,7 +186,7 @@ const boardReducer = (state = initialState, action) => {
                
             }
         // }
-
+            
        
         state = deactivateBoard(state, {index: state.ship.id})
        
@@ -217,103 +218,123 @@ const boardReducer = (state = initialState, action) => {
 
         //PREVENTS OVERLAPPING OF PIECES
 
-        if(stateCopy.isHorizontal2){
-            if (col2 + ship2.length <= 10) {
-                for(let i = 0; i < ship2.length; i++) {
-                    if (test2[x2][col2 + i].giveColor) {
-                        return state
-                    } 
-                }
-            } else {
-                for(let i = ship2.length; i > 0; i--) {
+     
+        // }
 
-                    if(test2[x2][10 - i].giveColor){
-                        return state
-                    }
-                }
-            }
-        } else {
-            if (parseInt(x2) + ship2.length <= 10 ) {
-                for(let i = 0; i < ship2.length; i++) {
-                    if(test2[parseInt(x2) + i][index2].giveColor){
-                        return state
-                    } 
-                }
-            } else {
-                if(parseInt(x2) === 9){
-                    for(let i = ship2.length; i > 0; i--) {
-                        if(test2[parseInt(x2) - ship2.length + i][index2].giveColor){
-                            return state
-                        } 
-                    }
-                } else {
-                    for(let i = ship2.length; i > 0; i--) {
-                        let m = 9;
-                        if(test2[parseInt(x2) - ship2.length + i][index2].giveColor ||  test2[parseInt(m) - ship2.length + i][index2].giveColor){
-                            return state
-                        } 
-                    }
-                }
-               
-            }
-        }
-
+  
             if(stateCopy.isHorizontal2){
                 if (col2 + ship2.length <= 10) {
-                    for(let i = 0; i < ship2.length; i++) {      
-                            test2[x2][col2 + i].ship2 = true;
-                            test2[x2][col2 + i]["giveColor"] = true;
-                            console.log('ive been clicked!')
+                    for(let i = 0; i < ship2.length; i++) {
+                        if (test2[x2][col2 + i].giveColor) {
+                            return state
+                        } 
                     }
                 } else {
                     for(let i = ship2.length; i > 0; i--) {
-                            test2[x2][10 - i].ship2 = true;
-                            test2[x2][10 - i]["giveColor"] = true;
+    
+                        if(test2[x2][10 - i].giveColor){
+                            return state
+                        }
                     }
                 }
             } else {
                 if (parseInt(x2) + ship2.length <= 10 ) {
                     for(let i = 0; i < ship2.length; i++) {
-                            // test2[parseInt(x) + i][index].color = true;   
-                            test2[parseInt(x2) + i][index2].ship2 = true;   
-                            test2[parseInt(x2) + i][index2]["giveColor"] = true; 
-                            
-                            // state = deactivateBoard(state, null)
+                        if(test2[parseInt(x2) + i][index2].giveColor){
+                            return state
+                        } 
                     }
                 } else {
                     if(parseInt(x2) === 9){
                         for(let i = ship2.length; i > 0; i--) {
-                                // test[parseInt(x) - ship.length + i][index].color = true;
-                                test2[parseInt(x2) - ship2.length + i][index2].ship2 = true;
-                                test2[parseInt(x2) - ship2.length + i][index2] = true; 
-                                // state = deactivateBoard(state, null)
+                            if(test2[parseInt(x2) - ship2.length + i][index2].giveColor){
+                                return state
+                            } 
                         }
                     } else {
                         for(let i = ship2.length; i > 0; i--) {
                             let m = 9;
-                                // test2[parseInt(m) - ship.length + i][index].color = true;
-                                test2[parseInt(m) - ship2.length + i][index2].ship2 = true;
-                                test2[parseInt(m) - ship2.length + i][index2]["giveColor"] = true; 
-                                // state = deactivateBoard(state, null)
+                            if(test2[parseInt(x2) - ship2.length + i][index2].giveColor ||  test2[parseInt(m) - ship2.length + i][index2].giveColor){
+                                return state
+                            } 
                         }
                     }
+                   
                 }
-               
             }
-        // }
+    
+                if(stateCopy.isHorizontal2){
+                    if (col2 + ship2.length <= 10) {
+                        for(let i = 0; i < ship2.length; i++) {      
+                                test2[x2][col2 + i].ship = true;
+                                test2[x2][col2 + i]["giveColor"] = true;
+                                console.log('ive been clicked!')
+                        }
+                    } else {
+                        for(let i = ship2.length; i > 0; i--) {
+                                test2[x2][10 - i].ship = true;
+                                test2[x2][10 - i]["giveColor"] = true;
+                        }
+                    }
+                } else {
+                    if (parseInt(x2) + ship2.length <= 10 ) {
+                        for(let i = 0; i < ship2.length; i++) {
+                                // test2[parseInt(x) + i][index].color = true;   
+                                test2[parseInt(x2) + i][index2].ship = true;   
+                                test2[parseInt(x2) + i][index2]["giveColor"] = true; 
+                                
+                                // state = deactivateBoard(state, null)
+                        }
+                    } else {
+                        if(parseInt(x2) === 9){
+                            for(let i = ship2.length; i > 0; i--) {
+                                    // test[parseInt(x) - ship.length + i][index].color = true;
+                                    test2[parseInt(x2) - ship2.length + i][index2].ship = true;
+                                    test2[parseInt(x2) - ship2.length + i][index2] = true; 
+                                    // state = deactivateBoard(state, null)
+                            }
+                        } else {
+                            for(let i = ship2.length; i > 0; i--) {
+                                let m = 9;
+                                    // test2[parseInt(m) - ship.length + i][index].color = true;
+                                    test2[parseInt(m) - ship2.length + i][index2].ship = true;
+                                    test2[parseInt(m) - ship2.length + i][index2]["giveColor"] = true; 
+                                    // state = deactivateBoard(state, null)
+                            }
+                        }
+                    }
+                   
+                }
+              
 
-       console.log(state.ship2, 'ship2!!')
-        state = deactivateBoard2(state, {index2: state.ship2.id})
+   
+
+            state = deactivateBoard2(state, {index2: state.ship2.id})
+      
+
+       console.log(state.active2, 'active 2****************')
+      
        
 
        
         
-    console.log(square2, 'after ****', state.squares2[x2])
-    console.log(state, test2, 'kekkekekeke')
-      return {
-        ...stateCopy,
+    // console.log(square2, 'after ****', state.squares2[x2])
+    // console.log(state, 'kekkekekeke')
+
+    const newState = {
+        ...state,
         squares2: test2,
-        index: index2 //so that i can pass it to pieces container
+        index2: index2 //so that i can pass it to pieces container
+        // state.squares[x].indexOf()
+      }
+
+      console.log(newState, 'kekkekekeke')
+
+
+      return {
+        ...state,
+        squares2: test2,
+        index2: index2 //so that i can pass it to pieces container
         // state.squares[x].indexOf()
       }
     case P1ATTACK:

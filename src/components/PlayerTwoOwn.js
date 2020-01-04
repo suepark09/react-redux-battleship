@@ -83,32 +83,30 @@ class PlayerTwoOwn extends React.Component {
             shipLength = this.props.state
         }
 
-      
-        
-
-       
-    
-
         //Code for hovering pieces
 
 
-        for (let i = 0; i < 10; i++) { 
-            squares2[i].map((singleSquare, idx) => {
-                //horizontal hover code
-                if(this.props.state.squares.isHorizontal2){
-                    if(i === this.state.currentHoverX && colHovers.includes(idx)) { //expression turns true if idx is in colhovers
-                        return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
-                    }
-                } else {
-                      // Vertical hover code 
-                    if(colHoversVert.includes(i) && idx === this.state.currentHoverY) { //expression turns true if idx is in colhovers
-                    return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
-                    }
-                }
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
-            })
-        }
 
+
+        if(!this.props.state.active2){
+            for (let i = 0; i < 10; i++) { 
+                squares2[i].map((singleSquare, idx) => {
+                    //horizontal hover code
+                    if(this.props.state.squares.isHorizontal2){
+                        if(i === this.state.currentHoverX && colHovers.includes(idx)) { //expression turns true if idx is in colhovers
+                            return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active2} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                        }
+                    } else {
+                          // Vertical hover code 
+                        if(colHoversVert.includes(i) && idx === this.state.currentHoverY) { //expression turns true if idx is in colhovers
+                        return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active2} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                        }
+                    }
+                    return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active2} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                })
+            }
+
+        } 
         
       
         // for (let i = 0; i < 10; i++) { 
