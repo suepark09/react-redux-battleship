@@ -55,7 +55,7 @@ h5 {
   background: #1D2A35;
   padding-top: 15px;
   padding-bottom: 15px;
-  height: 100px;
+  height: 8vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,16 +69,18 @@ h5 {
 .chat-text {
   /* border: 3px solid green; */
   padding: 15px;
-  height: 40vh;
+  height: 70vh;
   color: white;
-  
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow: scroll;
 }
 
 .chat-message-container {
   /* border: 3px solid green;  */
   position: fixed;
   bottom: 0;
-  height: 90px;
+  height: 11vh;
   left: 75.0%;
   /* padding-left: 15px; */
   background: #1D2A35;
@@ -86,7 +88,8 @@ h5 {
   flex-direction: column;
   justify-content: center;
   width: 25vw;
-  
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .box {
@@ -97,11 +100,29 @@ h5 {
   border-radius: 2px;
 }
 
+.box-clicked {
+  border: 1px solid pink;
+  height: 23px;
+  width: 23px;
+  margin: 1px;
+  border-radius: 2px;
+}
+
+.box-placeholder {
+  /* border: red solid 1px; */
+  height: 1px;
+  width: 100%;
+}
+
+a:visited {
+  border: blue;
+}
+
 .piece-label {
   display: flex;
   flex-direction: row;
   height: 30px;
-  width: 39%;
+  width: 120px;
   /* border: red solid 1px; */
   padding: 5px;
 }
@@ -183,6 +204,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 .ship-orientation-container {
+  display: inline-block;
   padding: 5px 5px 5px 20px;
   border-left: #171E25 solid 1px;
   width: 34%;
