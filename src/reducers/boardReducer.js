@@ -7,7 +7,7 @@ const initialState = {
   active: false,
   activeP1: false,
   activeP2: false,
-  visibleLabel: true,
+  visibleLabel: [true, true, true, true, true],
   playerTurnDisplay: ['Waiting On Opponent To Set Ships...', 'Attack Your Opponent!', 'Wait For Opponent Move'],
   activeBtn: [true, true, true, true, true],
   isHorizontal: true,
@@ -46,10 +46,13 @@ const deepCopy = (x) => JSON.parse(JSON.stringify(x))
 const deactivateBoard = (state = initialState, action) => {
     const newActiveBtn = state.activeBtn.slice()
     newActiveBtn[action.index] = false
+    const newVisibleLabel = state.visibleLabel.slice()
+    newVisibleLabel[action.index] = false
+    console.log(newVisibleLabel, '&&&&&&&&&&&')
     return {
         ...state,
         active: false,
-        visibleLabel: false,
+        visibleLabel: newActiveBtn,
         activeBtn: newActiveBtn
     }
 }
