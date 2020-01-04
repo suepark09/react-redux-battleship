@@ -97,11 +97,29 @@ h5 {
   border-radius: 2px;
 }
 
+.box-clicked {
+  border: 1px solid pink;
+  height: 23px;
+  width: 23px;
+  margin: 1px;
+  border-radius: 2px;
+}
+
+.box-placeholder {
+  /* border: red solid 1px; */
+  height: 1px;
+  width: 100%;
+}
+
+a:visited {
+  border: blue;
+}
+
 .piece-label {
   display: flex;
   flex-direction: row;
   height: 30px;
-  width: 39%;
+  width: 120px;
   /* border: red solid 1px; */
   padding: 5px;
 }
@@ -174,6 +192,7 @@ input:focus, textarea:focus, select:focus{
 }
 
 .ship-orientation-container {
+  display: inline-block;
   padding: 5px 5px 5px 20px;
   border-left: #171E25 solid 1px;
   width: 34%;
