@@ -5,25 +5,28 @@ import { connect } from 'react-redux'
 
 function StartModal (props) {
   const url = window.location.href
+  const backdrop = true
   const [modal, setModal] = useState(false)
+  const [link, setLink] = useState('')
+  const [displayBtn, setDisplayBtn] = useState('start-modal-btn')
 
   const toggle = () => {
     setModal(!modal)
-    props.firebaseAction(props.state.squares)
   }
 
-  const closeModal = () => {
-    props.closeModalHandler()
+  const handleStartGame = () => {
+    setModal(!modal)
+    props.createGameInstance(props.state.squares)
+    const gameLink = url + 'game/' + props.props.gameId
+    setLink(gameLink)
+    setDisplayBtn('start-modal-btn-hidden')
   }
-
-  const backdrop = true
 
   const handleCopyLink = () => {
-    console.log('copy link')
     const copyBtn = document.getElementById('copyBtn')
     var dummy = document.createElement('textarea')
     document.body.appendChild(dummy)
-    dummy.value = window.location.href + 'game/' + props.props.gameId
+    dummy.value = url + 'game/' + props.props.gameId
     dummy.select()
     document.execCommand('copy')
     document.body.removeChild(dummy)
@@ -32,15 +35,16 @@ function StartModal (props) {
 
   return (
     <div>
-      <Button id="start-modal-btn" onClick={toggle}>Start Game</Button>
+    <h5>{ link }</h5>
+    <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>
-          Connect with your opponent by sharing this link: {url}game/{props.props.gameId}
+          Connect with your opponent by sharing this link: {link}
         </ModalBody>
         <ModalFooter>
           <Button id='copyBtn' color='primary' onClick={ handleCopyLink }>Copy Link</Button>{' '}
-          <Button color='secondary' onClick={closeModal}>Cancel</Button>
+          <Button color='secondary' onClick={toggle}>Close</Button>
         </ModalFooter>
       </Modal>
     </div>
@@ -53,7 +57,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
+    createGameInstance: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
   }
 }
 
