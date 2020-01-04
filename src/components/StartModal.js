@@ -11,6 +11,11 @@ function StartModal (props) {
     setModal(!modal)
     props.firebaseAction(props.state.squares)
   }
+
+  const closeModal = () => {
+    props.closeModalHandler()
+  }
+
   const backdrop = true
 
   const handleCopyLink = () => {
@@ -35,7 +40,7 @@ function StartModal (props) {
         </ModalBody>
         <ModalFooter>
           <Button id='copyBtn' color='primary' onClick={ handleCopyLink }>Copy Link</Button>{' '}
-          <Button color='secondary' onClick={toggle}>Cancel</Button>
+          <Button color='secondary' onClick={closeModal}>Cancel</Button>
         </ModalFooter>
       </Modal>
     </div>

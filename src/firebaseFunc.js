@@ -24,10 +24,11 @@ export function keyGen (state) {
 
 export function fetchGameData (gameId) {
   console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
-  gameRef.orderByKey().equalTo(gameId).on('value', function (snap) {
-    console.log('DATABASE QUERY RESULT', snap.val()[gameId])
-    return snap.val()[gameId]
-  })
+  return gameRef.orderByKey().equalTo(gameId).once('value')
+}
+
+export function listenGameData (gameId, callbackFn) {
+  gameRef.orderByKey().equalTo(gameId).on('child_changed', snap => callbackFn(gameId, snap.val()))
 }
 
 // to clear database...
