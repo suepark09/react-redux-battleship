@@ -66,7 +66,7 @@ patrolBoat = (e) => {
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
-                        <label className={ visibleLabel }>
+                        <label className="piece-label">
                             <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
