@@ -154,7 +154,7 @@ input:focus, textarea:focus, select:focus{
 
 .start-btn-container {
   margin-top: 5px;
-  border: 1px solid rgba(128, 0, 128, 0.637);
+  /* border: 1px solid rgba(128, 0, 128, 0.637); */
   padding-left: 15px;
   display: flex;
   flex-direction: row;
@@ -346,7 +346,7 @@ ol, ul {
   font-size: 10px;
   /* height: 100vh; */
   width: 50%;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   /* border: solid red 1px; */
