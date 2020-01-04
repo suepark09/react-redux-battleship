@@ -49,6 +49,9 @@ const deactivateBoard = (state = initialState, action) => {
     const newVisibleLabel = state.visibleLabel.slice()
     newVisibleLabel[action.index] = false
     console.log(newVisibleLabel, '&&&&&&&&&&&')
+    // if(newVisibleLabel) {
+
+    // }
     return {
         ...state,
         active: false,

@@ -57,8 +57,15 @@ patrolBoat = (e) => {
     //if this.props.orientation is true...
     //call in button using this.orientation
 
-    let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
-    console.log('wut r thooooooseeeee', this.props.visibleLabel)
+    // this.props.state.squares.visibleLabel
+    // ? 'piece-label-hidden': 'piece-label' 
+    console.log('wut r thooooooseeeee', this.props.state.squares.visibleLabel[this.ships[4].id])
+    let patrolBoat = this.props.state.squares.visibleLabel[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
+    let destroyer = this.props.state.squares.visibleLabel[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
+    let submarine = this.props.state.squares.visibleLabel[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
+    let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
+    let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
+
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
@@ -66,27 +73,27 @@ patrolBoat = (e) => {
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
-                        <label className="piece-label">
+                        <label className= { patrolBoat }>
                             <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
                         </label>
                         
-                        <label className="piece-label">
+                        <label className= { destroyer }>
                             <Form.Check id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn[this.ships[3].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
                             <div className="box"></div>
                         </label>
                         
-                        <label className="piece-label">
+                        <label className={ submarine }>
                             <Form.Check id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn[this.ships[2].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
                             <div className="box"></div>
                         </label>
                         
-                        <label className="piece-label">
+                        <label className={ battleship }>
                             <Form.Check id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn[this.ships[1].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
@@ -94,7 +101,7 @@ patrolBoat = (e) => {
                             <div className="box"></div>
                         </label>
 
-                        <label className="piece-label">
+                        <label className={ aircraftCarrier }>
                             <Form.Check id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn[this.ships[0].id]} />
                             <div className="box"></div>
                             <div className="box"></div>

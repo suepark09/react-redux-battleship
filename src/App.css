@@ -101,7 +101,7 @@ h5 {
   display: flex;
   flex-direction: row;
   height: 30px;
-  width: 39%;
+  width: 120px;
   /* border: red solid 1px; */
   padding: 5px;
 }
