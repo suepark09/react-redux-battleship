@@ -24,7 +24,8 @@ class Chat extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
       }
     
-      onMessageSubmit = () => {
+      onMessageSubmit = (e) => {
+        e.preventDefault()
         const { nickname, msg } = this.state
         socket.emit('chat message', { nickname, msg })
         this.setState({ msg: "" })
@@ -65,7 +66,7 @@ class Chat extends React.Component {
               </div>
               <div className='text-left chat-text'>{this.renderChat()}</div>
               <div className= "chat-message-container">
-                <div>
+                <form>
                 <input id="message-input"
                   name="msg"
                   placeholder="  Send a message"
@@ -73,7 +74,7 @@ class Chat extends React.Component {
                   value={this.state.msg} 
                 />
                 <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
-                </div>
+                </form>
                 
               </div>
               
