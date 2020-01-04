@@ -69,9 +69,11 @@ h5 {
 .chat-text {
   /* border: 3px solid green; */
   padding: 15px;
-  height: 40vh;
+  height: 100vh;
   color: white;
-  
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow: scroll;
 }
 
 .chat-message-container {
@@ -86,7 +88,6 @@ h5 {
   flex-direction: column;
   justify-content: center;
   width: 25vw;
-  
 }
 
 .box {
