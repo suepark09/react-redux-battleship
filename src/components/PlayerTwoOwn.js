@@ -39,13 +39,13 @@ class PlayerTwoOwn extends React.Component {
         })
     }
 
-    render() {      console.log(this.props.state.squares.ship2, '***')
+    render() {    //  console.log(this.props.state.squares.ship2, '***')
         const { squares2 } = this.props.state.squares
        
         const mappedBoard = []
         // const shipName = this.props.state.squares.ship.name
         let shipLength = this.props.state
-        console.log(shipLength, '***yuuuuuusss')
+        // console.log(this.props.state.squares.activeBtn2, '***yuuuuuusss buttons')
      
         const col = this.state.currentHoverY
         const colY = this.state.currentHoverX
@@ -91,18 +91,33 @@ class PlayerTwoOwn extends React.Component {
 
         //Code for hovering pieces
 
-        
 
-
-        
-      
         for (let i = 0; i < 10; i++) { 
             squares2[i].map((singleSquare, idx) => {
                 //horizontal hover code
-                
+                if(this.props.state.squares.isHorizontal2){
+                    if(i === this.state.currentHoverX && colHovers.includes(idx)) { //expression turns true if idx is in colhovers
+                        return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                    }
+                } else {
+                      // Vertical hover code 
+                    if(colHoversVert.includes(i) && idx === this.state.currentHoverY) { //expression turns true if idx is in colhovers
+                    return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                    }
+                }
                 return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
             })
         }
+
+        
+      
+        // for (let i = 0; i < 10; i++) { 
+        //     squares2[i].map((singleSquare, idx) => {
+        //         //horizontal hover code
+                
+        //         return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+        //     })
+        // }
 
     
 //     render() {     // console.log(this.props.state, '***')

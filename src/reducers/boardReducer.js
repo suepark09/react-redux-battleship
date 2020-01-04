@@ -8,8 +8,8 @@ const initialState = {
   active2: false,
   activeP1: false,
   activeP2: false,
-  visibleLabel: true,
-  visibleLabel2: true,
+  visibleLabel: [true, true, true, true, true],
+  visibleLabel2: [true, true, true, true, true],
   playerTurnDisplay: ['Waiting On Opponent To Set Ships...', 'Attack Your Opponent!', 'Wait For Opponent Move'],
   activeBtn: [true, true, true, true, true],
   activeBtn2: [true, true, true, true, true],
@@ -50,12 +50,24 @@ const initialState = {
 const deepCopy = (x) => JSON.parse(JSON.stringify(x))
 const deactivateBoard = (state = initialState, action) => {
     const newActiveBtn = state.activeBtn.slice()
+    const newVisibleLabel = state.visibleLabel.slice()
     newActiveBtn[action.index] = false
     return {
         ...state,
         active: false,
-        visibleLabel: false,
+        visibleLabel: newVisibleLabel,
         activeBtn: newActiveBtn
+    }
+}
+const deactivateBoard2 = (state = initialState, action) => {
+    const newActiveBtn2 = state.activeBtn2.slice()
+    newActiveBtn2[action.index] = false
+    const newVisibleLabel2 = state.visibleLabel2.slice()
+    return {
+        ...state,
+        active2: false,
+        visibleLabel2: newVisibleLabel2 ,
+        activeBtn2: newActiveBtn2
     }
 }
 
@@ -215,13 +227,13 @@ const boardReducer = (state = initialState, action) => {
             } else {
                 for(let i = ship2.length; i > 0; i--) {
 
-                    if(test2[x][10 - i].giveColor){
+                    if(test2[x2][10 - i].giveColor){
                         return state
                     }
                 }
             }
         } else {
-            if (parseInt(x) + ship2.length <= 10 ) {
+            if (parseInt(x2) + ship2.length <= 10 ) {
                 for(let i = 0; i < ship2.length; i++) {
                     if(test2[parseInt(x2) + i][index2].giveColor){
                         return state
@@ -260,7 +272,7 @@ const boardReducer = (state = initialState, action) => {
                     }
                 }
             } else {
-                if (parseInt(x) + ship2.length <= 10 ) {
+                if (parseInt(x2) + ship2.length <= 10 ) {
                     for(let i = 0; i < ship2.length; i++) {
                             // test2[parseInt(x) + i][index].color = true;   
                             test2[parseInt(x2) + i][index2].ship2 = true;   
@@ -290,8 +302,8 @@ const boardReducer = (state = initialState, action) => {
             }
         // }
 
-       
-        state = deactivateBoard(state, {index2: state.ship2.id})
+       console.log(state.ship2, 'ship2!!')
+        state = deactivateBoard2(state, {index2: state.ship2.id})
        
 
        
@@ -301,7 +313,7 @@ const boardReducer = (state = initialState, action) => {
       return {
         ...stateCopy,
         squares2: test2,
-        index2: index2 //so that i can pass it to pieces container
+        index: index2 //so that i can pass it to pieces container
         // state.squares[x].indexOf()
       }
     case P1ATTACK:
@@ -386,7 +398,7 @@ const boardReducer = (state = initialState, action) => {
             activeBtn: false,
             ship2: action.payload
         }
-        case DEACTIVATE_BUTTON2:
+    case DEACTIVATE_BUTTON2:
         return {
             ...stateCopy,
             activeBtn2: false,

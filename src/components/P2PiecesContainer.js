@@ -16,30 +16,30 @@ class P2PiecesContainer extends React.Component {
     }
  aircraftCarrier = (e) => {
     console.log('you clicked on aircraft carrier', e.target.value)
-    this.props.activate(this.ships[0])
-    // this.props.deactivateBtn(this.ships[0])
+    this.props.activate2(this.ships[0])
+    // this.props.deactivate2Btn(this.ships[0])
   }
 
 battleship = (e) => {
     console.log('you clicked on battleship', e.target.value)
-    this.props.activate(this.ships[1])
-    // this.props.deactivateBtn(this.ships[1])
+    this.props.activate2(this.ships[1])
+    // this.props.deactivate2Btn(this.ships[1])
   }
 
 submarine = (e) => {
     console.log('you clicked on submarine', e.target.value)
-    this.props.activate(this.ships[2])
+    this.props.activate2(this.ships[2])
 
 }
 
 destroyer = (e) => {
     console.log('you clicked on destroyer', e.target.value)
-    this.props.activate(this.ships[3])
+    this.props.activate2(this.ships[3])
 }
 
 patrolBoat = (e) => {
     console.log('you clicked on patrol boat', e.target.value)
-    this.props.activate(this.ships[4])
+    this.props.activate2(this.ships[4])
     console.log('what is activate', this.props.activate)
 }
 
@@ -57,8 +57,8 @@ patrolBoat = (e) => {
     //if this.props.orientation is true...
     //call in button using this.orientation
 
-    let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
-    console.log('wut r thooooooseeeee2222', this.props.visibleLabel)
+   
+    console.log('wut r active buttons!', this.props.state)
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
@@ -127,10 +127,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        activate: (ship) => dispatch({type: 'ACTIVATE2' , payload: ship}),
-        orientation: () => dispatch({type: 'ORIENTATION2'}),
-        deactivate: () => dispatch({type: 'DEACTIVATE_BOARD2'}),
-        deactivateBtn: (ship) => dispatch({type: 'DEACTIVATE_BUTTON2', payload: ship })
+        activate2: (ship) => dispatch({type: 'ACTIVATE2' , payload: ship}),
+        orientation2: () => dispatch({type: 'ORIENTATION2'}),
+        deactivate2: () => dispatch({type: 'DEACTIVATE_BOARD2'}),
+        deactivateBtn2: (ship) => dispatch({type: 'DEACTIVATE_BUTTON2', payload: ship })
 
     }
 }
