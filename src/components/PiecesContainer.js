@@ -57,17 +57,51 @@ patrolBoat = (e) => {
     //if this.props.orientation is true...
     //call in button using this.orientation
 
+    let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
+    console.log('wut r thooooooseeeee', this.props.visibleLabel)
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
-            <h5>Your Ships</h5>
+            <h5>Select Your Ship</h5>
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
-                        <Form.Check id="patrol-boat" inline name='ship' type='radio' label='2' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
-                        <Form.Check id="destroyer" inline name='ship' type='radio' label='3' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn[this.ships[3].id]} />
-                        <Form.Check id="submarine" inline name='ship' type='radio' label='3' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn[this.ships[2].id]} />
-                        <Form.Check id="battleship" inline name='ship' type='radio' label='4' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn[this.ships[1].id]} />
-                        <Form.Check id="aircraft-carrier" inline name='ship' type='radio' label='5' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn[this.ships[0].id]} />
+                        
+                        <label className="piece-label">
+                            <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
+                            <div className="box"></div>
+                            <div className="box"></div>
+                        </label>
+                        
+                        <label className="piece-label">
+                            <Form.Check id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn[this.ships[3].id]} />
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                        </label>
+                        
+                        <label className="piece-label">
+                            <Form.Check id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn[this.ships[2].id]} />
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                        </label>
+                        
+                        <label className="piece-label">
+                            <Form.Check id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn[this.ships[1].id]} />
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                        </label>
+
+                        <label className="piece-label">
+                            <Form.Check id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn[this.ships[0].id]} />
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                            <div className="box"></div>
+                        </label>
                     </ul>
                  </Form>
             </div>
