@@ -34,11 +34,9 @@ class Chat extends React.Component {
       renderChat() {
         const { chat } = this.state
         return chat.map(({ nickname, msg }, idx) => (
-          <div class="chat-body">
-          <div key={idx}>
+          <div key={idx} id='scroller'>
             <span style={{ color: "#f6ff54" }}>{nickname}:</span>
             <span> {msg}</span>
-          </div>
           </div>
         ))
       }
@@ -63,7 +61,7 @@ class Chat extends React.Component {
                     />
                 </div>
               </div>
-              <div className='text-left chat-text'>{this.renderChat()}</div>
+              <div className='text-left chat-text' id='anchor'>{this.renderChat()}</div>
               <div className= "chat-message-container">
                 <form>
                     <input 
