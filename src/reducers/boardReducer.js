@@ -8,7 +8,7 @@ const initialState = {
   activeP1: false,
   activeP2: false,
   visibleLabel: true,
-  playerTurnDisplay: ['Waiting On Opponent To Set Ships...', 'Attack Your Opponent!', 'Wait For Opponent Move'],
+  playerTurnDisplay: ['Set Your Ships!!', 'Attack Your Opponent!', 'Wait For Opponent Move', 'Waiting On Opponent To Set Ships...'],
   activeBtn: [true, true, true, true, true],
   isHorizontal: true,
   index: null,
