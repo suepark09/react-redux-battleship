@@ -10,9 +10,9 @@ class P1counter extends Component {
             
             <div>
                   <div>
-                <h5>Opponent Ship Count:</h5> 
+                <h5>Opponent Ship Count</h5> 
               
-                <h5>{this.props.state.squares.p2total}</h5>
+                <h5 className="opponent-ship-count">{this.props.state.squares.p2total}</h5>
             </div>
             </div>
         )
