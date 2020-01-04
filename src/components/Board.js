@@ -75,22 +75,6 @@ class Board extends React.Component {
             }
         }
 
-
-        
-        // // for horizontal hover
-        // for (let i = 0; i < 10; i++) { 
-        //     squares[i].map((singleSquare, idx) => {
-   
-        //         if(i === this.state.currentHoverX && colHovers.includes(idx)) { //expression turns true if idx is in colhovers
-        //             return mappedBoard.push(<Square hovered={true} key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
-        //         }
-
-        //         return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
-        //     })
-        // }
-
-    
-      
         for (let i = 0; i < 10; i++) { 
             squares[i].map((singleSquare, idx) => {
                 //horizontal hover code

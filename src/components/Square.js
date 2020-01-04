@@ -24,21 +24,9 @@ class Square extends React.Component {
     }
 
     const disabled = this.props.active ? '' : 'disabled'
-    
-    // console.log(disabled, '++++++++')
-    // const mouseOver = (event) => {
-    //     event.target.style.background = 'red';
-    // }
-    
-    // const mouseOut = (e) => {
-    //     e.target.style.background = '';
-    // }   
 
     return (
-      //do if else statements? if ship name is x then
-      // activate this mouseover function
-      <button id="piece-btn" onMouseOut= {this.props.mouseOut} onMouseOver= {this.props.mouseOver} className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}> 
-        {/* {this.props.coordinate} */}   </button>
+      <button id="piece-btn" onMouseOut= {this.props.mouseOut} onMouseOver= {this.props.mouseOver} className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}></button>
     )
   }
 } const mapStateToProps = state => {

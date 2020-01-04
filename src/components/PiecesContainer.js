@@ -15,50 +15,30 @@ class PiecesContainer extends React.Component {
           ];
     }
  aircraftCarrier = (e) => {
-    console.log('you clicked on aircraft carrier', e.target.value)
     this.props.activate(this.ships[0])
-    // this.props.deactivateBtn(this.ships[0])
   }
 
 battleship = (e) => {
-    console.log('you clicked on battleship', e.target.value)
     this.props.activate(this.ships[1])
-    // this.props.deactivateBtn(this.ships[1])
   }
 
 submarine = (e) => {
-    console.log('you clicked on submarine', e.target.value)
     this.props.activate(this.ships[2])
 
 }
 
 destroyer = (e) => {
-    console.log('you clicked on destroyer', e.target.value)
     this.props.activate(this.ships[3])
 }
 
 patrolBoat = (e) => {
-    console.log('you clicked on patrol boat', e.target.value)
     this.props.activate(this.ships[4])
-    console.log('what is activate', this.props.activate)
 }
-
-
-
-// active state of radio button should be true 
-// once you click on a button, state of button should revert false AFTER you place 
-// a ship on the board
 
  render() {
 
-    // for orientation, vertical is false and horizontal
-    // is true. by default it is true. 
-    // create function called orientation
-    //if this.props.orientation is true...
-    //call in button using this.orientation
-
     let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
-    console.log('wut r thooooooseeeee', this.props.visibleLabel)
+
     
     let state = this.props.state.squares
     for(let i = 0; i < state.activeBtn.length; i++){
@@ -75,9 +55,6 @@ patrolBoat = (e) => {
         }
     }
       
-      
-   
-
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
@@ -131,8 +108,6 @@ patrolBoat = (e) => {
             <div className="ship-orientation-container">
                 <P1counter counter={this.props.state.p2total}/>
             </div>
-          
-          
         </div>
       )
  }
