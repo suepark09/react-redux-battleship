@@ -59,6 +59,25 @@ patrolBoat = (e) => {
 
     let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
     console.log('wut r thooooooseeeee', this.props.visibleLabel)
+    
+    let state = this.props.state.squares
+    for(let i = 0; i < state.activeBtn.length; i++){
+        let counter = 0;
+        for(let i = 0; i < state.activeBtn.length; i++){
+            if(!state.activeBtn[i]){
+                counter++;
+                console.log('counted!!!', state.activeBtn, counter)
+            }    
+            if(counter === 5){
+                state.activeP1 = true
+                
+            }
+        }
+    }
+      
+      
+   
+
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
