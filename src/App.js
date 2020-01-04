@@ -25,14 +25,6 @@ class App extends React.Component {
     this.props.updateState(snapVal)
   }
 
-  componentDidMount () {
-    // const gameId = this.props.state.squares.gameId
-    // if (gameId) {
-    //   const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
-    //   listenGameData(gameId, updateToDbStateBoundToMe)
-    // }
-  }
-
   componentDidUpdate () {
     console.log('app did update')
     const gameId = this.props.state.squares.gameId

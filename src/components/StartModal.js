@@ -7,6 +7,7 @@ function StartModal (props) {
   const url = window.location.href
   const backdrop = true
   const [modal, setModal] = useState(false)
+  const [link, setLink] = useState('')
 
   const toggle = () => {
     setModal(!modal)
@@ -15,15 +16,15 @@ function StartModal (props) {
   const handleStartGame = () => {
     setModal(!modal)
     props.createGameInstance(props.state.squares)
-    console.log('GAME STARTED')
+    const gameLink = url + 'game/' + props.props.gameId
+    setLink(gameLink)
   }
 
   const handleCopyLink = () => {
-    console.log('copy link')
     const copyBtn = document.getElementById('copyBtn')
     var dummy = document.createElement('textarea')
     document.body.appendChild(dummy)
-    dummy.value = window.location.href + 'game/' + props.props.gameId
+    dummy.value = url + 'game/' + props.props.gameId
     dummy.select()
     document.execCommand('copy')
     document.body.removeChild(dummy)
@@ -32,11 +33,11 @@ function StartModal (props) {
 
   return (
     <div>
-      <Button id="start-modal-btn" onClick={ ()=> handleStartGame() }>Start Game</Button>
+      <Button id="start-modal-btn" onClick={ ()=> handleStartGame() }>{ props.state.squares.gameId ? link : 'Start Game' }</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>
-          Connect with your opponent by sharing this link: {url}game/{props.props.gameId}
+          Connect with your opponent by sharing this link: {link}
         </ModalBody>
         <ModalFooter>
           <Button id='copyBtn' color='primary' onClick={ handleCopyLink }>Copy Link</Button>{' '}
