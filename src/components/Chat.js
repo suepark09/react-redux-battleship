@@ -2,6 +2,7 @@ import React from 'react'
 import io from 'socket.io-client'
 import '../App.css'
 import TurnDisplay from './TurnDisplay'
+import ScrollableFeed from 'react-scrollable-feed'
 
 const socket = io.connect("http://localhost:5000")
 
@@ -20,6 +21,10 @@ class Chat extends React.Component {
         })
       }
 
+      componentDidUpdate () {
+        console.log('it updated')
+      }
+
       onTextChange = e => {
         this.setState({ [e.target.name]: e.target.value })
       }
@@ -34,7 +39,7 @@ class Chat extends React.Component {
       renderChat() {
         const { chat } = this.state
         return chat.map(({ nickname, msg }, idx) => (
-          <div key={idx} id='scroller'>
+          <div key={idx}>
             <span style={{ color: "#f6ff54" }}>{nickname}:</span>
             <span> {msg}</span>
           </div>
@@ -61,7 +66,7 @@ class Chat extends React.Component {
                     />
                 </div>
               </div>
-              <div className='text-left chat-text' id='anchor'>{this.renderChat()}</div>
+              <div className='text-left chat-text'><ScrollableFeed forceScroll='true'>{this.renderChat()}</ScrollableFeed></div>
               <div className= "chat-message-container">
                 <form>
                     <input 
