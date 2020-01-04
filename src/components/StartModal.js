@@ -41,7 +41,7 @@ function StartModal (props) {
         </ModalBody>
         <ModalFooter>
           <Button id='copyBtn' color='primary' onClick={ handleCopyLink }>Copy Link</Button>{' '}
-          <Button color='secondary' onClick={toggle}>Cancel</Button>
+          <Button color='secondary' onClick={toggle}>Close</Button>
         </ModalFooter>
       </Modal>
     </div>
