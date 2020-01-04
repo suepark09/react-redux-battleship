@@ -2,10 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class TurnDisplay extends Component {
-
-   
-
-    render() {
+ render() {
         const state = this.props.state.squares
 
         let turn = state.playerTurnDisplay[0]
