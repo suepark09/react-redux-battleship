@@ -59,7 +59,7 @@ patrolBoat = (e) => {
 
     // this.props.state.squares.visibleLabel
     // ? 'piece-label-hidden': 'piece-label' 
-    console.log('wut r thooooooseeeee', this.props.state.squares.visibleLabel[this.ships[4].id])
+    console.log('wut r thooooooseeeee', this.props.state.squares.ship)
     let patrolBoat = this.props.state.squares.visibleLabel[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
     let submarine = this.props.state.squares.visibleLabel[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
@@ -70,6 +70,7 @@ patrolBoat = (e) => {
         <div className="ship-config-container">
             <div className="ship-selection-container">
             <h5>Select Your Ship</h5>
+            <div className="box-placeholder"></div>
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
