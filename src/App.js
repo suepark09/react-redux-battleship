@@ -5,11 +5,13 @@ import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
+import { UPDATE_STATE } from './actions/actionTypes'
+import { listenGameData } from './firebaseFunc'
 import TurnDisplay from './components/TurnDisplay'
 
 //import * as firebase from 'firebase/app'
 import 'firebase/database'
-import { incrementUser } from './firebaseFunc'
+//import { incrementUser } from './firebaseFunc'
 //import firebaseConfig from './firebaseConfig'
 import { connect } from 'react-redux'
 import './App.css'
@@ -27,10 +29,27 @@ import {
 
 class App extends React.Component {
 
+  updateToDbState (gameId, snapVal) {
+    console.log('updateToDbState:', gameId, snapVal)
+    this.props.updateState(snapVal)
+  }
+
+  closeModalHandler = () => {
+    console.log('closed modal')
+    //this.componentDidMount()
+    // const gameId = this.props.state.gameId
+    // if (gameId) {
+    //   const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+    //   listenGameData(gameId, updateToDbStateBoundToMe)
+    // }
+  }
+
   componentDidMount () {
-    // firebase.initializeApp(firebaseConfig)
-    // incrementUser()
-    // this.props.firebaseAction(this.props.state.squares)
+    const gameId = this.props.state.gameId
+    if (gameId) {
+      const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+      listenGameData(gameId, updateToDbStateBoundToMe)
+    }
   }
 
   render () {
@@ -61,7 +80,7 @@ class App extends React.Component {
                       <Instructions />
                     </div>
                     <div className="start-btn-container">
-                      <StartModal props={squares} />
+                      <StartModal props={squares} closeModalHandler={ this.closeModalHandler }/>
                     </div>
                     
                   </div>
@@ -91,7 +110,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
+    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState }),
+    updateState: (gameData) => dispatch({ type: UPDATE_STATE, game: gameData })
   }
 }
 

@@ -57,14 +57,27 @@ patrolBoat = (e) => {
     //if this.props.orientation is true...
     //call in button using this.orientation
 
-    // this.props.state.squares.visibleLabel
-    // ? 'piece-label-hidden': 'piece-label' 
-    console.log('wut r thooooooseeeee', this.props.state.squares.ship)
+
     let patrolBoat = this.props.state.squares.visibleLabel[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
     let submarine = this.props.state.squares.visibleLabel[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
     let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
+    
+    let state = this.props.state.squares
+    for(let i = 0; i < state.activeBtn.length; i++){
+        let counter = 0;
+        for(let i = 0; i < state.activeBtn.length; i++){
+            if(!state.activeBtn[i]){
+                counter++;
+                console.log('counted!!!', state.activeBtn, counter)
+            }    
+            if(counter === 5){
+                state.activeP1 = true
+                
+            }
+        }
+    }
 
     return (
         <div className="ship-config-container">

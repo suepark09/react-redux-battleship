@@ -1,4 +1,4 @@
-import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON } from '../actions/actionTypes'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON, UPDATE_STATE } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
@@ -8,7 +8,7 @@ const initialState = {
   activeP1: false,
   activeP2: false,
   visibleLabel: [true, true, true, true, true],
-  playerTurnDisplay: ['Waiting On Opponent To Set Ships...', 'Attack Your Opponent!', 'Wait For Opponent Move'],
+  playerTurnDisplay: ['Set Your Ships!!', 'Attack Your Opponent!', 'Wait For Opponent Move', 'Waiting On Opponent To Set Ships...'],
   activeBtn: [true, true, true, true, true],
   isHorizontal: true,
   index: null,
@@ -257,6 +257,10 @@ const boardReducer = (state = initialState, action) => {
       stateCopy.gameId = gameId
       //console.log('new state', stateCopy)
       return stateCopy
+    case UPDATE_STATE:
+        const newGameData = action.game
+        //console.log('REDUCER LATEST GAME STATE', newGameData)
+        return newGameData
     default:
       return stateCopy
   }
