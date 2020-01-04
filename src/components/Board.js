@@ -46,7 +46,7 @@ class Board extends React.Component {
         console.log(this.props.state, '***')
         const { squares } = this.props.state.squares
         const mappedBoard = []
-        const shipName = this.props.state.squares.ship.name
+        // const shipName = this.props.state.squares.ship.name
         const shipLength = this.props.state.squares.ship.length
         console.log(shipLength, '***oijiojoijoijoij')
      
@@ -80,9 +80,6 @@ class Board extends React.Component {
             }
         }
 
-
-       
-      
         for (let i = 0; i < 10; i++) { 
             squares[i].map((singleSquare, idx) => {
                 //horizontal hover code

@@ -30,7 +30,7 @@ class PlayerTwo extends Component {
     return (
       <React.Fragment>
         <div className='game-info'>
-                    <P2PiecesContainer />
+                <P2PiecesContainer />
           </div>
         <h5>Player Two</h5>
         <div className='game-board'>

@@ -2,6 +2,7 @@ import React from 'react'
 import io from 'socket.io-client'
 import '../App.css'
 import TurnDisplay from './TurnDisplay'
+import ScrollableFeed from 'react-scrollable-feed'
 
 const socket = io.connect("http://localhost:5000")
 
@@ -20,11 +21,16 @@ class Chat extends React.Component {
         })
       }
 
+      componentDidUpdate () {
+        console.log('it updated')
+      }
+
       onTextChange = e => {
         this.setState({ [e.target.name]: e.target.value })
       }
     
-      onMessageSubmit = () => {
+      onMessageSubmit = (e) => {
+        e.preventDefault()
         const { nickname, msg } = this.state
         socket.emit('chat message', { nickname, msg })
         this.setState({ msg: "" })
@@ -42,43 +48,39 @@ class Chat extends React.Component {
     
 
     render() {
-
-        return (
-            <div className='text-center chat-container'>
-              <div className='chat'>
+      return (
+        <div className='text-center chat-container'>
+          <div className='chat'>
               <div className='turn-display'>
-              <TurnDisplay/>
+                <TurnDisplay/>
               </div>
               <div className='name-container'>
-             
-             
-                  <div>
-                    <h5 className="nickname-title">Create nickname to chat!</h5>
-                <input 
-                  id="nickname-input"
-                  placeholder="  Create nickname"
-                  name="nickname"
-                  onChange={e => this.onTextChange(e)}
-                  value={this.state.nickname}
-                />
-                  </div>
-              </div>
-              <div className='text-left chat-text'>{this.renderChat()}</div>
-              <div className= "chat-message-container">
                 <div>
-                <input id="message-input"
-                  name="msg"
-                  placeholder="  Send a message"
-                  onChange={e => this.onTextChange(e)} 
-                  value={this.state.msg} 
-                />
-                <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
+                    <h5 className="nickname-title">Create nickname to chat!</h5>
+                    <input 
+                      id="nickname-input"
+                      placeholder="  Create nickname"
+                      name="nickname"
+                      onChange={e => this.onTextChange(e)}
+                      value={this.state.nickname}
+                    />
                 </div>
-                
               </div>
-              
+              <div className='text-left chat-text'><ScrollableFeed forceScroll='true'>{this.renderChat()}</ScrollableFeed></div>
+              <div className= "chat-message-container">
+                <form>
+                    <input 
+                      id="message-input"
+                      name="msg"
+                      placeholder="  Send a message"
+                      onChange={e => this.onTextChange(e)} 
+                      value={this.state.msg} 
+                    />
+                    <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
+                </form>
               </div>
-            </div>
+          </div>
+        </div>
         )
     }
 }

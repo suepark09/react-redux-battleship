@@ -7,12 +7,7 @@ import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
 import { UPDATE_STATE } from './actions/actionTypes'
 import { listenGameData } from './firebaseFunc'
-import TurnDisplay from './components/TurnDisplay'
-
-//import * as firebase from 'firebase/app'
-import 'firebase/database'
-//import { incrementUser } from './firebaseFunc'
-//import firebaseConfig from './firebaseConfig'
+// import TurnDisplay from './components/TurnDisplay'
 import { connect } from 'react-redux'
 import './App.css'
 import { FIREBASE } from './actions/actionTypes'
@@ -22,10 +17,6 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
-// import io from 'socket.io-client'
-// import Container from 'react-bootstrap/Container'
-
-
 
 class App extends React.Component {
 
@@ -34,18 +25,9 @@ class App extends React.Component {
     this.props.updateState(snapVal)
   }
 
-  closeModalHandler = () => {
-    console.log('closed modal')
-    //this.componentDidMount()
-    // const gameId = this.props.state.gameId
-    // if (gameId) {
-    //   const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
-    //   listenGameData(gameId, updateToDbStateBoundToMe)
-    // }
-  }
-
-  componentDidMount () {
-    const gameId = this.props.state.gameId
+  componentDidUpdate () {
+    console.log('app did update')
+    const gameId = this.props.state.squares.gameId
     if (gameId) {
       const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
       listenGameData(gameId, updateToDbStateBoundToMe)
@@ -54,6 +36,14 @@ class App extends React.Component {
 
   render () {
     const { squares } = this.props.state
+    const placedShips = this.props.state.squares.activeBtn
+    let shipCounter = 0
+    for (let i = 0; i<= placedShips.length; i++) {
+      if (placedShips[i] === false) {
+        console.log(`${shipCounter} SHIP PLACED`)
+        shipCounter++
+      }
+    }
 
     return (
     <Router>
@@ -63,7 +53,6 @@ class App extends React.Component {
         <div className='d-flex app-container'>   
           <div className= 'game-container'>
             <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
-            
               <div className="game-instructions-container">
                 <div className='game-info'>
                     <PiecesContainer />
@@ -73,26 +62,19 @@ class App extends React.Component {
                     <Board  />
                   </div>
                   <div className='second-board'>
-                      <Board2 />
+                      <Board2 props={ this.props.state } />
                   </div>
                   <div className='instructions-container'>
                     <div className="instructions">
                       <Instructions />
                     </div>
-                    <div className="start-btn-container">
-                      <StartModal props={squares} closeModalHandler={ this.closeModalHandler }/>
+                    <div className={ shipCounter === 5 ? 'start-btn-container': 'start-btn-container-closed' }>
+                      <StartModal props={squares} />
                     </div>
-                    
                   </div>
-              
                 </div>
-              
               </div>
-              
-            
               </div>
-                  
-         
             <Chat />
         </div>
       </React.Fragment>
