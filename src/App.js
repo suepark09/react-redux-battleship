@@ -26,6 +26,15 @@ class App extends React.Component {
   }
 
   componentDidMount () {
+    // const gameId = this.props.state.squares.gameId
+    // if (gameId) {
+    //   const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+    //   listenGameData(gameId, updateToDbStateBoundToMe)
+    // }
+  }
+
+  componentDidUpdate () {
+    console.log('app did update')
     const gameId = this.props.state.squares.gameId
     if (gameId) {
       const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
@@ -61,7 +70,7 @@ class App extends React.Component {
                     <Board />
                   </div>
                   <div className='second-board'>
-                      <Board2 />
+                      <Board2 props={ this.props.state } />
                   </div>
                   <div className='instructions-container'>
                     <div className="instructions">

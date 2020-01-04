@@ -44,14 +44,19 @@ class Board2 extends React.Component {
     //     })
     // }
 
+    componentDidUpdate () {
+        console.log('something happened', this.props)
+    }
+
 
 
     render() {      
+        console.log('the props in board2', this.props.props.squares)
         // console.log(this.props.state, '***')
-        const { squares2 } = this.props.state.squares
+        const { squares2 } = this.props.props.squares
         const mappedBoard = []
-        // const shipName = this.props.state.squares.ship.name
-        const shipLength = this.props.state.squares.ship.length
+        // const shipName = this.props.props.squares.ship.name
+        const shipLength = this.props.props.squares.ship.length
         const col = this.state.currentHoverY
         const colY = this.state.currentHoverX
 
@@ -60,7 +65,7 @@ class Board2 extends React.Component {
 
         //Code for hovering pieces
 
-        if(this.props.state.squares.isHorizontal){
+        if(this.props.props.squares.isHorizontal){
             if (col + shipLength <= 10) {
                 for(let i = 0; i < shipLength; i++) {
                     colHovers.push(i + col);
@@ -89,13 +94,13 @@ class Board2 extends React.Component {
             squares2[i].map((singleSquare, idx) => {
                 //horizontal hover code
                 
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.state.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.props.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
             })
         }
 
     
 //     render() {     // console.log(this.props.state, '***')
-//     const { squares } = this.props.state.squares
+//     const { squares } = this.props.props.squares
 //     console.log(squares, 'squaressss')
 //    const mappedBoard = []
 //    for (let i = 0; i < 10; i++) {
@@ -113,9 +118,9 @@ class Board2 extends React.Component {
     }
 
 
-const mapStateToProps2 = state => {
-    return { state }
-}
+// const mapStateToProps2 = state => {
+//     return { state }
+// }
 
 const mapDispatchToProps2 = dispatch => {
     return {
@@ -124,7 +129,7 @@ const mapDispatchToProps2 = dispatch => {
 }
 
 export default connect(
-    mapStateToProps2,
+    // mapStateToProps2,
     mapDispatchToProps2
 )(Board2)
 
