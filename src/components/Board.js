@@ -43,7 +43,7 @@ class Board extends React.Component {
     render() {     // console.log(this.props.state, '***')
         const { squares } = this.props.state.squares
         const mappedBoard = []
-        const shipName = this.props.state.squares.ship.name
+        // const shipName = this.props.state.squares.ship.name
         const shipLength = this.props.state.squares.ship.length
         const col = this.state.currentHoverY
         const colY = this.state.currentHoverX

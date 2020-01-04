@@ -5,18 +5,18 @@ import { connect } from 'react-redux'
 
 function StartModal (props) {
   const url = window.location.href
+  const backdrop = true
   const [modal, setModal] = useState(false)
 
   const toggle = () => {
     setModal(!modal)
-    props.firebaseAction(props.state.squares)
   }
 
-  const closeModal = () => {
-    props.closeModalHandler()
+  const handleStartGame = () => {
+    setModal(!modal)
+    props.createGameInstance(props.state.squares)
+    console.log('GAME STARTED')
   }
-
-  const backdrop = true
 
   const handleCopyLink = () => {
     console.log('copy link')
@@ -32,7 +32,7 @@ function StartModal (props) {
 
   return (
     <div>
-      <Button id="start-modal-btn" onClick={toggle}>Start Game</Button>
+      <Button id="start-modal-btn" onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader toggle={toggle}>Ready?</ModalHeader>
         <ModalBody>
@@ -40,7 +40,7 @@ function StartModal (props) {
         </ModalBody>
         <ModalFooter>
           <Button id='copyBtn' color='primary' onClick={ handleCopyLink }>Copy Link</Button>{' '}
-          <Button color='secondary' onClick={closeModal}>Cancel</Button>
+          <Button color='secondary' onClick={toggle}>Cancel</Button>
         </ModalFooter>
       </Modal>
     </div>
@@ -53,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    firebaseAction: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
+    createGameInstance: (gameState) => dispatch({ type: FIREBASE, payload: gameState })
   }
 }
 

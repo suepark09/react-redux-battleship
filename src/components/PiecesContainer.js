@@ -57,8 +57,8 @@ patrolBoat = (e) => {
     //if this.props.orientation is true...
     //call in button using this.orientation
 
-    let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
-    console.log('wut r thooooooseeeee', this.props.visibleLabel)
+    // let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
+    // console.log('wut r thooooooseeeee', this.props.visibleLabel)
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">

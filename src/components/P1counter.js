@@ -5,7 +5,7 @@ class P1counter extends Component {
 
     
     render() {
-        console.log(this.props.state.squares.p2total, '*******')
+        // console.log(this.props.state.squares.p2total, '*******')
         return (
             
             <div>

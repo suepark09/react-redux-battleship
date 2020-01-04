@@ -161,6 +161,15 @@ input:focus, textarea:focus, select:focus{
   justify-content: center;
 }
 
+.start-btn-container-closed {
+  margin-top: 5px;
+  /* border: 1px solid rgba(128, 0, 128, 0.637); */
+  padding-left: 15px;
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .ship-config-container {
   display: flex;
   flex-direction: row;
