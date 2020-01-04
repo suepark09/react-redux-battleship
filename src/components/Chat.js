@@ -24,7 +24,8 @@ class Chat extends React.Component {
         this.setState({ [e.target.name]: e.target.value })
       }
     
-      onMessageSubmit = () => {
+      onMessageSubmit = (e) => {
+        e.preventDefault()
         const { nickname, msg } = this.state
         socket.emit('chat message', { nickname, msg })
         this.setState({ msg: "" })
@@ -33,7 +34,7 @@ class Chat extends React.Component {
       renderChat() {
         const { chat } = this.state
         return chat.map(({ nickname, msg }, idx) => (
-          <div key={idx}>
+          <div key={idx} id='scroller'>
             <span style={{ color: "#f6ff54" }}>{nickname}:</span>
             <span> {msg}</span>
           </div>
@@ -42,43 +43,39 @@ class Chat extends React.Component {
     
 
     render() {
-
-        return (
-            <div className='text-center chat-container'>
-              <div className='chat'>
+      return (
+        <div className='text-center chat-container'>
+          <div className='chat'>
               <div className='turn-display'>
-              <TurnDisplay/>
+                <TurnDisplay/>
               </div>
               <div className='name-container'>
-             
-             
-                  <div>
-                    <h5 className="nickname-title">Create nickname to chat!</h5>
-                <input 
-                  id="nickname-input"
-                  placeholder="  Create nickname"
-                  name="nickname"
-                  onChange={e => this.onTextChange(e)}
-                  value={this.state.nickname}
-                />
-                  </div>
-              </div>
-              <div className='text-left chat-text'>{this.renderChat()}</div>
-              <div className= "chat-message-container">
                 <div>
-                <input id="message-input"
-                  name="msg"
-                  placeholder="  Send a message"
-                  onChange={e => this.onTextChange(e)} 
-                  value={this.state.msg} 
-                />
-                <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
+                    <h5 className="nickname-title">Create nickname to chat!</h5>
+                    <input 
+                      id="nickname-input"
+                      placeholder="  Create nickname"
+                      name="nickname"
+                      onChange={e => this.onTextChange(e)}
+                      value={this.state.nickname}
+                    />
                 </div>
-                
               </div>
-              
+              <div className='text-left chat-text' id='anchor'>{this.renderChat()}</div>
+              <div className= "chat-message-container">
+                <form>
+                    <input 
+                      id="message-input"
+                      name="msg"
+                      placeholder="  Send a message"
+                      onChange={e => this.onTextChange(e)} 
+                      value={this.state.msg} 
+                    />
+                    <button id="send-msg-btn" onClick={this.onMessageSubmit}>Send</button>
+                </form>
               </div>
-            </div>
+          </div>
+        </div>
         )
     }
 }

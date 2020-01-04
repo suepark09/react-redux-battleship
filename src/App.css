@@ -55,7 +55,7 @@ h5 {
   background: #1D2A35;
   padding-top: 15px;
   padding-bottom: 15px;
-  height: 100px;
+  height: 8vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -69,16 +69,18 @@ h5 {
 .chat-text {
   /* border: 3px solid green; */
   padding: 15px;
-  height: 40vh;
+  height: 70vh;
   color: white;
-  
+  overflow-y: auto;
+  overflow-x: hidden;
+  overflow: scroll;
 }
 
 .chat-message-container {
   /* border: 3px solid green;  */
   position: fixed;
   bottom: 0;
-  height: 90px;
+  height: 11vh;
   left: 75.0%;
   /* padding-left: 15px; */
   background: #1D2A35;
@@ -86,7 +88,8 @@ h5 {
   flex-direction: column;
   justify-content: center;
   width: 25vw;
-  
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .box {
