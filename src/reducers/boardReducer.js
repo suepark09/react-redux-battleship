@@ -7,6 +7,7 @@ const initialState = {
   active: false,
   activeP1: false,
   activeP2: false,
+  visibleLabel: true,
   playerTurnDisplay: ['Waiting On Opponent To Set Ships...', 'Attack Your Opponent!', 'Wait For Opponent Move'],
   activeBtn: [true, true, true, true, true],
   isHorizontal: true,
@@ -48,6 +49,7 @@ const deactivateBoard = (state = initialState, action) => {
     return {
         ...state,
         active: false,
+        visibleLabel: false,
         activeBtn: newActiveBtn
     }
 }
@@ -126,19 +128,14 @@ const boardReducer = (state = initialState, action) => {
             if(stateCopy.isHorizontal){
                 if (col + ship.length <= 10) {
                     for(let i = 0; i < ship.length; i++) {      
-                            // test[x][col + i].color = true; 
-                            test[x][col + i].ship = true; 
-                         
-                            console.log("*(()*)*)*)*)*)*))*)*",test[x][col + i] )
-                            test[x][col + i]["giveColor"] = true; 
-                            // state = deactivateBoard(state, null)
+                            test[x][col + i].ship = true;
+                            test[x][col + i]["giveColor"] = true;
+                            console.log('ive been clicked!')
                     }
                 } else {
                     for(let i = ship.length; i > 0; i--) {
-                            // test[x][10 - i].color = true;
                             test[x][10 - i].ship = true;
-                            test[x][10 - i]["giveColor"] = true; 
-                            // state = deactivateBoard(state, null)
+                            test[x][10 - i]["giveColor"] = true;
                     }
                 }
             } else {
@@ -239,6 +236,7 @@ const boardReducer = (state = initialState, action) => {
     case DEACTIVATE_BOARD:
         return {
             ...stateCopy,
+            visibleLabel: false,
             active: false
         }
     case DEACTIVATE_BUTTON:

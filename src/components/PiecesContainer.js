@@ -57,6 +57,8 @@ patrolBoat = (e) => {
     //if this.props.orientation is true...
     //call in button using this.orientation
 
+    let visibleLabel = this.props.visibleLabel ? 'piece-label' : 'piece-label-hidden'
+    console.log('wut r thooooooseeeee', this.props.visibleLabel)
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
@@ -64,7 +66,7 @@ patrolBoat = (e) => {
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
-                        <label className="piece-label">
+                        <label className={ visibleLabel }>
                             <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
