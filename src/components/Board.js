@@ -10,7 +10,9 @@ const initialState = {
 
 class Board extends React.Component {
 
+
     state = initialState
+    
    
 
     clickItem = (e) => {
@@ -40,11 +42,14 @@ class Board extends React.Component {
 
 
 
-    render() {     // console.log(this.props.state, '***')
+    render() {    
+        console.log(this.props.state, '***')
         const { squares } = this.props.state.squares
         const mappedBoard = []
         // const shipName = this.props.state.squares.ship.name
         const shipLength = this.props.state.squares.ship.length
+        console.log(shipLength, '***oijiojoijoijoij')
+     
         const col = this.state.currentHoverY
         const colY = this.state.currentHoverX
 
@@ -106,7 +111,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}, {type: 'P1ATTACK', key: squareKey}, {type: 'P2ATTACK', key: squareKey} )
+        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}, {type: 'P1ATTACK', key: squareKey} )
        
     }
 }

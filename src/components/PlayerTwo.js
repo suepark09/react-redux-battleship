@@ -5,6 +5,7 @@ import PlayerTwoOpponent from './PlayerTwoOpponent'
 import PlayerTwoOwn from './PlayerTwoOwn'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
+import P2PiecesContainer from './P2PiecesContainer'
 
 class PlayerTwo extends Component {
 
@@ -28,6 +29,9 @@ class PlayerTwo extends Component {
   render () {
     return (
       <React.Fragment>
+        <div className='game-info'>
+                <P2PiecesContainer />
+          </div>
         <h5>Player Two</h5>
         <div className='game-board'>
           <PlayerTwoOwn />

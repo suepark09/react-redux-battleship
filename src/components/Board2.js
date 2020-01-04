@@ -19,34 +19,6 @@ class Board2 extends React.Component {
         this.setState(initialState)
     }
 
-    // clickItem = (e) => {
-    //     // this.props.(e.target.value);
-    //     this.setState(initialState)
-    // }
-
-    // mouseOver = (e) => {
-    //     const x = e.target.value.slice(0, 1);
-    //     const y = e.target.value.slice(1, 2);
-
-    //     const square = this.props.state.squares.squares2[x].find(square  => square.key === `${x}${y}`)
-    //     const index = this.props.state.squares.squares2[x].indexOf(square)
-
-    //     this.setState({
-    //         currentHoverX: +x,
-    //         currentHoverY: index
-    //     })
-    // }
-
-    // mouseOut = (e) => {
-    //     this.setState({
-    //         currentHoverX: null,
-    //         currentHoverY: null
-    //     })
-    // }
-
-    componentDidUpdate () {
-        console.log('something happened', this.props)
-    }
 
 
 
@@ -54,6 +26,7 @@ class Board2 extends React.Component {
         console.log('the props in board2', this.props.props.squares)
         // console.log(this.props.state, '***')
         const { squares2 } = this.props.props.squares
+
         const mappedBoard = []
         // const shipName = this.props.props.squares.ship.name
         const shipLength = this.props.props.squares.ship.length
