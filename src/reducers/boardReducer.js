@@ -1,18 +1,23 @@
-import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON, UPDATE_STATE } from '../actions/actionTypes'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON, UPDATE_STATE, DEACTIVATE_BUTTON2, ACTIVATE2, DEACTIVATE_BOARD2, ORIENTATION2, CLICKED2  } from '../actions/actionTypes'
 import { keyGen } from '../firebaseFunc'
 
 const initialState = {
   gameId: '',
   isPlaying: false,
   active: false,
+  active2: false,
   activeP1: false,
   activeP2: false,
   visibleLabel: true,
+  visibleLabel2: true,
   playerTurnDisplay: ['Waiting On Opponent To Set Ships...', 'Attack Your Opponent!', 'Wait For Opponent Move'],
   activeBtn: [true, true, true, true, true],
+  activeBtn2: [true, true, true, true, true],
   isHorizontal: true,
+  isHorizontal2: true,
   index: null,
   ship: {id: null, name: null, length: null},
+  ship2: {id: null, name: null, length: null},
   p1total: 17,
   p2total: 17,
   squares: {
@@ -183,6 +188,122 @@ const boardReducer = (state = initialState, action) => {
         index: index //so that i can pass it to pieces container
         // state.squares[x].indexOf()
       }
+      case CLICKED2:
+
+      const x2 = action.key.slice(0, 1)
+      const y2 = action.key.slice(1, 2)
+
+      const square2 = state.squares2[x2].find(square  => square.key === `${x2}${y2}`)
+      const index2 = state.squares2[x2].indexOf(square2)
+      console.log('wuts x and y', x2, y2);
+      console.log(index2, 'this is the index')
+      console.log(square2, 'before ****', state.squares[x2])
+
+        const test2 = { ...state.squares2 };
+        const col2 = index2;
+        const ship2 = state.ship2;
+
+        //PREVENTS OVERLAPPING OF PIECES
+
+        if(stateCopy.isHorizontal2){
+            if (col2 + ship2.length <= 10) {
+                for(let i = 0; i < ship2.length; i++) {
+                    if (test2[x2][col2 + i].giveColor) {
+                        return state
+                    } 
+                }
+            } else {
+                for(let i = ship2.length; i > 0; i--) {
+
+                    if(test2[x][10 - i].giveColor){
+                        return state
+                    }
+                }
+            }
+        } else {
+            if (parseInt(x) + ship2.length <= 10 ) {
+                for(let i = 0; i < ship2.length; i++) {
+                    if(test2[parseInt(x2) + i][index2].giveColor){
+                        return state
+                    } 
+                }
+            } else {
+                if(parseInt(x2) === 9){
+                    for(let i = ship2.length; i > 0; i--) {
+                        if(test2[parseInt(x2) - ship2.length + i][index2].giveColor){
+                            return state
+                        } 
+                    }
+                } else {
+                    for(let i = ship2.length; i > 0; i--) {
+                        let m = 9;
+                        if(test2[parseInt(x2) - ship2.length + i][index2].giveColor ||  test2[parseInt(m) - ship2.length + i][index2].giveColor){
+                            return state
+                        } 
+                    }
+                }
+               
+            }
+        }
+
+            if(stateCopy.isHorizontal2){
+                if (col2 + ship2.length <= 10) {
+                    for(let i = 0; i < ship2.length; i++) {      
+                            test2[x2][col2 + i].ship2 = true;
+                            test2[x2][col2 + i]["giveColor"] = true;
+                            console.log('ive been clicked!')
+                    }
+                } else {
+                    for(let i = ship2.length; i > 0; i--) {
+                            test2[x2][10 - i].ship2 = true;
+                            test2[x2][10 - i]["giveColor"] = true;
+                    }
+                }
+            } else {
+                if (parseInt(x) + ship2.length <= 10 ) {
+                    for(let i = 0; i < ship2.length; i++) {
+                            // test2[parseInt(x) + i][index].color = true;   
+                            test2[parseInt(x2) + i][index2].ship2 = true;   
+                            test2[parseInt(x2) + i][index2]["giveColor"] = true; 
+                            
+                            // state = deactivateBoard(state, null)
+                    }
+                } else {
+                    if(parseInt(x2) === 9){
+                        for(let i = ship2.length; i > 0; i--) {
+                                // test[parseInt(x) - ship.length + i][index].color = true;
+                                test2[parseInt(x2) - ship2.length + i][index2].ship2 = true;
+                                test2[parseInt(x2) - ship2.length + i][index2] = true; 
+                                // state = deactivateBoard(state, null)
+                        }
+                    } else {
+                        for(let i = ship2.length; i > 0; i--) {
+                            let m = 9;
+                                // test2[parseInt(m) - ship.length + i][index].color = true;
+                                test2[parseInt(m) - ship2.length + i][index2].ship2 = true;
+                                test2[parseInt(m) - ship2.length + i][index2]["giveColor"] = true; 
+                                // state = deactivateBoard(state, null)
+                        }
+                    }
+                }
+               
+            }
+        // }
+
+       
+        state = deactivateBoard(state, {index2: state.ship2.id})
+       
+
+       
+        
+    console.log(square2, 'after ****', state.squares2[x2])
+    console.log(state, test2, 'kekkekekeke')
+      return {
+        ...stateCopy,
+        squares2: test2,
+        index2: index2 //so that i can pass it to pieces container
+        // state.squares[x].indexOf()
+      }
     case P1ATTACK:
       if(stateCopy.activeP1){
         const a = action.key.slice(0, 1)
@@ -226,6 +347,13 @@ const boardReducer = (state = initialState, action) => {
         ...stateCopy,
         isHorizontal: orientation
     }
+    case ORIENTATION2:
+    let orientation2 = !stateCopy.isHorizontal2
+    console.log(orientation2, 'orientation2')
+    return {
+    ...stateCopy,
+    isHorizontal2: orientation2
+    }
     case ACTIVATE:
       console.log('wut is ship!!!!', action.payload)
       return {
@@ -233,17 +361,36 @@ const boardReducer = (state = initialState, action) => {
         active: true,
         ship: action.payload //so that i can grab ship info and use it here or in board file
       }
+      case ACTIVATE2:
+      console.log('wut is ship!!!!', action.payload)
+      return {
+        ...stateCopy,
+        active2: true,
+        ship2: action.payload //so that i can grab ship info and use it here or in board file
+      }
     case DEACTIVATE_BOARD:
         return {
             ...stateCopy,
             visibleLabel: false,
             active: false
         }
+    case DEACTIVATE_BOARD2:
+        return {
+            ...stateCopy,
+            visibleLabel2: false,
+            active2: false
+        }
     case DEACTIVATE_BUTTON:
         return {
             ...stateCopy,
             activeBtn: false,
-            ship: action.payload
+            ship2: action.payload
+        }
+        case DEACTIVATE_BUTTON2:
+        return {
+            ...stateCopy,
+            activeBtn2: false,
+            ship2: action.payload
         }
     case FIREBASE:
       const gameId = keyGen(action.payload)

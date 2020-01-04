@@ -70,7 +70,7 @@ class App extends React.Component {
                   </div>
                 <div className='game'>
                   <div className='game-board'>
-                    <Board />
+                    <Board  />
                   </div>
                   <div className='second-board'>
                       <Board2 />

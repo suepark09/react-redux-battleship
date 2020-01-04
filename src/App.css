@@ -346,7 +346,7 @@ ol, ul {
   font-size: 10px;
   /* height: 100vh; */
   width: 50%;
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   /* border: solid red 1px; */

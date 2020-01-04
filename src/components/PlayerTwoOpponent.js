@@ -5,7 +5,7 @@ import Square from './Square'
 class PlayerTwoOpponent extends Component {
 
     render() {
-        console.log('PLAYER TWO OPPONENT PROPS', this.props)
+        // console.log('PLAYER TWO OPPONENT PROPS', this.props)
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             this.props.state.squares.squares[i].map((singleSquare, idx) => {
