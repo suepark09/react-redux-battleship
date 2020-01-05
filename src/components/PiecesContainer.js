@@ -32,7 +32,6 @@ destroyer = (e) => {
 
 patrolBoat = (e) => {
     this.props.activate(this.ships[4])
-}
 
 handleCLickOrientation = () => {
     this.props.orientation()
