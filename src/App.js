@@ -72,7 +72,8 @@ class App extends React.Component {
                       { this.props.state.squares.activeP2 ? null : <Instructions />}
                     </div>
                     <div className={ shipCounter === 5 ? 'start-btn-container': 'start-btn-container-closed' }>
-                      <StartModal props={squares} />
+                      {/* <StartModal props={squares} /> */}
+                      { this.props.state.squares.activeP2 ? null : <StartModal props={squares} />}
                     </div>
                   </div>
                 </div>
