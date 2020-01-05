@@ -45,7 +45,12 @@ patrolBoat = (e) => {
     console.log('what is activate', this.props.activate)
 }
 
-
+handleClickOrientation = () => {
+    this.props.orientation2()
+    const orientationBtn = document.getElementById('orientation-btn')
+    const text = this.props.state.squares.isHorizontal2 ? 'Vertical' : 'Horizontal'
+    orientationBtn.innerHTML = text
+}
 
 // active state of radio button should be true 
 // once you click on a button, state of button should revert false AFTER you place 
@@ -109,7 +114,7 @@ patrolBoat = (e) => {
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
-            <button id="orientation-btn" onClick={this.props.orientation2} className='selector'>Rotate Ship</button>
+            <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
             <div className="ship-orientation-container">
                 <P1counter counter={this.props.state.p2total}/>
