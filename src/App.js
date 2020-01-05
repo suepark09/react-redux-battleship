@@ -35,8 +35,9 @@ class App extends React.Component {
   }
 
   render () {
+    console.log('APP PROPS', this.props)
     const { squares } = this.props.state
-    const placedShips = this.props.state.squares.activeBtn
+    const placedShips = squares.activeBtn
     let shipCounter = 0
     for (let i = 0; i<= placedShips.length; i++) {
       if (placedShips[i] === false) {
@@ -59,17 +60,20 @@ class App extends React.Component {
                   </div>
                 <div className='game'>
                   <div className='game-board'>
-                    <Board  />
+                    <Board />
                   </div>
                   <div className='second-board'>
-                      <Board2 props={ this.props.state } />
+                    {/* <Board2 props={ this.props.state } /> */}
+                    { this.props.state.squares.activeP2 ? <Board2 props={ this.props.state }/> : null}
                   </div>
                   <div className='instructions-container'>
                     <div className="instructions">
-                      <Instructions />
+                      {/* <Instructions /> */}
+                      { this.props.state.squares.activeP2 ? null : <Instructions />}
                     </div>
                     <div className={ shipCounter === 5 ? 'start-btn-container': 'start-btn-container-closed' }>
-                      <StartModal props={squares} />
+                      {/* <StartModal props={squares} /> */}
+                      { this.props.state.squares.activeP2 ? null : <StartModal props={squares} />}
                     </div>
                   </div>
                 </div>
