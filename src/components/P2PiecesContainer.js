@@ -56,7 +56,21 @@ patrolBoat = (e) => {
     // create function called orientation
     //if this.props.orientation is true...
     //call in button using this.orientation
+    let state = this.props.state.squares
+    for(let i = 0; i < state.activeBtn2.length; i++){
+        let counter = 0;
+        for(let i = 0; i < state.activeBtn2.length; i++){
+            if(!state.activeBtn2[i]){
+                counter++;
+                // console.log('counted!!!', state.activeBtn, counter)
+            }    
+            if(counter === 5){
+                state.isPlaying2 = true ;
+            }
+        }
+    }
 
+   
    
     console.log('wut r active buttons!', this.props.state)
     return (

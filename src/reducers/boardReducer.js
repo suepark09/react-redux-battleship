@@ -4,6 +4,7 @@ import { keyGen } from '../firebaseFunc'
 const initialState = {
   gameId: '',
   isPlaying: false,
+  isPlaying2: false,
   active: false,
   active2: false,
   activeP1: false,
@@ -331,13 +332,18 @@ const boardReducer = (state = initialState, action) => {
       }
     case P1ATTACK:
       if(stateCopy.activeP1){
+         
         const a = action.key.slice(0, 1)
         const b = action.key.slice(1, 2)
         const attackSquare1 = stateCopy.squares2[a].find(square => square.key === `${a}${b}`)
         attackSquare1.color = true;
         console.log(attackSquare1.ship, "attack ship!!!")
-        stateCopy.activeP1 = false
-        stateCopy.activeP2 = true
+            
+     
+            stateCopy.activeP1 = false
+            stateCopy.activeP2 = true
+        
+     
         if(attackSquare1.ship){
             stateCopy.p2total --
         }
