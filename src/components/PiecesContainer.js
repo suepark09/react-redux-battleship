@@ -37,16 +37,14 @@ patrolBoat = (e) => {
 
  render() {
 
-
-
-
     let patrolBoat = this.props.state.squares.visibleLabel[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
     let submarine = this.props.state.squares.visibleLabel[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
     let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
 
-    
+    console.log('wut r active buttons!', this.props.state.squares.visibleLabel[this.ships[4].id])
+
     let state = this.props.state.squares
     for(let i = 0; i < state.activeBtn.length; i++){
         let counter = 0;
