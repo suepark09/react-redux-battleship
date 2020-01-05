@@ -34,12 +34,11 @@ patrolBoat = (e) => {
     this.props.activate(this.ships[4])
 }
 
-handleCLickOrientation = () => {
+handleClickOrientation = () => {
     this.props.orientation()
     const orientationBtn = document.getElementById('orientation-btn')
     const text = this.props.state.squares.isHorizontal ? 'Vertical' : 'Horizontal'
     orientationBtn.innerHTML = text
-
 }
 
  render() {
@@ -114,7 +113,7 @@ handleCLickOrientation = () => {
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
-            <button id="orientation-btn" onClick={ this.handleCLickOrientation } className='selector'>Horizontal</button>
+            <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
             <div className="ship-orientation-container">
                 <P1counter counter={this.props.state.p2total}/>
