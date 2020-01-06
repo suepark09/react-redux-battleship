@@ -347,6 +347,13 @@ ol, ul {
   /* margin-left: 20px; */
 }
 
+.game-info-hidden {
+  /* border: red solid 5px; */
+  width: 100%;
+  display:none;
+/* margin-left: 20px; */
+}
+
 #boardDiv {
   width: 440px;
 }
@@ -383,13 +390,14 @@ ol, ul {
   position: absolute;
   /* height: 100vh; */
   width: 30%;
-  top: 53%;
+  /* top: 53%; */
   left: 36%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* border: solid red 1px; */
   padding: 10px;
+  padding-top: 16px;
   margin-right: 18px;
 }
 
@@ -425,6 +433,11 @@ ol, ul {
   border: 1px solid #64B2F4;
 }
 
+
+.opponent-ship-count-container {
+  text-align: center;
+}
+
 .opponent-ship-count {
   margin-top: 7px;
   font-size: 23pt;
@@ -435,6 +448,14 @@ ol, ul {
   color: white;
   background: #64B2F4;
 } */
+
+.counter-container {
+  /* border: 1px solid red; */
+}
+
+.counter-container-hidden {
+  display: none;
+}
 
 #start-modal-btn {
   color: #64B2F4;

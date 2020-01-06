@@ -7,6 +7,7 @@ import PlayerTwo from './components/PlayerTwo'
 import Board2 from './components/Board2'
 import { UPDATE_STATE } from './actions/actionTypes'
 import { listenGameData } from './firebaseFunc'
+import P1counter from './components/P1counter'
 // import TurnDisplay from './components/TurnDisplay'
 import { connect } from 'react-redux'
 import './App.css'
@@ -46,6 +47,8 @@ class App extends React.Component {
       }
     }
 
+    console.log('wuts ship counter', shipCounter)
+    
     return (
     <Router>
       <Switch>
@@ -55,8 +58,11 @@ class App extends React.Component {
           <div className= 'game-container'>
             <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
               <div className="game-instructions-container">
-                <div className='game-info'>
+                <div className={ shipCounter === 5 ? 'game-info-hidden': 'game-info' }>
                     <PiecesContainer />
+                  </div>
+                  <div className={ shipCounter === 5 ? 'counter-container': 'counter-container-hidden' }>
+                  <P1counter counter={this.props.state.p2total}/>
                   </div>
                 <div className='game'>
                   <div className='game-board'>
