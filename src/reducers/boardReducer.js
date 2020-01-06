@@ -81,6 +81,7 @@ const deactivateBoard2 = (state = initialState, action) => {
     }
 }
 
+
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
  
@@ -331,7 +332,13 @@ const boardReducer = (state = initialState, action) => {
         // state.squares[x].indexOf()
       }
     case P1ATTACK:
-      if(stateCopy.activeP1){
+  
+    // if(stateCopy.isPlaying){
+    //     stateCopy.activeP1 = true
+       
+
+    // }
+       if(stateCopy.activeP1){
          
         const a = action.key.slice(0, 1)
         const b = action.key.slice(1, 2)
@@ -348,11 +355,12 @@ const boardReducer = (state = initialState, action) => {
             stateCopy.p2total --
         }
       }
+     
 
     return stateCopy
     
     case P2ATTACK:
-    
+    console.log('its clucked!!!')
       if(stateCopy.activeP2){
         const o = action.key.slice(0, 1)
         const p = action.key.slice(1, 2)
@@ -361,7 +369,7 @@ const boardReducer = (state = initialState, action) => {
         stateCopy.activeP2 = false
         stateCopy.activeP1 = true;
         if(attackSquare2.ship){
-            stateCopy.p2total --
+            stateCopy.p1total --
         }
       }
 

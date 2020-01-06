@@ -57,12 +57,14 @@ patrolBoat = (e) => {
                 // console.log('counted!!!', state.activeBtn, counter)
             }    
             if(counter === 5){
-                state.activeP1 = true ;
-               
+                state.isPlaying = true
+                
             }
+            // state.activeBtn.push(true)
+          
+            
         }
-      
-        
+        counter++
     }
  
 

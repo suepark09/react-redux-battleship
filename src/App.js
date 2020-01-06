@@ -45,6 +45,10 @@ class App extends React.Component {
       }
     }
 
+    if(shipCounter === 4){
+      this.props.state.squares.activeP1 = true
+    }
+
     return (
     <Router>
       <Switch>
