@@ -38,13 +38,13 @@ function StartModal (props) {
     <h5>{ link }</h5>
     <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
-        <ModalHeader toggle={toggle}>Ready?</ModalHeader>
-        <ModalBody>
-          Connect with your opponent by sharing this link: {link}
+        <ModalHeader className="modal-header" toggle={toggle}><h2 className="title-ready">Ready?</h2></ModalHeader>
+        <ModalBody className="modal-style">
+          Connect with your opponent by sharing this link: <span style={{color: '#5da6e3'}}>{link}</span>
         </ModalBody>
-        <ModalFooter>
-          <Button id='copyBtn' color='primary' onClick={ handleCopyLink }>Copy Link</Button>{' '}
-          <Button color='secondary' onClick={toggle}>Close</Button>
+        <ModalFooter className="modal-style">
+          <Button id='copyBtn' onClick={ handleCopyLink }>Copy Link</Button>{' '}
+          <Button id='delete-btn' onClick={toggle}>Close</Button>
         </ModalFooter>
       </Modal>
     </div>

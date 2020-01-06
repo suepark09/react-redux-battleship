@@ -204,9 +204,9 @@ input:focus, textarea:focus, select:focus{
 
 .ship-orientation-container {
   display: inline-block;
-  padding: 5px 5px 5px 20px;
+  padding: 5px 5px 5px 35px;
   border-left: #171E25 solid 1px;
-  width: 34%;
+  width: 40%;
 }
 
 .ship-selection-container {
@@ -302,6 +302,40 @@ ol, ul {
   width: 36px;
 }
 
+#copyBtn {
+  background: #5da6e3 !important;
+  font-family: 'Cairo', sans-serif !important;
+  border: 1px solid #5da6e3 !important;
+}
+
+.close {
+  color: white !important;
+}
+
+#delete-btn {
+  border: 1px solid #5da6e3 !important;
+  background-color:#1D2A35;
+  font-family: 'Cairo', sans-serif !important;
+  color: #5da6e3 !important;
+}
+
+.modal-style {
+  background-color:#1D2A35;
+  color: white;
+  border: none !important;
+}
+
+.modal-header {
+  background-color:#1D2A35;
+  padding-top: 16px 16px 10px 16px !important;
+  border-bottom: #171E25 !important;
+  color:  #5da6e3 !important;
+}
+
+.title-ready {
+  color:  #5da6e3 !important;
+  font-size: 18pt;
+}
 
 .grey-square:focus {
   outline: none;
