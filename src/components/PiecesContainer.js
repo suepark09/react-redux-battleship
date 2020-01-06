@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import P1counter from './P1counter'
+// import P1counter from './P1counter'
 import { connect } from 'react-redux'
 class PiecesContainer extends React.Component {
 
@@ -24,7 +24,6 @@ battleship = (e) => {
 
 submarine = (e) => {
     this.props.activate(this.ships[2])
-
 }
 
 destroyer = (e) => {
@@ -33,12 +32,18 @@ destroyer = (e) => {
 
 patrolBoat = (e) => {
     this.props.activate(this.ships[4])
+    let glow = document.getElementsByClassName( 'glow' );
+    // glow.style.backgroundColor = 'red'
+}
+
+handleClickOrientation = () => {
+    this.props.orientation()
+    const orientationBtn = document.getElementById('orientation-btn')
+    const text = this.props.state.squares.isHorizontal ? 'Vertical' : 'Horizontal'
+    orientationBtn.innerHTML = text
 }
 
  render() {
-
-
-
 
     let patrolBoat = this.props.state.squares.visibleLabel[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
@@ -46,6 +51,7 @@ patrolBoat = (e) => {
     let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
 
+<<<<<<< HEAD
     
     // let state = this.props.state.squares
     // for(let i = 0; i < state.activeBtn.length; i++){
@@ -58,6 +64,18 @@ patrolBoat = (e) => {
     //         }    
     //         if(counter === 5){
     //             state.isPlaying = true
+=======
+    let state = this.props.state.squares
+    for(let i = 0; i < state.activeBtn.length; i++){
+        let counter = 0;
+        for(let i = 0; i < state.activeBtn.length; i++){
+            if(!state.activeBtn[i]){
+                counter++;
+                console.log('counted!!!', state.activeBtn, counter)
+            }    
+            if(counter === 5){
+                state.activeP1 = true
+>>>>>>> master
                 
     //         }
     //         // state.activeBtn.push(true)
@@ -80,8 +98,10 @@ patrolBoat = (e) => {
                         
                         <label className= { patrolBoat }>
                             <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
-                            <div className="box"></div>
-                            <div className="box"></div>
+                            {/* <div className='glow'> */}
+                                <div className="box"></div>
+                                <div className="box"></div>
+                            {/* </div> */}
                         </label>
                         
                         <label className= { destroyer }>
@@ -119,17 +139,13 @@ patrolBoat = (e) => {
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
-            <button id="orientation-btn" onClick={this.props.orientation} className='selector'>Rotate Ship</button>
-            </div>
-            <div className="ship-orientation-container">
-                <P1counter counter={this.props.state.p2total}/>
+            <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
         </div>
       )
  }
- 
-
 }
+
 
 const mapStateToProps = state => {
     return { state }

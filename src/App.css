@@ -47,29 +47,31 @@ h5 {
   border-left: 8px solid #1D2A35;
   border-right: 8px solid #1D2A35;
   border-bottom: 8px solid #1D2A35;
-  width: 25vw;
+  width: 28vw;
   height: 100vh;
 }
 
 .name-container {
   background: #1D2A35;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  height: 8vh;
+  /* padding-top: 5px; */
+  padding-bottom: 5px;
+  height: 18vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .nickname-title {
-  padding-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 12px;
+  /* border-top: #171E25 1px solid; */
   color: #64B2F4;
 }
 
 .chat-text {
   /* border: 3px solid green; */
-  padding: 15px;
-  height: 70vh;
+  padding: 5px;
+  height: 65vh;
   color: white;
   overflow-y: auto;
   overflow-x: hidden;
@@ -81,13 +83,13 @@ h5 {
   position: fixed;
   bottom: 0;
   height: 11vh;
-  left: 75.0%;
+  left: 72.0%;
   /* padding-left: 15px; */
   background: #1D2A35;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 25vw;
+  width: 28vw;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -175,16 +177,13 @@ input:focus, textarea:focus, select:focus{
 
 .start-btn-container {
   margin-top: 5px;
-  /* border: 1px solid rgba(128, 0, 128, 0.637); */
   padding-left: 15px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
 }
 
 .start-btn-container-closed {
   margin-top: 5px;
-  /* border: 1px solid rgba(128, 0, 128, 0.637); */
   padding-left: 15px;
   display: none;
   flex-direction: row;
@@ -331,7 +330,7 @@ ol, ul {
 }
 
 .turn-display{
-  padding-top:13px;
+  padding-top:10px;
   background: #1D2A35;
 }
 
@@ -346,6 +345,13 @@ ol, ul {
     /* border: red solid 5px; */
     width: 100%;
   /* margin-left: 20px; */
+}
+
+.game-info-hidden {
+  /* border: red solid 5px; */
+  width: 100%;
+  display:none;
+/* margin-left: 20px; */
 }
 
 #boardDiv {
@@ -371,17 +377,27 @@ ol, ul {
 
 .instructions-title {
   color:#64B2F4;
+  padding-bottom: 13px;
+}
+
+.name-container2 {
+  /* height: 50px; */
+  /* border: solid 1px red; */
 }
 
 .instructions-container {
   font-size: 10px;
+  position: absolute;
   /* height: 100vh; */
-  width: 50%;
+  width: 30%;
+  /* top: 53%; */
+  left: 36%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   /* border: solid red 1px; */
   padding: 10px;
+  padding-top: 16px;
   margin-right: 18px;
 }
 
@@ -417,6 +433,11 @@ ol, ul {
   border: 1px solid #64B2F4;
 }
 
+
+.opponent-ship-count-container {
+  text-align: center;
+}
+
 .opponent-ship-count {
   margin-top: 7px;
   font-size: 23pt;
@@ -427,6 +448,14 @@ ol, ul {
   color: white;
   background: #64B2F4;
 } */
+
+.counter-container {
+  /* border: 1px solid red; */
+}
+
+.counter-container-hidden {
+  display: none;
+}
 
 #start-modal-btn {
   color: #64B2F4;
@@ -450,3 +479,7 @@ ol, ul {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* .teehee {
+  background: red;
+} */

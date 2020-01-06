@@ -72,6 +72,7 @@ const deactivateBoard2 = (state = initialState, action) => {
     const newActiveBtn2 = state.activeBtn2.slice()
     const newVisibleLabel2 = state.visibleLabel2.slice()
     newActiveBtn2[action.index2] = false
+    newVisibleLabel2[action.index2] = false
     return {
         ...state,
         active2: false,

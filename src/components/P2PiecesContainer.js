@@ -1,9 +1,12 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import P1counter from './P1counter'
 import { connect } from 'react-redux'
+<<<<<<< HEAD
 import { updateGameData } from '../firebaseFunc'
 import { UPDATE_ISPLAYING } from '../actions/actionTypes'
+=======
+import '../App.css'
+>>>>>>> master
 
 class P2PiecesContainer extends React.Component {
 
@@ -62,7 +65,12 @@ shipCounter = () => {
     // }
 }
 
-
+handleClickOrientation = () => {
+    this.props.orientation2()
+    const orientationBtn = document.getElementById('orientation-btn')
+    const text = this.props.state.squares.isHorizontal2 ? 'Vertical' : 'Horizontal'
+    orientationBtn.innerHTML = text
+}
 
 // active state of radio button should be true 
 // once you click on a button, state of button should revert false AFTER you place 
@@ -70,6 +78,7 @@ shipCounter = () => {
 
  render() {
 
+<<<<<<< HEAD
     // for orientation, vertical is false and horizontal
     // is true. by default it is true. 
     // create function called orientation
@@ -82,34 +91,44 @@ shipCounter = () => {
    
    
     console.log('wut r active buttons!', this.props.state)
+=======
+    let patrolBoat = this.props.state.squares.visibleLabel2[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
+    let destroyer = this.props.state.squares.visibleLabel2[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
+    let submarine = this.props.state.squares.visibleLabel2[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
+    let battleship = this.props.state.squares.visibleLabel2[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
+    let aircraftCarrier = this.props.state.squares.visibleLabel2[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
+   
+
+>>>>>>> master
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
             <h5>Select Your Ship</h5>
+            <div className="box-placeholder"></div>
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
-                        <label className="piece-label">
+                        <label className={ patrolBoat }>
                             <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn2[this.ships[4].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
                         </label>
                         
-                        <label className="piece-label">
+                        <label className={ destroyer }>
                             <Form.Check id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn2[this.ships[3].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
                             <div className="box"></div>
                         </label>
                         
-                        <label className="piece-label">
+                        <label className={ submarine }>
                             <Form.Check id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn2[this.ships[2].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
                             <div className="box"></div>
                         </label>
                         
-                        <label className="piece-label">
+                        <label className={ battleship }>
                             <Form.Check id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn2[this.ships[1].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
@@ -117,7 +136,7 @@ shipCounter = () => {
                             <div className="box"></div>
                         </label>
 
-                        <label className="piece-label">
+                        <label className={ aircraftCarrier }>
                             <Form.Check id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn2[this.ships[0].id]} />
                             <div className="box"></div>
                             <div className="box"></div>
@@ -130,11 +149,10 @@ shipCounter = () => {
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
-            <button id="orientation-btn" onClick={this.props.orientation2} className='selector'>Rotate Ship</button>
+            <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
-            <div className="ship-orientation-container">
-                <P1counter counter={this.props.state.p2total}/>
-            </div>
+
+   
           
           
         </div>

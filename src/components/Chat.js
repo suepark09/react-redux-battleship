@@ -4,7 +4,9 @@ import '../App.css'
 import TurnDisplay from './TurnDisplay'
 import ScrollableFeed from 'react-scrollable-feed'
 
-const socket = io.connect("http://localhost:5000")
+const PORT = process.env.PORT || 5000
+
+const socket = io.connect(`${PORT}`)
 
 class Chat extends React.Component {
     constructor() {
@@ -55,7 +57,7 @@ class Chat extends React.Component {
                 <TurnDisplay/>
               </div>
               <div className='name-container'>
-                <div>
+                <div className='name-container2'>
                     <h5 className="nickname-title">Create nickname to chat!</h5>
                     <input 
                       id="nickname-input"
