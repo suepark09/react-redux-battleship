@@ -55,7 +55,7 @@ class Chat extends React.Component {
                 <TurnDisplay/>
               </div>
               <div className='name-container'>
-                <div>
+                <div className='name-container2'>
                     <h5 className="nickname-title">Create nickname to chat!</h5>
                     <input 
                       id="nickname-input"
