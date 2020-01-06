@@ -332,6 +332,18 @@ ol, ul {
   color:  #5da6e3 !important;
 }
 
+.link-style {
+  font-size: 12pt;
+  border-radius: 4px;
+  color: white;
+  padding: 12px;
+}
+
+.link-title {
+  color: red;
+  font-size: 11pt;
+}
+
 .title-ready {
   color:  #5da6e3 !important;
   font-size: 18pt;

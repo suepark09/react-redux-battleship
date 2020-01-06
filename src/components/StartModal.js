@@ -35,7 +35,7 @@ function StartModal (props) {
 
   return (
     <div>
-    <h5>{ link }</h5>
+      <h5>{ link }</h5>
     <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
         <ModalHeader className="modal-header" toggle={toggle}><h2 className="title-ready">Ready?</h2></ModalHeader>
