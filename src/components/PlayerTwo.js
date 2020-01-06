@@ -6,6 +6,7 @@ import PlayerTwoOwn from './PlayerTwoOwn'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
 import P2PiecesContainer from './P2PiecesContainer'
+import {updatePlayer2Data} from '../firebaseFunc'
 
 class PlayerTwo extends Component {
 
@@ -13,6 +14,12 @@ class PlayerTwo extends Component {
     console.log('SOMETHING IN DATABASE CHANGED:', gameId, snapVal)
     this.props.updateState(snapVal)
   }
+
+  // test() {
+  //   return (dispatch) => {
+      
+  //   }
+  // }
 
   componentDidUpdate () {
     const { gameId } = this.props.match.params
@@ -24,18 +31,25 @@ class PlayerTwo extends Component {
 
 
   componentDidMount () {
-    // const { gameId } = this.props.match.params
-    // fetchGameData(gameId)
-    //   .then((data)=>{
-    //     console.log('the then promise!!!!!!!!!!!!!!!!!!!!!!!!!!')
-    //     this.props.updateState(data.val()[gameId])
-    //   })
+    const { gameId } = this.props.match.params
+    fetchGameData(gameId)
+      .then((data)=>{
+        console.log('the then promise!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        this.props.updateState(data.val()[gameId])
+      })
     //   if (gameId) {
     //     const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
     //     listenGameData(gameId, updateToDbStateBoundToMe)
     //   }
   }
 
+  startGame = () => {
+    console.log('startgame', this.props.state.squares.player2Ready)
+        if (this.props.state.squares.player2Ready) {
+            console.log('sending p2 stuff')
+            updatePlayer2Data(this.props.state.squares.gameId, this.props.state.squares)
+        }
+  }
 
   render () {
     // let state = this.props.state.squares
@@ -55,6 +69,7 @@ class PlayerTwo extends Component {
         <div className='game-board'>
           <PlayerTwoOpponent />
         </div>
+        <button onClick={this.startGame}>Start Game</button>
       </React.Fragment>
     )
   }

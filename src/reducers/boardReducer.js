@@ -367,7 +367,8 @@ const boardReducer = (state = initialState, action) => {
 
             if (state.player2Ready) {
                 state.isPlaying = true
-                updatePlayer2Data(state.gameId, state)
+                console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%', state)
+                //updatePlayer2Data(state.gameId, state)
             }
       
 
@@ -389,7 +390,7 @@ const boardReducer = (state = initialState, action) => {
 
       console.log(newState, 'kekkekekeke')
 
-
+      console.log('HEREEEEEE')
       return {
         ...state,
         squares2: test2,

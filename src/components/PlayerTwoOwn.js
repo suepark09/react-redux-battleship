@@ -1,6 +1,7 @@
 import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
+import {updatePlayer2Data} from '../firebaseFunc'
 // import { clickSquare } from '../actions/index'
 
 const initialState = {
@@ -16,6 +17,11 @@ class PlayerTwoOwn extends React.Component {
     clickItem = (e) => {
         console.log('clicked')
         this.props.clickSquare(e.target.value);
+        console.log('KAJHDKJSHDKAJSHDKASJHDKJASHDK',this.props.state.squares.player2Ready)
+        // if (this.props.state.squares) {
+        //     console.log('sending p2 stuff')
+        //     // updatePlayer2Data(this.props.state.squares.gameId, this.props.state.squares)
+        // }
         this.setState(initialState)
     }
 
