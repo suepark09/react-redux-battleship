@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import P1counter from './P1counter'
+// import P1counter from './P1counter'
 import { connect } from 'react-redux'
 class PiecesContainer extends React.Component {
 
@@ -32,6 +32,8 @@ destroyer = (e) => {
 
 patrolBoat = (e) => {
     this.props.activate(this.ships[4])
+    let glow = document.getElementsByClassName( 'glow' );
+    // glow.style.backgroundColor = 'red'
 }
 
 handleClickOrientation = () => {
@@ -74,8 +76,10 @@ handleClickOrientation = () => {
                         
                         <label className= { patrolBoat }>
                             <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
-                            <div className="box"></div>
-                            <div className="box"></div>
+                            {/* <div className='glow'> */}
+                                <div className="box"></div>
+                                <div className="box"></div>
+                            {/* </div> */}
                         </label>
                         
                         <label className= { destroyer }>
@@ -114,9 +118,6 @@ handleClickOrientation = () => {
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
             <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
-            </div>
-            <div className="ship-orientation-container">
-                <P1counter counter={this.props.state.p2total}/>
             </div>
         </div>
       )

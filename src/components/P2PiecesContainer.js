@@ -1,6 +1,5 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import P1counter from './P1counter'
 import { connect } from 'react-redux'
 import '../App.css'
 
@@ -116,9 +115,8 @@ handleClickOrientation = () => {
             <h5>Ship Orientation</h5>
             <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
-            <div className="ship-orientation-container">
-                <P1counter counter={this.props.state.p2total}/>
-            </div>
+
+   
           
           
         </div>
