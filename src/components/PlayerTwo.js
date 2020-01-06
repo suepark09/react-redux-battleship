@@ -3,8 +3,10 @@ import { fetchGameData, listenGameData } from '../firebaseFunc'
 import { connect } from 'react-redux';
 import PlayerTwoOpponent from './PlayerTwoOpponent'
 import PlayerTwoOwn from './PlayerTwoOwn'
+import Chat from './Chat'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
+import '../App.css'
 
 import P2PiecesContainer from './P2PiecesContainer'
 
@@ -30,16 +32,30 @@ class PlayerTwo extends Component {
   render () {
     return (
       <React.Fragment>
-        <div className='game-info'>
+        <div className='d-flex app-container'>
+          <div className='game-container'>
+            <div className='title'>
+              <h1> React-Redux <span style={{color: '#64B2F4'}}>Battleship</span></h1>
+            </div>
+            <div className='game-instructions-conatiner'>
+              <div className='game-info'>
                 <P2PiecesContainer />
+              </div>
+            <div className='game'>
+                {/* <h5>Player Two</h5> */}
+
+                <div className='game-board'>
+                  <PlayerTwoOwn />
+                </div>
+            {/* <h5>Player One</h5> */}
+            <div className='second-board'>
+                  
+                  <PlayerTwoOpponent />
+                </div>
+            </div>
           </div>
-        <h5>Player Two</h5>
-        <div className='game-board'>
-          <PlayerTwoOwn />
-        </div>
-        <h5>Player One</h5>
-        <div className='game-board'>
-          <PlayerTwoOpponent />
+          </div>
+        <Chat />
         </div>
       </React.Fragment>
     )
