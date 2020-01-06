@@ -14,19 +14,34 @@ class PlayerTwo extends Component {
     this.props.updateState(snapVal)
   }
 
-  componentDidMount () {
+  componentDidUpdate () {
     const { gameId } = this.props.match.params
-    fetchGameData(gameId)
-      .then((data)=>{
-        this.props.updateState(data.val()[gameId])
-      })
     if (gameId) {
       const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
       listenGameData(gameId, updateToDbStateBoundToMe)
     }
   }
 
+
+  componentDidMount () {
+    // const { gameId } = this.props.match.params
+    // fetchGameData(gameId)
+    //   .then((data)=>{
+    //     console.log('the then promise!!!!!!!!!!!!!!!!!!!!!!!!!!')
+    //     this.props.updateState(data.val()[gameId])
+    //   })
+    //   if (gameId) {
+    //     const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+    //     listenGameData(gameId, updateToDbStateBoundToMe)
+    //   }
+  }
+
+
   render () {
+    // let state = this.props.state.squares
+  
+
+
     return (
       <React.Fragment>
         <div className='game-info'>
@@ -52,6 +67,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
       updateState: (gameData) => dispatch({ type: UPDATE_STATE, game: gameData })
+      
   }
 }
 

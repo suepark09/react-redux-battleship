@@ -2,10 +2,14 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import P1counter from './P1counter'
 import { connect } from 'react-redux'
+import { updateGameData } from '../firebaseFunc'
+import { UPDATE_ISPLAYING } from '../actions/actionTypes'
+
 class P2PiecesContainer extends React.Component {
 
     constructor(props) {
         super(props);
+        this.counter = 0
         this.ships = [
             {name: 'Aircraft Carrier', length: 5, id: 0},
             {name: 'Battleship', length: 4, id: 1},
@@ -18,29 +22,44 @@ class P2PiecesContainer extends React.Component {
     console.log('you clicked on aircraft carrier', e.target.value)
     this.props.activate2(this.ships[0])
     // this.props.deactivate2Btn(this.ships[0])
+    this.shipCounter()
   }
 
 battleship = (e) => {
     console.log('you clicked on battleship', e.target.value)
     this.props.activate2(this.ships[1])
     // this.props.deactivate2Btn(this.ships[1])
+    this.shipCounter()
   }
 
 submarine = (e) => {
     console.log('you clicked on submarine', e.target.value)
     this.props.activate2(this.ships[2])
+    this.shipCounter()
 
 }
 
 destroyer = (e) => {
     console.log('you clicked on destroyer', e.target.value)
     this.props.activate2(this.ships[3])
+    this.shipCounter()
 }
 
 patrolBoat = (e) => {
     console.log('you clicked on patrol boat', e.target.value)
     this.props.activate2(this.ships[4])
     console.log('what is activate', this.props.activate)
+    this.shipCounter()
+}
+
+shipCounter = () => {
+    // console.log('test***************')
+    // this.counter++
+    // if(this.counter === 5 ){
+    //     // this.props.updateIsPlaying(this.props.state.squares.gameId)
+    //     updateGameData(this.props.state.squares.gameId)
+    //     console.log('shipsCounted')
+    // }
 }
 
 
@@ -56,19 +75,9 @@ patrolBoat = (e) => {
     // create function called orientation
     //if this.props.orientation is true...
     //call in button using this.orientation
-    let state = this.props.state.squares
-    for(let i = 0; i < state.activeBtn2.length; i++){
-        let counter = 0;
-        for(let i = 0; i < state.activeBtn2.length; i++){
-            if(!state.activeBtn2[i]){
-                counter++;
-                // console.log('counted!!!', state.activeBtn, counter)
-            }    
-            if(counter === 5){
-                state.isPlaying2 = true
-            }
-        }
-    }
+  
+
+   
 
    
    
@@ -144,7 +153,9 @@ const mapDispatchToProps = dispatch => {
         activate2: (ship) => dispatch({type: 'ACTIVATE2' , payload: ship}),
         orientation2: () => dispatch({type: 'ORIENTATION2'}),
         deactivate2: () => dispatch({type: 'DEACTIVATE_BOARD2'}),
-        deactivateBtn2: (ship) => dispatch({type: 'DEACTIVATE_BUTTON2', payload: ship })
+        deactivateBtn2: (ship) => dispatch({type: 'DEACTIVATE_BUTTON2', payload: ship }),
+        updateIsPlaying: (gameId) => dispatch({ type: UPDATE_ISPLAYING, payload: gameId})
+        
 
     }
 }

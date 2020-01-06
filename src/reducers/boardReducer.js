@@ -1,20 +1,19 @@
-import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON, UPDATE_STATE, DEACTIVATE_BUTTON2, ACTIVATE2, DEACTIVATE_BOARD2, ORIENTATION2, CLICKED2  } from '../actions/actionTypes'
-import { keyGen } from '../firebaseFunc'
+import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON, UPDATE_STATE, DEACTIVATE_BUTTON2, ACTIVATE2, DEACTIVATE_BOARD2, ORIENTATION2, CLICKED2, UPDATE_ISPLAYING, SHIPSSET  } from '../actions/actionTypes'
+import { keyGen, updateGameData, updatePlayer2Data } from '../firebaseFunc'
+
 
 const initialState = {
   gameId: '',
   isPlaying: false,
-  isPlaying2: false,
+  player1Ready: false,
+  player2Ready: false,
   active: false,
   active2: false,
   activeP1: false,
   activeP2: false,
   visibleLabel: [true, true, true, true, true],
-
   visibleLabel2: [true, true, true, true, true],
-
   playerTurnDisplay: ['Set Your Ships!!', 'Attack Your Opponent!', 'Wait For Opponent Move', 'Waiting On Opponent To Set Ships...'],
-
   activeBtn: [true, true, true, true, true],
   activeBtn2: [true, true, true, true, true],
   isHorizontal: true,
@@ -81,12 +80,72 @@ const deactivateBoard2 = (state = initialState, action) => {
     }
 }
 
+const checkBoard = (state, action) => {
+    const stateCopy = deepCopy(state)
+    let shipCounter = 0
+    const placedShips = stateCopy.activeBtn
+    for (let i = 0; i<= placedShips.length; i++) {
+        if (placedShips[i] === false) {
+          shipCounter++
+        }
+      }
+
+      if(shipCounter === 5){
+          stateCopy.player1Ready = true
+
+      }
+  
+    //   if(shipCounter === 5 && this.props.state.isPlaying === true){
+    //     this.props.clickActiveP1()
+    //     //firebase
+    //   }
+    return stateCopy
+
+
+    
+}
+
+const checkBoard2 = (state, action) => {
+    const stateCopy = deepCopy(state)
+    let shipCounter = 0
+    const placedShips = stateCopy.activeBtn2
+    for (let i = 0; i<= placedShips.length; i++) {
+        if (placedShips[i] === false) {
+          shipCounter++
+        }
+      }
+
+      if(shipCounter === 5){
+          stateCopy.player2Ready = true
+               
+      }
+  
+    //   if(shipCounter === 5 && this.props.state.isPlaying === true){
+    //     this.props.clickActiveP1()
+    //     //firebase
+    //   }
+    return stateCopy
+
+
+    
+}
+
 
 const boardReducer = (state = initialState, action) => {
   const stateCopy = deepCopy(state)
  
   
   switch (action.type) {
+      case UPDATE_ISPLAYING:
+       stateCopy.isPlaying = true
+       //firebase update
+       
+    //    updateGameData(action.payload) 
+      return stateCopy
+      case SHIPSSET:
+      stateCopy.activeP1 = true
+      return stateCopy
+
     case CLICKED:
 
       const x = action.key.slice(0, 1)
@@ -185,7 +244,7 @@ const boardReducer = (state = initialState, action) => {
        
         state = deactivateBoard(state, {index: state.ship.id})
        
-
+        state = checkBoard(state)
        
         
     console.log(square, 'after ****', state.squares[x])
@@ -202,9 +261,9 @@ const boardReducer = (state = initialState, action) => {
 
       const square2 = state.squares2[x2].find(square  => square.key === `${x2}${y2}`)
       const index2 = state.squares2[x2].indexOf(square2)
-      console.log('wuts x and y', x2, y2);
-      console.log(index2, 'this is the index')
-      console.log(square2, 'before ****', state.squares[x2])
+    //   console.log('wuts x and y', x2, y2);
+    //   console.log(index2, 'this is the index')
+    //   console.log(square2, 'before ****', state.squares[x2])
 
         const test2 = { ...state.squares2 };
         const col2 = index2;
@@ -262,7 +321,7 @@ const boardReducer = (state = initialState, action) => {
                         for(let i = 0; i < ship2.length; i++) {      
                                 test2[x2][col2 + i].ship = true;
                                 test2[x2][col2 + i]["giveColor"] = true;
-                                console.log('ive been clicked!')
+                                // console.log('ive been clicked!')
                         }
                     } else {
                         for(let i = ship2.length; i > 0; i--) {
@@ -304,6 +363,12 @@ const boardReducer = (state = initialState, action) => {
    
 
             state = deactivateBoard2(state, {index2: state.ship2.id})
+            state = checkBoard2(state)
+
+            if (state.player2Ready) {
+                state.isPlaying = true
+                updatePlayer2Data(state.gameId, state)
+            }
       
 
        console.log(state.active2, 'active 2****************')
@@ -372,7 +437,7 @@ const boardReducer = (state = initialState, action) => {
             stateCopy.p1total --
         }
       }
-
+//update 
       return stateCopy
     case ORIENTATION:
         let orientation = !stateCopy.isHorizontal
@@ -431,6 +496,7 @@ const boardReducer = (state = initialState, action) => {
       stateCopy.gameId = gameId
       return stateCopy
     case UPDATE_STATE:
+    console.log('THIS IS UPDATING THE STATE')
         const newGameData = action.game
         return newGameData
     default:

@@ -47,25 +47,25 @@ patrolBoat = (e) => {
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
 
     
-    let state = this.props.state.squares
-    for(let i = 0; i < state.activeBtn.length; i++){
-        let counter = 0;
-        for(let i = 0; i < state.activeBtn.length; i++){
+    // let state = this.props.state.squares
+    // for(let i = 0; i < state.activeBtn.length; i++){
+    //     let counter = 0;
+    //     for(let i = 0; i < state.activeBtn.length; i++){
 
-            if(!state.activeBtn[i]){
-                counter++;
-                // console.log('counted!!!', state.activeBtn, counter)
-            }    
-            if(counter === 5){
-                state.isPlaying = true
+    //         if(!state.activeBtn[i]){
+    //             counter++;
+    //             // console.log('counted!!!', state.activeBtn, counter)
+    //         }    
+    //         if(counter === 5){
+    //             state.isPlaying = true
                 
-            }
-            // state.activeBtn.push(true)
+    //         }
+    //         // state.activeBtn.push(true)
           
             
-        }
-        counter++
-    }
+    //     }
+    //     counter++
+    // }
  
 
 

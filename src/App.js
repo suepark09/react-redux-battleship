@@ -4,8 +4,9 @@ import Chat from './components/Chat'
 import PiecesContainer from './components/PiecesContainer'
 import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
+import PlayerOne from './components/PlayerOne'
 import Board2 from './components/Board2'
-import { UPDATE_STATE } from './actions/actionTypes'
+import { UPDATE_STATE} from './actions/actionTypes'
 import { listenGameData } from './firebaseFunc'
 // import TurnDisplay from './components/TurnDisplay'
 import { connect } from 'react-redux'
@@ -20,68 +21,33 @@ import {
 
 class App extends React.Component {
 
-  updateToDbState (gameId, snapVal) {
-    console.log('updateToDbState:', gameId, snapVal)
-    this.props.updateState(snapVal)
+  constructor(){
+    super()
+    this.shipCounter = 0
   }
 
-  componentDidUpdate () {
-    console.log('app did update')
-    const gameId = this.props.state.squares.gameId
-    if (gameId) {
-      const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
-      listenGameData(gameId, updateToDbStateBoundToMe)
-    }
-  }
+  // updateToDbState (gameId, snapVal) {
+  //   console.log('updateToDbState:', gameId, snapVal)
+  //   this.props.updateState(snapVal)
+  // }
+
+  // componentDidUpdate () {
+  //   console.log('app did update', this.props.match)
+  //   const gameId = this.props.state.squares.gameId
+  //   if (gameId) {
+  //     const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+  //     listenGameData(gameId, updateToDbStateBoundToMe)
+  //   }
+
+  // }
 
   render () {
-    const { squares } = this.props.state
-    const placedShips = this.props.state.squares.activeBtn
-    let shipCounter = 0
-    for (let i = 0; i<= placedShips.length; i++) {
-      if (placedShips[i] === false) {
-        console.log(`${shipCounter} SHIP PLACED`)
-        shipCounter++
-      }
-    }
-
-    if(shipCounter === 4){
-      this.props.state.squares.activeP1 = true
-    }
+   
 
     return (
     <Router>
       <Switch>
-      <Route exact path='/'>
-      <React.Fragment>
-        <div className='d-flex app-container'>   
-          <div className= 'game-container'>
-            <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
-              <div className="game-instructions-container">
-                <div className='game-info'>
-                    <PiecesContainer />
-                  </div>
-                <div className='game'>
-                  <div className='game-board'>
-                    <Board  />
-                  </div>
-                  <div className='second-board'>
-                      <Board2 props={ this.props.state } />
-                  </div>
-                  <div className='instructions-container'>
-                    <div className="instructions">
-                      <Instructions />
-                    </div>
-                    <div className={ shipCounter === 5 ? 'start-btn-container': 'start-btn-container-closed' }>
-                      <StartModal props={squares} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-            <Chat />
-        </div>
-      </React.Fragment>
+      <Route exact path='/' component={PlayerOne}>
       </Route>
       <Route path='/game/:gameId' component={PlayerTwo} />
       </Switch>
