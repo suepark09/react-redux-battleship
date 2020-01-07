@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PiecesContainer from './PiecesContainer'
+import WinLoseModal from './WinLoseModal'
 import Board from './Board'
 import Board2 from './Board2'
 import Instructions from './Instructions'
@@ -26,6 +27,9 @@ class PlayerOne extends Component {
 
     render() {
         return (
+          <React.Fragment>
+          {/* { this.props.state.squares.squares.p1total === 0 ? <WinLoseModal /> : null } */}
+          <WinLoseModal/>
             <div className='d-flex app-container'>   
             <div className= 'game-container'>
               <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
@@ -56,6 +60,7 @@ class PlayerOne extends Component {
                 </div>
               <Chat />
           </div>
+          </React.Fragment>
         )
     }
 }

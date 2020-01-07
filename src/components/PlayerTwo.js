@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { fetchGameData, listenGameData } from '../firebaseFunc'
 import { connect } from 'react-redux';
 import PlayerTwoOpponent from './PlayerTwoOpponent'
+import WinLoseModal from './WinLoseModal'
 import PlayerTwoOwn from './PlayerTwoOwn'
 import Chat from './Chat'
 import P1counter from './P1counter'
@@ -62,6 +63,7 @@ class PlayerTwo extends Component {
 
     return (
       <React.Fragment>
+        <WinLoseModal/>
         <div className='d-flex app-container'>
           <div className='game-container'>
             <div className='title'>
