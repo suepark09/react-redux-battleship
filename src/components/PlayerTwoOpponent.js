@@ -16,6 +16,9 @@ state = initialState
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
     }
+ 
+ 
+
 
     render() {
         const mappedBoard = []
