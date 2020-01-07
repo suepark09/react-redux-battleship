@@ -433,6 +433,7 @@ const boardReducer = (state = initialState, action) => {
             
      
             stateCopy.isPlaying = false
+            
      
         if(attackSquare1.ship){
             stateCopy.p2total --
