@@ -18,21 +18,6 @@ class App extends React.Component {
     this.shipCounter = 0
   }
 
-  // updateToDbState (gameId, snapVal) {
-  //   console.log('updateToDbState:', gameId, snapVal)
-  //   this.props.updateState(snapVal)
-  // }
-
-  // componentDidUpdate () {
-  //   console.log('app did update', this.props.match)
-  //   const gameId = this.props.state.squares.gameId
-  //   if (gameId) {
-  //     const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
-  //     listenGameData(gameId, updateToDbStateBoundToMe)
-  //   }
-
-  // }
-
   render () {
     return (
     <Router>

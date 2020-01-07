@@ -546,7 +546,7 @@ box-shadow: 0px 0px 8px 2px rgba(100,178,244,0.78);
 
 .opponent-ship-count-container {
   text-align: center;
-  border: red 1px solid;
+  /* border: red 1px solid; */
   /* width: 20%; */
 }
 
@@ -559,7 +559,7 @@ box-shadow: 0px 0px 8px 2px rgba(100,178,244,0.78);
 .ship-count-row {
   margin: auto !important;
   width: 800px;
-  border: blue 1px solid !important;
+  /* border: blue 1px solid !important; */
 }
 
 /* #orientation-btn:hover {

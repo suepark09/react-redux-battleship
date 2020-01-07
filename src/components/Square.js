@@ -3,49 +3,41 @@ import '../App.css'
 import { connect } from 'react-redux'
 
 class Square extends React.Component {
-
-
-
   render () {
+    let disabled = this.props.active ? '' : 'disabled'
    
     let color = null
 
     if (this.props.hovered) {
         color = 'green'
-        console.log('HUR')
     }
 
     if(this.props.hidden){
       color = 'square'
       if (this.props.square.ship && this.props.square.color) {
-       
         color = 'red'
+        disabled = 'disabled'
+    
+        
       } else if (this.props.square.color) {
-   
+        disabled = 'disabled'
         color = 'white'
       } 
     } else {
       color = this.props.square.giveColor ? 'grey-square' : 'square' 
       if (this.props.hovered) {
         color = 'green'
-        console.log('HUR')
     }
       if (this.props.square.ship && this.props.square.color) {
-      
+        disabled = 'disabled'
         color = 'red'
       }
       else if (this.props.square.color) {
-    
+        disabled = 'disabled'
         color = 'white'
       } 
-  
     }
-
-    //HIT COLOR
- 
-
-    const disabled = this.props.active ? '' : 'disabled'
-
+    
     return (
       <button id="piece-btn" onMouseOut= {this.props.mouseOut} onMouseOver= {this.props.mouseOver} className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}></button>
     )
@@ -54,15 +46,6 @@ class Square extends React.Component {
   return { state }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // checkSquare: (squareKey) => dispatch({ type: 'P1ATTACK', key: squareKey })
-
-  }
-}
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Square)
-
-// export default Square
