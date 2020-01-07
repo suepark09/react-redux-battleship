@@ -39,22 +39,22 @@ class PlayerOne extends Component {
                     </div>
                     <div className='second-board'>
                         {/* <Board2 props={ this.props.state } /> */}
-                        { this.props.state.squares.isPlaying ? <Board2 props={ this.props.state }/> : null}
+                        { this.props.state.squares.player1Ready && this.props.state.squares.player2Ready ? <Board2 props={ this.props.state }/> : null}
                     </div>
                     <div className='instructions-container'>
                       <div className="instructions">
                         {/* <Instructions /> */}
-                        { this.props.state.squares.isPlaying ? null : <Instructions />}
+                        { this.props.state.squares.player1Ready && this.props.state.squares.player2Ready ? null : <Instructions />}
                       </div>
                       <div className={ this.props.state.squares.player1Ready ? 'start-btn-container': 'start-btn-container-closed' }>
                         {/* <StartModal props={this.props.state.squares} /> */}
-                        { this.props.state.squares.isPlaying ? null : <StartModal props={ this.props.state.squares } />}
+                        { this.props.state.squares.player1Ready && !this.props.state.squares.player2Ready ? <StartModal props={ this.props.state.squares }/> : null  }
                       </div>
                     </div>
                   </div>
                 </div>
                 </div>
-              <Chat />
+              <Chat player={1} />
           </div>
         )
     }
