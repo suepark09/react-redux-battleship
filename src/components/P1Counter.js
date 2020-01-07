@@ -31,7 +31,8 @@ class P1counter extends Component {
     } 
     render() {
         return (
-            <div className="row">
+            
+            <div className="ship-count-row row">
                  <div className="opponent-ship-count-container col-sm">
                     <h5>Your Ship Count</h5>
                     <h5 className="opponent-ship-count">{this.props.state.squares.p1total}</h5>
