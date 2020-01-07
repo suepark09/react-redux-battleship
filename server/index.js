@@ -5,7 +5,7 @@ const io = require('socket.io')(server)
 
 io.on('connection', socket => {
   socket.on('chat message', ({ nickname, msg }) => {
-    io.emit('chat message', { nickname, msg})
+    io.emit('chat message', { nickname, msg })
   })
 })
 const PORT = process.env.PORT || 5000

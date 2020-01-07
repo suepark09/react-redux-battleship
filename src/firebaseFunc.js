@@ -39,5 +39,5 @@ export function player1Turn (gameId) {
 }
 
 export function updatePlayer2Data (gameId, state) {
-  return gameRef.child(gameId).update({...state})
+  return gameRef.child(gameId).update({ ...state })
 }

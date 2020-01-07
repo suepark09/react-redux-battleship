@@ -4,8 +4,8 @@ import '../App.css'
 class Instructions extends React.Component {
   render () {
     return (
-      <ol className="instruction-list">
-        <h5 className="instructions-title">Instructions</h5>
+      <ol className='instruction-list'>
+        <h5 className='instructions-title'>Instructions</h5>
         <li>Select your ship to place it</li>
         <li>Choose the orientation: Horizontal or Vertical</li>
         <li>Place all of your ships on the board</li>

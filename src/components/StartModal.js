@@ -34,22 +34,22 @@ function StartModal (props) {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div>
-        <p className="game-link">{ link }</p>
+        <p className='game-link'>{link}</p>
       </div>
-    <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
+      <Button id={displayBtn} onClick={() => handleStartGame()}>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
-        <ModalHeader className="modal-header" toggle={toggle}><p className="title-ready">Ready?</p></ModalHeader>
-        <ModalBody className="modal-style">
-          Connect with your opponent by sharing this link: <span style={{color: '#5da6e3'}}>{link}</span>
+        <ModalHeader className='modal-header' toggle={toggle}><p className='title-ready'>Ready?</p></ModalHeader>
+        <ModalBody className='modal-style'>
+          Connect with your opponent by sharing this link: <span style={{ color: '#5da6e3' }}>{link}</span>
         </ModalBody>
-        <ModalFooter className="modal-style">
-          <Button id='copyBtn' onClick={ handleCopyLink }>Copy Link</Button>{' '}
+        <ModalFooter className='modal-style'>
+          <Button id='copyBtn' onClick={handleCopyLink}>Copy Link</Button>{' '}
           <Button id='delete-btn' onClick={toggle}>Close</Button>
         </ModalFooter>
       </Modal>
-    </React.Fragment>
+    </>
   )
 }
 
