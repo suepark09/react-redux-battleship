@@ -5,7 +5,7 @@ import PlayerTwoOpponent from './PlayerTwoOpponent'
 import WinLoseModal from './WinLoseModal'
 import PlayerTwoOwn from './PlayerTwoOwn'
 import Chat from './Chat'
-import P1counter from './P1counter'
+import P2counter from './P2counter'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
 import '../App.css'
@@ -71,7 +71,7 @@ class PlayerTwo extends Component {
                 <P2PiecesContainer />
               </div>
               <div className={ this.props.state.squares.player2Ready ? 'counter-container': 'counter-container-hidden' }>
-                <P1counter counter={this.props.state.p2total}/>
+                <P2counter counter={this.props.state.p2total}/>
               </div>
 
             <div className='game'>
@@ -88,9 +88,9 @@ class PlayerTwo extends Component {
             </div>
           </div>
           </div>
-        <Chat />
+        <Chat player={2}/>
         </div>
-        <button onClick={this.startGame}>Start Game</button>
+     
       </React.Fragment>
     )
   }
