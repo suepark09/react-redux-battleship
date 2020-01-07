@@ -1,8 +1,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-![screenshot](./img/bs-set.jpg)
-
 # Battleship
+![screenshot](./img/bs-set.jpg)
 React application utilizing Redux.
 
 # Start Game
