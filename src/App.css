@@ -302,6 +302,24 @@ ol, ul {
   width: 36px;
 }
 
+
+
+.white {
+  background:white;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 36px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 36px;
+
+}
+
 #copyBtn {
   background: #5da6e3 !important;
   font-family: 'Cairo', sans-serif !important;
