@@ -67,13 +67,12 @@ class Board2 extends React.Component {
 
 
         
-        
-      
+
         for (let i = 0; i < 10; i++) { 
             squares2[i].map((singleSquare, idx) => {
                 //horizontal hover code
                 
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.props.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut} hidden={true}/>)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.props.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut} hidden={true} />)
             })
         }
 

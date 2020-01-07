@@ -7,12 +7,14 @@ class Square extends React.Component {
 
 
   render () {
+    let disabled = this.props.active ? '' : 'disabled'
    
     let color = null
 
     if (this.props.hovered) {
         color = 'green'
         console.log('HUR')
+
     }
 
     if(this.props.hidden){
@@ -20,8 +22,12 @@ class Square extends React.Component {
       if (this.props.square.ship && this.props.square.color) {
        
         color = 'red'
+        disabled = 'disabled'
+    
+        
       } else if (this.props.square.color) {
-   
+        
+        disabled = 'disabled'
         color = 'white'
       } 
     } else {
@@ -31,11 +37,11 @@ class Square extends React.Component {
         console.log('HUR')
     }
       if (this.props.square.ship && this.props.square.color) {
-      
+        disabled = 'disabled'
         color = 'red'
       }
       else if (this.props.square.color) {
-    
+        disabled = 'disabled'
         color = 'white'
       } 
   
@@ -44,7 +50,7 @@ class Square extends React.Component {
     //HIT COLOR
  
 
-    const disabled = this.props.active ? '' : 'disabled'
+    
 
     return (
       <button id="piece-btn" onMouseOut= {this.props.mouseOut} onMouseOver= {this.props.mouseOver} className={color} value={this.props.coordinate} onClick={this.props.onClick} disabled= {disabled}></button>

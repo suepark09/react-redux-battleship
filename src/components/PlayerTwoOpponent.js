@@ -17,8 +17,14 @@ state = initialState
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
     }
+ 
+ 
+
 
     render() {
+     
+        
+          
         // console.log('PLAYER TWO OPPONENT PROPS', this.props)
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
