@@ -40,7 +40,7 @@ export default function WinLoseModal(props) {
         <React.Fragment>
             <Modal isOpen={ props.winner > 0 ? modal : test } toggle={ toggle } backdrop={ modalBool } centered={ modalBool }  autoFocus={ modalBool }>
                 <ModalHeader className="modal-header" toggle={ toggle }>
-                    <h2 className="title-ready">{ title }</h2>
+                    <p className="title-ready">{ title }</p>
                 </ModalHeader>
                 <ModalBody className="modal-style">
                     <p>{ body }</p>
