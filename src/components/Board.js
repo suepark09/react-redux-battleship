@@ -11,8 +11,6 @@ class Board extends React.Component {
 
     state = initialState
     
-   
-
     clickItem = (e) => {
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
@@ -22,7 +20,6 @@ class Board extends React.Component {
     mouseOver = (e) => {
         const x = e.target.value.slice(0, 1);
         const y = e.target.value.slice(1, 2);
-
         const square = this.props.state.squares.squares[x].find(square  => square.key === `${x}${y}`)
         const index = this.props.state.squares.squares[x].indexOf(square)
 
@@ -32,7 +29,7 @@ class Board extends React.Component {
         })
     }
 
-    mouseOut = (e) => {
+    mouseOut = () => {
         this.setState({
             currentHoverX: null,
             currentHoverY: null
@@ -40,44 +37,30 @@ class Board extends React.Component {
     }
 
     shipCounter = () => {
-        // const { squares } = this.props.state
         const placedShips = this.props.state.squares.activeBtn
         let shipCounter = 0
         for (let i = 0; i<= placedShips.length; i++) {
           if (placedShips[i] === false) {
-            console.log(`${shipCounter} SHIP PLACED`)
             shipCounter++
           }
         }
-
-        if(shipCounter === 5){
-            
-        }
-    
         if(shipCounter === 5 && this.props.state.isPlaying === true){
           this.props.clickActiveP1()
-          //firebase
         }
     }
 
 
 
     render() {    
-        console.log(this.props.state, '***')
         const { squares } = this.props.state.squares
         const mappedBoard = []
-        // const shipName = this.props.state.squares.ship.name
         const shipLength = this.props.state.squares.ship.length
-        console.log(shipLength, '***oijiojoijoijoij')
-     
         const col = this.state.currentHoverY
         const colY = this.state.currentHoverX
-
         const colHovers = []; // holds col indexes that we want to highlight
         let colHoversVert = [];
 
         //Code for hovering pieces
-
         if(this.props.state.squares.isHorizontal){
             if (col + shipLength <= 10) {
                 for(let i = 0; i < shipLength; i++) {

@@ -13,8 +13,7 @@ export default function WinLoseModal(props) {
         setModal(!modal)
     }
 
-    if (props.winner === 0) {
-        console.log('no winner yet')
+    if (!props.winner === 0) {
     } else if (props.winner === 1) {
         if (props.player === 1) {
             title = 'You won!'
@@ -41,7 +40,7 @@ export default function WinLoseModal(props) {
         <React.Fragment>
             <Modal isOpen={ props.winner > 0 ? modal : test } toggle={ toggle } backdrop={ modalBool } centered={ modalBool }  autoFocus={ modalBool }>
                 <ModalHeader className="modal-header" toggle={ toggle }>
-                    <h2 className="title-ready">{ title }</h2>
+                    <p className="title-ready">{ title }</p>
                 </ModalHeader>
                 <ModalBody className="modal-style">
                     <p>{ body }</p>

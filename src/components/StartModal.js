@@ -34,11 +34,13 @@ function StartModal (props) {
   }
 
   return (
-    <div>
-      <h5>{ link }</h5>
+    <React.Fragment>
+      <div>
+        <p>{ link }</p>
+      </div>
     <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>
-        <ModalHeader className="modal-header" toggle={toggle}><h2 className="title-ready">Ready?</h2></ModalHeader>
+        <ModalHeader className="modal-header" toggle={toggle}><p className="title-ready">Ready?</p></ModalHeader>
         <ModalBody className="modal-style">
           Connect with your opponent by sharing this link: <span style={{color: '#5da6e3'}}>{link}</span>
         </ModalBody>
@@ -47,7 +49,7 @@ function StartModal (props) {
           <Button id='delete-btn' onClick={toggle}>Close</Button>
         </ModalFooter>
       </Modal>
-    </div>
+    </React.Fragment>
   )
 }
 

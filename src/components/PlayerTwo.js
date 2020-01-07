@@ -17,7 +17,6 @@ class PlayerTwo extends Component {
   state = {winner: 0}
 
   updateToDbState (gameId, snapVal) {
-    console.log('SOMETHING IN DATABASE CHANGED:', gameId, snapVal)
     this.props.updateState(snapVal)
   }
 
@@ -27,26 +26,18 @@ class PlayerTwo extends Component {
       const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
       listenGameData(gameId, updateToDbStateBoundToMe)
     }
-
   }
 
   componentDidMount () {
     const { gameId } = this.props.match.params
     fetchGameData(gameId)
       .then((data)=>{
-        console.log('the then promise!!!!!!!!!!!!!!!!!!!!!!!!!!')
         this.props.updateState(data.val()[gameId])
       })
-    //   if (gameId) {
-    //     const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
-    //     listenGameData(gameId, updateToDbStateBoundToMe)
-    //   }
   }
 
   startGame = () => {
-    console.log('startgame', this.props.state.squares.player2Ready)
         if (this.props.state.squares.player2Ready) {
-            console.log('sending p2 stuff')
             updatePlayer2Data(this.props.state.squares.gameId, this.props.state.squares)
         }
   }
@@ -54,10 +45,8 @@ class PlayerTwo extends Component {
   render () {
     let winner = 0
     if (this.props.state.squares.p2total === 0) {
-      console.log('player one wins!!!!')
         winner = 1
     } else if (this.props.state.squares.p1total === 0){
-      console.log('player two wins!!!!')
         winner = 2
     }
     return (
@@ -75,16 +64,11 @@ class PlayerTwo extends Component {
               <div className={ this.props.state.squares.player2Ready ? 'counter-container': 'counter-container-hidden' }>
                 <P2counter counter={this.props.state.p2total}/>
               </div>
-
             <div className='game'>
-                {/* <h5>Player Two</h5> */}
-
                 <div className='game-board'>
                   <PlayerTwoOwn />
                 </div>
-            {/* <h5>Player One</h5> */}
             <div className='second-board'>
-                  
                   <PlayerTwoOpponent />
                 </div>
             </div>
@@ -92,7 +76,6 @@ class PlayerTwo extends Component {
           </div>
         <Chat player={2}/>
         </div>
-     
       </React.Fragment>
     )
   }

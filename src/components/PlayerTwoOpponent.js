@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Square from './Square'
+import { P2ATTACK } from '../actions/actionTypes'
 
 const initialState = {
     currentHoverX: null,
     currentHoverY: null
 }
 
-
 class PlayerTwoOpponent extends Component {
   
 state = initialState
 
     clickItem = (e) => {
-        console.log('clicked')
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
     }
@@ -22,10 +21,6 @@ state = initialState
 
 
     render() {
-     
-        
-          
-        // console.log('PLAYER TWO OPPONENT PROPS', this.props)
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             this.props.state.squares.squares[i].map((singleSquare, idx) => {
@@ -47,7 +42,7 @@ const mapStateToProps = state => {
 
   const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch( {type: 'P2ATTACK', key: squareKey})
+        clickSquare: (squareKey) => dispatch( {type: P2ATTACK, key: squareKey})
     }
   }
 
