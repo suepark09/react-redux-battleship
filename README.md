@@ -39,3 +39,22 @@ key: 'OA',
 ship: true || false,
 color: false
 ~~~~
+PLAYER ONE
+state.active
+false = has not clicked a ship
+true = clicked a ship to place
+
+state.ship
+updates with the selected ship to place
+
+Once player one places their last ship
+state.player1Ready = true
+state.active = false
+
+
+PLAYER TWO
+Once P2 sets last ship
+state.player2Ready = true
+state.active2 = false
+state.isPlaying = true
+
