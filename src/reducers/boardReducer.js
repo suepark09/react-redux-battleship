@@ -13,7 +13,6 @@ const initialState = {
   activeP2: false,
   visibleLabel: [true, true, true, true, true],
   visibleLabel2: [true, true, true, true, true],
-  playerTurnDisplay: ['Set Your Ships!!', 'Attack Your Opponent!', 'Wait For Opponent Move', 'Waiting On Opponent To Set Ships...'],
   activeBtn: [true, true, true, true, true],
   activeBtn2: [true, true, true, true, true],
   isHorizontal: true,
@@ -125,10 +124,32 @@ const checkBoard2 = (state, action) => {
     //     this.props.clickActiveP1()
     //     //firebase
     //   }
+    return stateCopy 
+}
+
+
+const getCounter = (squares) =>{
+    let ships = 0
+    for(let row in squares) { 
+        for (let col in squares[row]){
+            const square = squares[row][col]
+            if(square.ship && square.color){
+                ships++
+            }
+        }
+    }
+    return 17 - ships
+} 
+
+const setCounts = (state) => {
+    let stateCopy = deepCopy(state)
+    let p1Count = getCounter(state.squares)
+    let p2Count = getCounter(state.squares2)
+    stateCopy.p1total = p1Count
+    stateCopy.p2total = p2Count
     return stateCopy
 
 
-    
 }
 
 
@@ -400,12 +421,9 @@ const boardReducer = (state = initialState, action) => {
       }
     case P1ATTACK:
   
-    // if(stateCopy.isPlaying){
-    //     stateCopy.activeP1 = true
-       
 
     // }
-       if(stateCopy.activeP1){
+       if(stateCopy.isPlaying){
          
         const a = action.key.slice(0, 1)
         const b = action.key.slice(1, 2)
@@ -414,33 +432,31 @@ const boardReducer = (state = initialState, action) => {
         console.log(attackSquare1.ship, "attack ship!!!")
             
      
-            stateCopy.activeP1 = false
-            stateCopy.activeP2 = true
-        
+            stateCopy.isPlaying = false
      
         if(attackSquare1.ship){
             stateCopy.p2total --
         }
       }
      
-
-    return stateCopy
+      let stateCopy2 = setCounts(stateCopy)
+    return stateCopy2
     
     case P2ATTACK:
     console.log('its clucked!!!')
-      if(stateCopy.activeP2){
+      if(!stateCopy.isPlaying){
         const o = action.key.slice(0, 1)
         const p = action.key.slice(1, 2)
         const attackSquare2 = stateCopy.squares[o].find(square => square.key === `${o}${p}`)
         attackSquare2.color = true;
-        stateCopy.activeP2 = false
-        stateCopy.activeP1 = true;
+        stateCopy.isPlaying = true
+       
         if(attackSquare2.ship){
             stateCopy.p1total --
         }
       }
-//update 
-      return stateCopy
+      let stateCopy3 = setCounts(stateCopy)
+      return stateCopy3
     case ORIENTATION:
         let orientation = !stateCopy.isHorizontal
         console.log(orientation, 'orientation')

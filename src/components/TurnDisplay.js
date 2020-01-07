@@ -2,18 +2,37 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class TurnDisplay extends Component {
- render() {
-        const state = this.props.state.squares
 
-        let turn = state.playerTurnDisplay[0]
+    constructor(){
+        super()
+        this.playerTurnDisplay = ['Set Your Ships!!', 'Attack Your Opponent!', 'Wait For Opponent Move', 'Waiting On Opponent To Set Ships...']
+    }
+
+ render() {
+       
+        const state = this.props.state.squares
+        let turn = this.playerTurnDisplay[0]
         // console.log(turn, 'this da turn')
-        if(state.activeP1){
-            turn = state.playerTurnDisplay[1]
-        } else if (state.activeP2) {
-            turn = state.playerTurnDisplay[2]
+        if(this.props.player === 1){
+            if(state.player1Ready && state.player2Ready){
+                if(state.isPlaying){
+                    turn = this.playerTurnDisplay[1]
+                } else {
+                    turn = this.playerTurnDisplay[2]
+                } 
+            }
         } else {
-            turn = state.playerTurnDisplay[0]
+            if(state.player1Ready && state.player2Ready){
+                if(!state.isPlaying){
+                    turn = this.playerTurnDisplay[1]
+                } else {
+                    turn = this.playerTurnDisplay[2]
+                } 
+            }
         }
+
+       
+      
 
         return (
             <div className='turn-display'>

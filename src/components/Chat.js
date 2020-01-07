@@ -54,7 +54,7 @@ class Chat extends React.Component {
         <div className='text-center chat-container'>
           <div className='chat'>
               <div className='turn-display'>
-                <TurnDisplay/>
+                <TurnDisplay player={this.props.player}/>
               </div>
               <div className='name-container'>
                 <div className='name-container2'>
