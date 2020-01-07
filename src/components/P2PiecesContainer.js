@@ -99,7 +99,7 @@ handleClickOrientation = () => {
             <h5>Select Your Ship</h5>
             <div className="box-placeholder"></div>
                 <Form className="form2">
-                    <ul key='inline-radio' className='mb-3 list-unstyled'>
+                    <ul key='inline-radio' className='mb-3 list-unstyled2'>
                         
                         <label className={ patrolBoat }>
                             <input id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn2[this.ships[4].id]} />
