@@ -21,6 +21,7 @@ class Board2 extends React.Component {
     }
 
 
+
     render() {      
         console.log('the props in board2', this.props.props.squares)
         // console.log(this.props.state, '***')
@@ -72,7 +73,7 @@ class Board2 extends React.Component {
             squares2[i].map((singleSquare, idx) => {
                 //horizontal hover code
                 
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.props.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.props.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut} hidden={true}/>)
             })
         }
 

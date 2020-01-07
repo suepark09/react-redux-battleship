@@ -8,19 +8,41 @@ class Square extends React.Component {
 
   render () {
    
-    let color = this.props.square.color || this.props.square.giveColor? 'grey-square' : 'square' 
+    let color = null
 
     if (this.props.hovered) {
         color = 'green'
         console.log('HUR')
     }
 
-    //HIT COLOR
-    
-    if (this.props.square.ship && this.props.square.color) {
-      console.log('turns red')
-      color = 'red'
+    if(this.props.hidden){
+      color = 'square'
+      if (this.props.square.ship && this.props.square.color) {
+       
+        color = 'red'
+      } else if (this.props.square.color) {
+   
+        color = 'white'
+      } 
+    } else {
+      color = this.props.square.giveColor ? 'grey-square' : 'square' 
+      if (this.props.hovered) {
+        color = 'green'
+        console.log('HUR')
     }
+      if (this.props.square.ship && this.props.square.color) {
+      
+        color = 'red'
+      }
+      else if (this.props.square.color) {
+    
+        color = 'white'
+      } 
+  
+    }
+
+    //HIT COLOR
+ 
 
     const disabled = this.props.active ? '' : 'disabled'
 
