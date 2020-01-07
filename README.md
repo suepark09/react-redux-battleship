@@ -11,6 +11,7 @@ React application utilizing Redux.
 # Technologies
 - Firebase Realtime Database
 - React/Redux
+- Redux-Sagas
 
 # Game Initialization
 - **Player 1** visits app (OPTIONAL: session is created for first time visitor)
@@ -61,3 +62,5 @@ state.player2Ready = true
 state.active2 = false
 state.isPlaying = true
 ![screenshot](./img/bs-progress.jpg)
+
+Special thanks to Abe
