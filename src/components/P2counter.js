@@ -15,8 +15,8 @@ class P2counter extends Component {
         
         }
         return 17 - ships
-
     } 
+
     p2counter = () =>{
         let ships = 0
         for(let row in this.props.state.squares.squares2) { 
@@ -29,13 +29,10 @@ class P2counter extends Component {
         
         }
         return 17 - ships
-
     } 
+
     render() {
-        console.log(this.props.state, '*******')
-       
         return (
-            
             <div className="row">
                  <div className="opponent-ship-count-container col-sm">
                     <h5>Your Ship Count</h5>
@@ -54,9 +51,4 @@ const mapStateToProps = state => {
     return { state }
 }
 
-
-
-export default connect(
-    mapStateToProps
-)(P2counter)
-
+export default connect(mapStateToProps)(P2counter)

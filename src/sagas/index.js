@@ -7,30 +7,26 @@ export function* watchBoard () {
         takeEvery(CLICKED2, clicked2Saga),
         takeEvery(P1ATTACK, atttack1Saga),
         takeEvery(P2ATTACK, atttack2Saga)
-        // takeEvery(CLICKED, clicked2Saga)
     ])
 }
 
-export function* clicked2Saga (action) {
-    yield console.log('HELLOOOOOO')
+export function* clicked2Saga () {
     const state = yield select()
-    yield console.log('WOOOOOOW',state)
     if (state.squares.player2Ready) {
         yield updatePlayer2Data(state.squares.gameId, state.squares)
     }
 }
 
-export function* atttack1Saga(action){
+export function* atttack1Saga(){
     const state = yield select()
     if(!state.squares.isPlaying){
         yield updatePlayer2Data(state.squares.gameId, state.squares)
     }
 }
 
-export function* atttack2Saga(action){
+export function* atttack2Saga(){
     const state = yield select()
     if(state.squares.isPlaying){
         yield updatePlayer2Data(state.squares.gameId, state.squares)
     }
-
 }

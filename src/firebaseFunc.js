@@ -23,7 +23,6 @@ export function keyGen (state) {
 }
 
 export function fetchGameData (gameId) {
-  console.log('FINDING GAME ON DATABASE WITH ID:', gameId)
   return gameRef.orderByKey().equalTo(gameId).once('value')
 }
 
@@ -38,13 +37,7 @@ export function updateGameData (gameId) {
 export function player1Turn (gameId) {
   return gameRef.child(gameId).update({ isPlaying: false })
 }
-//isplaying means player 1 can go, isplaying false means player2 can
 
 export function updatePlayer2Data (gameId, state) {
-  console.log('GAME ID', gameId)
   return gameRef.child(gameId).update({...state})
 }
-
-
-// to clear database...
-// firebase.database().ref().remove()

@@ -1,9 +1,8 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-// import P1counter from './P1counter'
 import { connect } from 'react-redux'
+import { ACTIVATE, ORIENTATION, DEACTIVATE_BOARD, DEACTIVATE_BUTTON } from '../actions/actionTypes'
 class PiecesContainer extends React.Component {
-
     constructor(props) {
         super(props);
         this.ships = [
@@ -14,26 +13,24 @@ class PiecesContainer extends React.Component {
             {name: 'Patrol Boat', length: 2, id: 4},
           ];
     }
- aircraftCarrier = (e) => {
+ aircraftCarrier = () => {
     this.props.activate(this.ships[0])
   }
 
-battleship = (e) => {
+battleship = () => {
     this.props.activate(this.ships[1])
   }
 
-submarine = (e) => {
+submarine = () => {
     this.props.activate(this.ships[2])
 }
 
-destroyer = (e) => {
+destroyer = () => {
     this.props.activate(this.ships[3])
 }
 
-patrolBoat = (e) => {
+patrolBoat = () => {
     this.props.activate(this.ships[4])
-    // let glow = document.getElementsByClassName( 'box' );
-    // console.log(glow, 'lelelleee')
 }
 
 handleClickOrientation = () => {
@@ -50,31 +47,7 @@ handleClickOrientation = () => {
     let submarine = this.props.state.squares.visibleLabel[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
     let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
-
-    
-    // let state = this.props.state.squares
-    // for(let i = 0; i < state.activeBtn.length; i++){
-    //     let counter = 0;
-    //     for(let i = 0; i < state.activeBtn.length; i++){
-
-    //         if(!state.activeBtn[i]){
-    //             counter++;
-    //             // console.log('counted!!!', state.activeBtn, counter)
-    //         }    
-    //         if(counter === 5){
-    //             state.isPlaying = true
-                
-    //         }
-    //         // state.activeBtn.push(true)
-          
-            
-    //     }
-    //     counter++
-    // }
  
-
-
-
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
@@ -82,7 +55,6 @@ handleClickOrientation = () => {
             <div className="box-placeholder"></div>
                 <Form className="form">
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
-                        
                         <label className= { patrolBoat }>
                             <input id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
                                 <div className="box-container">
@@ -90,7 +62,6 @@ handleClickOrientation = () => {
                                     <div className="box"></div>
                                 </div>
                         </label>
-                        
                         <label className= { destroyer }>
                             <input id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn[this.ships[3].id]} />
                             <div className="box-container">
@@ -99,7 +70,6 @@ handleClickOrientation = () => {
                                 <div className="box"></div>
                             </div>
                         </label>
-                        
                         <label className={ submarine }>
                             <input id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn[this.ships[2].id]} />
                             <div className="box-container">
@@ -108,7 +78,6 @@ handleClickOrientation = () => {
                                 <div className="box"></div>
                             </div>
                         </label>
-                        
                         <label className={ battleship }>
                             <input id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn[this.ships[1].id]} />
                             <div className="box-container">
@@ -118,7 +87,6 @@ handleClickOrientation = () => {
                                 <div className="box"></div>
                             </div>
                         </label>
-
                         <label className={ aircraftCarrier }>
                             <input id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn[this.ships[0].id]} />
                             <div className="box-container">
@@ -141,18 +109,16 @@ handleClickOrientation = () => {
  }
 }
 
-
 const mapStateToProps = state => {
     return { state }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        activate: (ship) => dispatch({type: 'ACTIVATE' , payload: ship}),
-        orientation: () => dispatch({type: 'ORIENTATION'}),
-        deactivate: () => dispatch({type: 'DEACTIVATE_BOARD'}),
-        deactivateBtn: (ship) => dispatch({type: 'DEACTIVATE_BUTTON', payload: ship })
-
+        activate: (ship) => dispatch({ type: ACTIVATE, payload: ship }),
+        orientation: () => dispatch({ type: ORIENTATION }),
+        deactivate: () => dispatch({ type: DEACTIVATE_BOARD }),
+        deactivateBtn: (ship) => dispatch({ type: DEACTIVATE_BUTTON, payload: ship })
     }
 }
 

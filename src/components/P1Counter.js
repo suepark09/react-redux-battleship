@@ -30,10 +30,7 @@ class P1counter extends Component {
 
     } 
     render() {
-        console.log(this.props.state, '*******')
-       
         return (
-            
             <div className="row">
                  <div className="opponent-ship-count-container col-sm">
                     <h5>Your Ship Count</h5>
@@ -52,8 +49,4 @@ const mapStateToProps = state => {
     return { state }
 }
 
-
-
-export default connect(
-    mapStateToProps
-)(P1counter)
+export default connect(mapStateToProps)(P1counter)

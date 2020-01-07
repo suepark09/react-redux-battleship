@@ -4,10 +4,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 io.on('connection', socket => {
-  const { id } = socket.client
-  console.log(`User connected: ${id}`)
   socket.on('chat message', ({ nickname, msg }) => {
-    console.log(`${nickname}: ${msg}`)
     io.emit('chat message', { nickname, msg})
   })
 })

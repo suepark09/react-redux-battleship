@@ -1,11 +1,10 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import { connect } from 'react-redux'
-import { UPDATE_ISPLAYING } from '../actions/actionTypes'
+import { ACTIVATE2, ORIENTATION2, DEACTIVATE_BOARD2, DEACTIVATE_BUTTON2, UPDATE_ISPLAYING } from '../actions/actionTypes'
 import '../App.css'
 
 class P2PiecesContainer extends React.Component {
-
     constructor(props) {
         super(props);
         this.counter = 0
@@ -17,48 +16,25 @@ class P2PiecesContainer extends React.Component {
             {name: 'Patrol Boat', length: 2, id: 4},
           ];
     }
+
  aircraftCarrier = (e) => {
-    console.log('you clicked on aircraft carrier', e.target.value)
     this.props.activate2(this.ships[0])
-    // this.props.deactivate2Btn(this.ships[0])
-    this.shipCounter()
   }
 
 battleship = (e) => {
-    console.log('you clicked on battleship', e.target.value)
     this.props.activate2(this.ships[1])
-    // this.props.deactivate2Btn(this.ships[1])
-    this.shipCounter()
   }
 
 submarine = (e) => {
-    console.log('you clicked on submarine', e.target.value)
     this.props.activate2(this.ships[2])
-    this.shipCounter()
-
 }
 
 destroyer = (e) => {
-    console.log('you clicked on destroyer', e.target.value)
     this.props.activate2(this.ships[3])
-    this.shipCounter()
 }
 
 patrolBoat = (e) => {
-    console.log('you clicked on patrol boat', e.target.value)
     this.props.activate2(this.ships[4])
-    console.log('what is activate', this.props.activate)
-    this.shipCounter()
-}
-
-shipCounter = () => {
-    // console.log('test***************')
-    // this.counter++
-    // if(this.counter === 5 ){
-    //     // this.props.updateIsPlaying(this.props.state.squares.gameId)
-    //     updateGameData(this.props.state.squares.gameId)
-    //     console.log('shipsCounted')
-    // }
 }
 
 handleClickOrientation = () => {
@@ -79,19 +55,12 @@ handleClickOrientation = () => {
     // create function called orientation
     //if this.props.orientation is true...
     //call in button using this.orientation
-  
 
-   
-
-   
-   
-    console.log('wut r active buttons!', this.props.state)
     let patrolBoat = this.props.state.squares.visibleLabel2[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel2[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
     let submarine = this.props.state.squares.visibleLabel2[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
     let battleship = this.props.state.squares.visibleLabel2[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel2[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
-   
 
     return (
         <div className="ship-config-container">
@@ -154,15 +123,9 @@ handleClickOrientation = () => {
             <h5>Ship Orientation</h5>
             <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
-
-   
-          
-          
         </div>
       )
  }
- 
-
 }
 
 const mapStateToProps = state => {
@@ -171,13 +134,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        activate2: (ship) => dispatch({type: 'ACTIVATE2' , payload: ship}),
-        orientation2: () => dispatch({type: 'ORIENTATION2'}),
-        deactivate2: () => dispatch({type: 'DEACTIVATE_BOARD2'}),
-        deactivateBtn2: (ship) => dispatch({type: 'DEACTIVATE_BUTTON2', payload: ship }),
+        activate2: (ship) => dispatch({ type: ACTIVATE2, payload: ship }),
+        orientation2: () => dispatch({ type: ORIENTATION2 }),
+        deactivate2: () => dispatch({ type: DEACTIVATE_BOARD2 }),
+        deactivateBtn2: (ship) => dispatch({ type: DEACTIVATE_BUTTON2, payload: ship }),
         updateIsPlaying: (gameId) => dispatch({ type: UPDATE_ISPLAYING, payload: gameId})
-        
-
     }
 }
 

@@ -13,8 +13,7 @@ export default function WinLoseModal(props) {
         setModal(!modal)
     }
 
-    if (props.winner === 0) {
-        console.log('no winner yet')
+    if (!props.winner === 0) {
     } else if (props.winner === 1) {
         if (props.player === 1) {
             title = 'You won!'

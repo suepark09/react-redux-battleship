@@ -4,8 +4,6 @@ import '../App.css'
 import TurnDisplay from './TurnDisplay'
 import ScrollableFeed from 'react-scrollable-feed'
 
-// const PORT = process.env.PORT || 5000
-
 const socket = io.connect('https://chat-server-dc.herokuapp.com/')
 
 class Chat extends React.Component {
@@ -21,10 +19,6 @@ class Chat extends React.Component {
             chat: [...this.state.chat, { nickname, msg }]
           })
         })
-      }
-
-      componentDidUpdate () {
-        console.log('it updated')
       }
 
       onTextChange = e => {

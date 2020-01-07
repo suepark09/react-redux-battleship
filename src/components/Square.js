@@ -3,47 +3,35 @@ import '../App.css'
 import { connect } from 'react-redux'
 
 class Square extends React.Component {
-
-
-
   render () {
    
     let color = null
 
     if (this.props.hovered) {
         color = 'green'
-        console.log('HUR')
     }
 
     if(this.props.hidden){
       color = 'square'
       if (this.props.square.ship && this.props.square.color) {
-       
         color = 'red'
       } else if (this.props.square.color) {
-   
         color = 'white'
       } 
     } else {
       color = this.props.square.giveColor ? 'grey-square' : 'square' 
       if (this.props.hovered) {
         color = 'green'
-        console.log('HUR')
     }
       if (this.props.square.ship && this.props.square.color) {
-      
         color = 'red'
       }
       else if (this.props.square.color) {
-    
         color = 'white'
       } 
-  
     }
 
     //HIT COLOR
- 
-
     const disabled = this.props.active ? '' : 'disabled'
 
     return (
@@ -54,15 +42,6 @@ class Square extends React.Component {
   return { state }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    // checkSquare: (squareKey) => dispatch({ type: 'P1ATTACK', key: squareKey })
-
-  }
-}
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps
 )(Square)
-
-// export default Square

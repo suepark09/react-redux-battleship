@@ -6,16 +6,15 @@ import Board2 from './Board2'
 import Instructions from './Instructions'
 import StartModal from './StartModal'
 import Chat from './Chat'
-import {connect} from 'react-redux'
-import {UPDATE_STATE} from '../actions/actionTypes'
-import {listenGameData} from '../firebaseFunc'
+import { connect } from 'react-redux'
+import { UPDATE_STATE } from '../actions/actionTypes'
+import { listenGameData } from '../firebaseFunc'
 import P1counter from './P1Counter'
 
 class PlayerOne extends Component {
     state = {winner: 0}
 
     updateToDbState (gameId, snapVal) {
-        console.log('updateToDbState:', gameId, snapVal)
         this.props.updateState(snapVal)
       }
     
@@ -30,15 +29,12 @@ class PlayerOne extends Component {
     render() {
       let winner = 0
       if (this.props.state.squares.p2total === 0) {
-        console.log('player one wins!!!!')
           winner = 1
       } else if (this.props.state.squares.p1total === 0){
-        console.log('player two wins!!!!')
           winner = 2
       }
         return (
           <React.Fragment>
-          {/* { this.props.state.squares.squares.p1total === 0 ? <WinLoseModal /> : null } */}
           <WinLoseModal winner={ winner } player={1} />
             <div className='d-flex app-container'>   
             <div className= 'game-container'>
@@ -55,16 +51,13 @@ class PlayerOne extends Component {
                       <Board  />
                     </div>
                     <div className='second-board'>
-                        {/* <Board2 props={ this.props.state } /> */}
                         { this.props.state.squares.player1Ready && this.props.state.squares.player2Ready ? <Board2 props={ this.props.state }/> : null}
                     </div>
                     <div className='instructions-container'>
                       <div className="instructions">
-                        {/* <Instructions /> */}
                         { this.props.state.squares.player1Ready && this.props.state.squares.player2Ready ? null : <Instructions />}
                       </div>
                       <div className={ this.props.state.squares.player1Ready ? 'start-btn-container': 'start-btn-container-closed' }>
-                        {/* <StartModal props={this.props.state.squares} /> */}
                         { this.props.state.squares.player1Ready && !this.props.state.squares.player2Ready ? <StartModal props={ this.props.state.squares }/> : null  }
                       </div>
                     </div>
