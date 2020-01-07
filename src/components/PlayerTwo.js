@@ -57,13 +57,10 @@ class PlayerTwo extends Component {
   }
 
   render () {
-    // let state = this.props.state.squares
-  
-
-
+    const winBool = false
     return (
       <React.Fragment>
-        <WinLoseModal/>
+        <WinLoseModal win={ winBool } />
         <div className='d-flex app-container'>
           <div className='game-container'>
             <div className='title'>

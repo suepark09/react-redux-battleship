@@ -26,10 +26,11 @@ class PlayerOne extends Component {
       }
 
     render() {
+        const winBool = true
         return (
           <React.Fragment>
           {/* { this.props.state.squares.squares.p1total === 0 ? <WinLoseModal /> : null } */}
-          <WinLoseModal/>
+          <WinLoseModal win={ winBool } />
             <div className='d-flex app-container'>   
             <div className= 'game-container'>
               <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>

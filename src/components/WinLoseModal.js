@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
-export default function WinLoseModal() {
+export default function WinLoseModal(props) {
+    console.log('DID YOU WIN???', props)
 
     const [modal, setModal] = useState(true)
     const modalBool = true
@@ -11,9 +12,13 @@ export default function WinLoseModal() {
         setModal(!modal)
     }
 
-    const title = 'TITLE TEXT'
+    let title = 'You won!'
+    let body = `You destroyed all your opponent's ships!`
 
-    const body = 'BODY TEXT'
+    if (props.win) {
+        title = 'You lost...'
+        body = 'Your opponenent destroyed all your ships.'
+    }
 
     return (
         <React.Fragment>
@@ -25,7 +30,6 @@ export default function WinLoseModal() {
                     <p>{ body }</p>
                 </ModalBody>
                 <ModalFooter className="modal-style">
-                    <Button onClick={ toggle }>Start New Game</Button>
                     <Button id='delete-btn' onClick={ toggle }>Close</Button>
                 </ModalFooter>
             </Modal>
