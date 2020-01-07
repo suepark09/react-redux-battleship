@@ -12,7 +12,7 @@ import { watchBoard } from './sagas/index'
 
 const sagaMiddleware = createSagaMiddleware()
 
-const store = createStore(allReducers, compose(applyMiddleware(thunk, sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+const store = createStore(allReducers, compose(applyMiddleware(thunk, sagaMiddleware)))
 
 sagaMiddleware.run(watchBoard)
 
