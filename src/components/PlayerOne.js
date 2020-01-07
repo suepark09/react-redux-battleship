@@ -12,6 +12,7 @@ import {listenGameData} from '../firebaseFunc'
 import P1counter from './P1Counter'
 
 class PlayerOne extends Component {
+    state = {winner: 0}
 
     updateToDbState (gameId, snapVal) {
         console.log('updateToDbState:', gameId, snapVal)
@@ -27,11 +28,18 @@ class PlayerOne extends Component {
       }
 
     render() {
-        const winBool = true
+      let winner = 0
+      if (this.props.state.squares.p2total === 0) {
+        console.log('player one wins!!!!')
+          winner = 1
+      } else if (this.props.state.squares.p1total === 0){
+        console.log('player two wins!!!!')
+          winner = 2
+      }
         return (
           <React.Fragment>
           {/* { this.props.state.squares.squares.p1total === 0 ? <WinLoseModal /> : null } */}
-          <WinLoseModal win={ winBool } />
+          <WinLoseModal winner={ winner } player={1} />
             <div className='d-flex app-container'>   
             <div className= 'game-container'>
               <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>

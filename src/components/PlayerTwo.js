@@ -14,17 +14,12 @@ import P2PiecesContainer from './P2PiecesContainer'
 import {updatePlayer2Data} from '../firebaseFunc'
 
 class PlayerTwo extends Component {
+  state = {winner: 0}
 
   updateToDbState (gameId, snapVal) {
     console.log('SOMETHING IN DATABASE CHANGED:', gameId, snapVal)
     this.props.updateState(snapVal)
   }
-
-  // test() {
-  //   return (dispatch) => {
-      
-  //   }
-  // }
 
   componentDidUpdate () {
     const { gameId } = this.props.match.params
@@ -32,8 +27,8 @@ class PlayerTwo extends Component {
       const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
       listenGameData(gameId, updateToDbStateBoundToMe)
     }
-  }
 
+  }
 
   componentDidMount () {
     const { gameId } = this.props.match.params
@@ -57,10 +52,17 @@ class PlayerTwo extends Component {
   }
 
   render () {
-    const winBool = false
+    let winner = 0
+    if (this.props.state.squares.p2total === 0) {
+      console.log('player one wins!!!!')
+        winner = 1
+    } else if (this.props.state.squares.p1total === 0){
+      console.log('player two wins!!!!')
+        winner = 2
+    }
     return (
       <React.Fragment>
-        <WinLoseModal win={ winBool } />
+        <WinLoseModal winner={ winner } player={2} />
         <div className='d-flex app-container'>
           <div className='game-container'>
             <div className='title'>
