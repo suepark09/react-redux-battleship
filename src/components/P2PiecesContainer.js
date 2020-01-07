@@ -71,7 +71,7 @@ handleClickOrientation = () => {
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
                         <label className={ patrolBoat }>
-                            <input id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn2[this.ships[4].id]} />
+                            <input id="patrol-boat" className="radio" inline='true' name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn2[this.ships[4].id]} />
                             <div className="box-container">
                                 <div className="box"></div>
                             <   div className="box"></div>
@@ -79,7 +79,7 @@ handleClickOrientation = () => {
                         </label>
                         
                         <label className={ destroyer }>
-                            <input id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn2[this.ships[3].id]} />
+                            <input id="destroyer" className="radio" inline='true' name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn2[this.ships[3].id]} />
                             <div className="box-container">
                                 <div className="box"></div>
                                 <div className="box"></div>
@@ -88,7 +88,7 @@ handleClickOrientation = () => {
                         </label>
                         
                         <label className={ submarine }>
-                            <input id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn2[this.ships[2].id]} />
+                            <input id="submarine" className="radio" inline='true' name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn2[this.ships[2].id]} />
                             <div className="box-container">
                                 <div className="box"></div>
                                 <div className="box"></div>
@@ -97,7 +97,7 @@ handleClickOrientation = () => {
                         </label>
                         
                         <label className={ battleship }>
-                            <input id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn2[this.ships[1].id]} />
+                            <input id="battleship" className="radio" inline='true' name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn2[this.ships[1].id]} />
                             <div className="box-container">
                             <div className="box"></div>
                             <div className="box"></div>
@@ -107,7 +107,7 @@ handleClickOrientation = () => {
                         </label>
 
                         <label className={ aircraftCarrier }>
-                            <input id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn2[this.ships[0].id]} />
+                            <input id="aircraft-carrier" className="radio" inline='true' name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn2[this.ships[0].id]} />
                             <div className="box-container">
                             <div className="box"></div>
                             <div className="box"></div>
