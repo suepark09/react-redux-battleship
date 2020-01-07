@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
-class P2counter extends Component {
+class P1counter extends Component {
 
     p1counter = () =>{
         let ships = 0
@@ -39,11 +39,11 @@ class P2counter extends Component {
             <div className="row">
                  <div className="opponent-ship-count-container col-sm">
                     <h5>Your Ship Count</h5>
-                    <h5 className="opponent-ship-count">{this.p2counter()}</h5>
+                    <h5 className="opponent-ship-count">{this.p1counter()}</h5>
                 </div>
                   <div className="opponent-ship-count-container col-sm">
                     <h5>Opponent Ship Count</h5>
-                    <h5 className="opponent-ship-count">{this.p1counter()}</h5>
+                    <h5 className="opponent-ship-count">{this.p2counter()}</h5>
                 </div>
             </div>
         )
@@ -58,5 +58,4 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps
-)(P2counter)
-
+)(P1counter)

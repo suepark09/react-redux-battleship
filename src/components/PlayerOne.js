@@ -8,6 +8,7 @@ import Chat from './Chat'
 import {connect} from 'react-redux'
 import {UPDATE_STATE} from '../actions/actionTypes'
 import {listenGameData} from '../firebaseFunc'
+import P1counter from './P1Counter'
 
 class PlayerOne extends Component {
 
@@ -30,9 +31,12 @@ class PlayerOne extends Component {
             <div className= 'game-container'>
               <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
                 <div className="game-instructions-container">
-                  <div className='game-info'>
+                  <div className={ this.props.state.squares.player1Ready ? 'game-info-hidden': 'game-info' }>
                       <PiecesContainer />
                     </div>
+                <div className={ this.props.state.squares.player1Ready ? 'counter-container': 'counter-container-hidden' }  style={{width: "100%"}}>
+                    <P1counter counter={this.props.state.p2total}/>
+                </div>
                   <div className='game'>
                     <div className='game-board'>
                       <Board  />
