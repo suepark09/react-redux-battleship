@@ -32,8 +32,8 @@ destroyer = (e) => {
 
 patrolBoat = (e) => {
     this.props.activate(this.ships[4])
-    // let glow = document.getElementsByClassName( 'glow' );
-    // glow.style.backgroundColor = 'red'
+    // let glow = document.getElementsByClassName( 'box' );
+    // console.log(glow, 'lelelleee')
 }
 
 handleClickOrientation = () => {
@@ -84,42 +84,50 @@ handleClickOrientation = () => {
                     <ul key='inline-radio' className='mb-3 list-unstyled'>
                         
                         <label className= { patrolBoat }>
-                            <Form.Check id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
-                            {/* <div className='glow'> */}
-                                <div className="box"></div>
-                                <div className="box"></div>
-                            {/* </div> */}
+                            <input id="patrol-boat" className="radio" inline name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn[this.ships[4].id]} />
+                                <div className="box-container">
+                                    <div className="box"></div>
+                                    <div className="box"></div>
+                                </div>
                         </label>
                         
                         <label className= { destroyer }>
-                            <Form.Check id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn[this.ships[3].id]} />
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
+                            <input id="destroyer" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn[this.ships[3].id]} />
+                            <div className="box-container">
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                            </div>
                         </label>
                         
                         <label className={ submarine }>
-                            <Form.Check id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn[this.ships[2].id]} />
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
+                            <input id="submarine" className="radio" inline name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn[this.ships[2].id]} />
+                            <div className="box-container">
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                            </div>
                         </label>
                         
                         <label className={ battleship }>
-                            <Form.Check id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn[this.ships[1].id]} />
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
+                            <input id="battleship" className="radio" inline name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn[this.ships[1].id]} />
+                            <div className="box-container">
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                            </div>
                         </label>
 
                         <label className={ aircraftCarrier }>
-                            <Form.Check id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn[this.ships[0].id]} />
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
-                            <div className="box"></div>
+                            <input id="aircraft-carrier" className="radio" inline name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn[this.ships[0].id]} />
+                            <div className="box-container">
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                                <div className="box"></div>
+                            </div>
                         </label>
                     </ul>
                  </Form>
