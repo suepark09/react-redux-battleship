@@ -16,7 +16,6 @@ class PlayerTwoOwn extends React.Component {
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
     }
-
     mouseOver = (e) => {
         const x = e.target.value.slice(0, 1);
         const y = e.target.value.slice(1, 2);
@@ -27,14 +26,12 @@ class PlayerTwoOwn extends React.Component {
             currentHoverY: index
         })
     }
-
     mouseOut = (e) => {
         this.setState({
             currentHoverX: null,
             currentHoverY: null
         })
     }
-
     render() {
         const { squares2 } = this.props.state.squares
         const mappedBoard = []
@@ -43,7 +40,6 @@ class PlayerTwoOwn extends React.Component {
         const colY = this.state.currentHoverX
         const colHovers = []; // holds col indexes that we want to highlight
         let colHoversVert = [];
-
         //Code for hovering pieces
         if(typeof this.props.state.squares.ship2 !== 'undefined'){
             shipLength = this.props.state.squares.ship2.length
@@ -68,11 +64,9 @@ class PlayerTwoOwn extends React.Component {
                     }
                 }
             }
-    
         } else {
             shipLength = this.props.state
         }
-
         //Code for hovering pieces
         if(!this.props.state.active2){
             for (let i = 0; i < 10; i++) { 
@@ -92,15 +86,13 @@ class PlayerTwoOwn extends React.Component {
                 })
             }
         } 
-
-   return (
-       <div id="boardDiv">
-           { mappedBoard }
-       </div>
-   )
+return (
+    <div id="boardDiv">
+        { mappedBoard }
+    </div>
+)
 }
-    }
-
+}
 
 const mapStateToProps2 = state => {
     return { state }

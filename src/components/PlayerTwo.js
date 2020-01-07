@@ -9,17 +9,14 @@ import P2counter from './P2counter'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import 'firebase/database'
 import '../App.css'
-
 import P2PiecesContainer from './P2PiecesContainer'
 import {updatePlayer2Data} from '../firebaseFunc'
 
 class PlayerTwo extends Component {
   state = {winner: 0}
-
   updateToDbState (gameId, snapVal) {
     this.props.updateState(snapVal)
   }
-
   componentDidUpdate () {
     const { gameId } = this.props.match.params
     if (gameId) {
@@ -27,7 +24,6 @@ class PlayerTwo extends Component {
       listenGameData(gameId, updateToDbStateBoundToMe)
     }
   }
-
   componentDidMount () {
     const { gameId } = this.props.match.params
     fetchGameData(gameId)
@@ -35,13 +31,11 @@ class PlayerTwo extends Component {
         this.props.updateState(data.val()[gameId])
       })
   }
-
   startGame = () => {
         if (this.props.state.squares.player2Ready) {
             updatePlayer2Data(this.props.state.squares.gameId, this.props.state.squares)
         }
   }
-
   render () {
     let winner = 0
     if (this.props.state.squares.p2total === 0) {

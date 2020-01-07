@@ -11,15 +11,15 @@ class PiecesContainer extends React.Component {
             {name: 'Submarine', length: 3, id: 2},
             {name: 'Destroyer', length: 3, id: 3},
             {name: 'Patrol Boat', length: 2, id: 4},
-          ];
+        ];
     }
- aircraftCarrier = () => {
+aircraftCarrier = () => {
     this.props.activate(this.ships[0])
-  }
+}
 
 battleship = () => {
     this.props.activate(this.ships[1])
-  }
+}
 
 submarine = () => {
     this.props.activate(this.ships[2])
@@ -40,14 +40,14 @@ handleClickOrientation = () => {
     orientationBtn.innerHTML = text
 }
 
- render() {
+render() {
 
     let patrolBoat = this.props.state.squares.visibleLabel[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
     let submarine = this.props.state.squares.visibleLabel[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
     let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
- 
+
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">
@@ -98,14 +98,14 @@ handleClickOrientation = () => {
                             </div>
                         </label>
                     </ul>
-                 </Form>
+                </Form>
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
             <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
         </div>
-      )
+    )
  }
 }
 

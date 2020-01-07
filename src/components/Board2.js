@@ -16,8 +16,6 @@ class Board2 extends React.Component {
         this.setState(initialState)
     }
 
-
-
     render() {      
         const { squares2 } = this.props.props.squares
         const mappedBoard = []

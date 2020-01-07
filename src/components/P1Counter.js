@@ -24,14 +24,11 @@ class P1counter extends Component {
                     ships++
                 }
             }
-        
         }
         return 17 - ships
-
-    } 
+    }
     render() {
         return (
-            
             <div className="ship-count-row row">
                  <div className="opponent-ship-count-container col-sm">
                     <h5>Your Ship Count</h5>
