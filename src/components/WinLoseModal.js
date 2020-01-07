@@ -2,22 +2,19 @@ import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
 
 export default function WinLoseModal(props) {
-    console.log('DID YOU WIN???', props)
-
-    const [modal, setModal] = useState(false)
+    const [modal, setModal] = useState(true)
     const modalBool = true
-
-    const toggle = () => {
-        console.log('toggle modal')
-        setModal(!modal)
-    }
 
     let title = ''
     let body = ''
     let test = false
 
+    const toggle = () => {
+        setModal(!modal)
+    }
+
     if (props.winner === 0) {
-        console.log('nothing')
+        console.log('no winner yet')
     } else if (props.winner === 1) {
         if (props.player === 1) {
             title = 'You won!'
@@ -42,7 +39,7 @@ export default function WinLoseModal(props) {
 
     return (
         <React.Fragment>
-            <Modal isOpen={ test } toggle={ toggle } backdrop={ modalBool } centered={ modalBool }  autoFocus={ modalBool }>
+            <Modal isOpen={ props.winner > 0 ? modal : test } toggle={ toggle } backdrop={ modalBool } centered={ modalBool }  autoFocus={ modalBool }>
                 <ModalHeader className="modal-header" toggle={ toggle }>
                     <h2 className="title-ready">{ title }</h2>
                 </ModalHeader>
@@ -50,7 +47,8 @@ export default function WinLoseModal(props) {
                     <p>{ body }</p>
                 </ModalBody>
                 <ModalFooter className="modal-style">
-                    <Button id='delete-btn' onClick={ toggle }>Close</Button>
+                    <Button href={window.location.origin}>New Game</Button>
+                    <Button id='delete-btn' onClick={ () => toggle() }>Close</Button>
                 </ModalFooter>
             </Modal>
         </React.Fragment>
