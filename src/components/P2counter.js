@@ -39,11 +39,11 @@ class P2counter extends Component {
             <div className="row">
                  <div className="opponent-ship-count-container col-sm">
                     <h5>Your Ship Count</h5>
-                    <h5 className="opponent-ship-count">{this.p2counter()}</h5>
+                    <h5 className="opponent-ship-count">{this.props.state.squares.p2total}</h5>
                 </div>
                   <div className="opponent-ship-count-container col-sm">
                     <h5>Opponent Ship Count</h5>
-                    <h5 className="opponent-ship-count">{this.p1counter()}</h5>
+                    <h5 className="opponent-ship-count">{this.props.state.squares.p1total}</h5>
                 </div>
             </div>
         )

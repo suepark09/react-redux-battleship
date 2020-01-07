@@ -124,10 +124,32 @@ const checkBoard2 = (state, action) => {
     //     this.props.clickActiveP1()
     //     //firebase
     //   }
+    return stateCopy 
+}
+
+
+const getCounter = (squares) =>{
+    let ships = 0
+    for(let row in squares) { 
+        for (let col in squares[row]){
+            const square = squares[row][col]
+            if(square.ship && square.color){
+                ships++
+            }
+        }
+    }
+    return 17 - ships
+} 
+
+const setCounts = (state) => {
+    let stateCopy = deepCopy(state)
+    let p1Count = getCounter(state.squares)
+    let p2Count = getCounter(state.squares2)
+    stateCopy.p1total = p1Count
+    stateCopy.p2total = p2Count
     return stateCopy
 
 
-    
 }
 
 
@@ -417,8 +439,8 @@ const boardReducer = (state = initialState, action) => {
         }
       }
      
-
-    return stateCopy
+      let stateCopy2 = setCounts(stateCopy)
+    return stateCopy2
     
     case P2ATTACK:
     console.log('its clucked!!!')
@@ -433,8 +455,8 @@ const boardReducer = (state = initialState, action) => {
             stateCopy.p1total --
         }
       }
-//update 
-      return stateCopy
+      let stateCopy3 = setCounts(stateCopy)
+      return stateCopy3
     case ORIENTATION:
         let orientation = !stateCopy.isHorizontal
         console.log(orientation, 'orientation')
