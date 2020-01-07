@@ -63,4 +63,4 @@ state.active2 = false
 state.isPlaying = true
 ![screenshot](./img/bs-progress.jpg)
 
-Special thanks to Abe
+Special thanks to @amangona
