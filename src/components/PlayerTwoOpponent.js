@@ -23,7 +23,7 @@ state = initialState
         const mappedBoard = []
         for (let i = 0; i < 10; i++) {
             this.props.state.squares.squares[i].map((singleSquare, idx) => {
-                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} onClick={this.clickItem} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} active={!this.props.state.squares.isPlaying} />)
+                return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} onClick={this.clickItem} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} active={!this.props.state.squares.isPlaying} hidden={true} />)
             })
         }
 
