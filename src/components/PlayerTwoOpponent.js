@@ -16,9 +16,6 @@ state = initialState
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
     }
- 
- 
-
 
     render() {
         const mappedBoard = []
@@ -27,7 +24,6 @@ state = initialState
                 return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} onClick={this.clickItem} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} active={!this.props.state.squares.isPlaying} hidden={true} />)
             })
         }
-
         return (
             <div id="boardDiv">
                 { mappedBoard }

@@ -17,23 +17,23 @@ class P2PiecesContainer extends React.Component {
           ];
     }
 
- aircraftCarrier = (e) => {
+ aircraftCarrier = () => {
     this.props.activate2(this.ships[0])
   }
 
-battleship = (e) => {
+battleship = () => {
     this.props.activate2(this.ships[1])
   }
 
-submarine = (e) => {
+submarine = () => {
     this.props.activate2(this.ships[2])
 }
 
-destroyer = (e) => {
+destroyer = () => {
     this.props.activate2(this.ships[3])
 }
 
-patrolBoat = (e) => {
+patrolBoat = () => {
     this.props.activate2(this.ships[4])
 }
 
@@ -69,7 +69,6 @@ handleClickOrientation = () => {
             <div className="box-placeholder"></div>
                 <Form className="form2">
                     <ul key='inline-radio' className='mb-3 list-unstyled2'>
-                        
                         <label className={ patrolBoat }>
                             <input id="patrol-boat" className="radio" inline='true' name='ship' type='radio' label='' value='2' onClick={this.patrolBoat} disabled = {!this.props.state.squares.activeBtn2[this.ships[4].id]} />
                             <div className="box-container">
@@ -77,7 +76,6 @@ handleClickOrientation = () => {
                             <   div className="box"></div>
                             </div>
                         </label>
-                        
                         <label className={ destroyer }>
                             <input id="destroyer" className="radio" inline='true' name='ship' type='radio' label='' value='3' onClick={this.destroyer} disabled = {!this.props.state.squares.activeBtn2[this.ships[3].id]} />
                             <div className="box-container">
@@ -86,7 +84,6 @@ handleClickOrientation = () => {
                                 <div className="box"></div>
                             </div>
                         </label>
-                        
                         <label className={ submarine }>
                             <input id="submarine" className="radio" inline='true' name='ship' type='radio' label='' value='3' onClick={this.submarine} disabled = {!this.props.state.squares.activeBtn2[this.ships[2].id]} />
                             <div className="box-container">
@@ -95,7 +92,6 @@ handleClickOrientation = () => {
                                 <div className="box"></div>
                             </div>
                         </label>
-                        
                         <label className={ battleship }>
                             <input id="battleship" className="radio" inline='true' name='ship' type='radio' label='' value='4' onClick={this.battleship} disabled = {!this.props.state.squares.activeBtn2[this.ships[1].id]} />
                             <div className="box-container">
@@ -105,7 +101,6 @@ handleClickOrientation = () => {
                             <div className="box"></div>
                             </div>
                         </label>
-
                         <label className={ aircraftCarrier }>
                             <input id="aircraft-carrier" className="radio" inline='true' name='ship' type='radio' label='' value='5' onClick={this.aircraftCarrier} disabled = {!this.props.state.squares.activeBtn2[this.ships[0].id]} />
                             <div className="box-container">
@@ -117,7 +112,7 @@ handleClickOrientation = () => {
                             </div>
                         </label>
                     </ul>
-                 </Form>
+                </Form>
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>

@@ -13,11 +13,9 @@ import P1counter from './P1Counter'
 
 class PlayerOne extends Component {
     state = {winner: 0}
-
     updateToDbState (gameId, snapVal) {
         this.props.updateState(snapVal)
       }
-    
       componentDidUpdate () {
         const gameId = this.props.state.squares.gameId
         if (gameId) {
@@ -25,7 +23,6 @@ class PlayerOne extends Component {
           listenGameData(gameId, updateToDbStateBoundToMe)
         }
       }
-
     render() {
       let winner = 0
       if (this.props.state.squares.p2total === 0) {

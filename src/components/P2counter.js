@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 class P2counter extends Component {
-
     p1counter = () =>{
         let ships = 0
         for(let row in this.props.state.squares.squares) { 
@@ -16,7 +15,6 @@ class P2counter extends Component {
         }
         return 17 - ships
     } 
-
     p2counter = () =>{
         let ships = 0
         for(let row in this.props.state.squares.squares2) { 
@@ -30,7 +28,6 @@ class P2counter extends Component {
         }
         return 17 - ships
     } 
-
     render() {
         return (
             <div className="ship-count-row row">

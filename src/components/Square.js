@@ -5,13 +5,11 @@ import { connect } from 'react-redux'
 class Square extends React.Component {
   render () {
     let disabled = this.props.active ? '' : 'disabled'
-
     let color = null
 
     if (this.props.hovered) {
       color = 'green'
     }
-
     if (this.props.hidden) {
       color = 'square'
       if (this.props.square.ship && this.props.square.color) {
