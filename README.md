@@ -1,5 +1,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+![screenshot](./img/bs-set.jpg)
+
 # Battleship
 React application utilizing Redux.
 
@@ -59,4 +61,4 @@ Once P2 sets last ship
 state.player2Ready = true
 state.active2 = false
 state.isPlaying = true
-
+![screenshot](./img/bs-progress.jpg)
