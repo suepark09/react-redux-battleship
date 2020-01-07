@@ -6,7 +6,7 @@ import ScrollableFeed from 'react-scrollable-feed'
 
 // const PORT = process.env.PORT || 5000
 
-const socket = io.connect('http://localhost:5000')
+const socket = io.connect('https://chat-server-dc.herokuapp.com/')
 
 class Chat extends React.Component {
     constructor() {
