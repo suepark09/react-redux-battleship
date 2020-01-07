@@ -36,7 +36,7 @@ function StartModal (props) {
   return (
     <React.Fragment>
       <div>
-        <p>{ link }</p>
+        <p className="game-link">{ link }</p>
       </div>
     <Button id={ displayBtn } onClick={ ()=> handleStartGame() }>Start Game</Button>
       <Modal isOpen={modal} toggle={toggle} backdrop={backdrop} centered={backdrop} autoFocus={backdrop}>

@@ -467,6 +467,11 @@ ol, ul {
   padding-bottom: 13px;
 }
 
+.game-link {
+  color: #64B2F4;
+  font-size: 16px;
+}
+
 .name-container2 {
   /* height: 50px; */
   /* border: solid 1px red; */
