@@ -31,5 +31,20 @@ export function listenGameData (gameId, callbackFn) {
   gameRef.orderByKey().equalTo(gameId).on('child_changed', snap => callbackFn(gameId, snap.val()))
 }
 
+export function updateGameData (gameId) {
+  return gameRef.child(gameId).update({ isPlaying: true })
+}
+
+export function player1Turn (gameId) {
+  return gameRef.child(gameId).update({ isPlaying: false })
+}
+//isplaying means player 1 can go, isplaying false means player2 can
+
+export function updatePlayer2Data (gameId, state) {
+  console.log('GAME ID', gameId)
+  return gameRef.child(gameId).update({...state})
+}
+
+
 // to clear database...
 // firebase.database().ref().remove()

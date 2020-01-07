@@ -17,5 +17,18 @@ export const CLICKED2 = 'CLICKED2'
 export const ACTIVATE2 = 'ACTIVATE2'
 export const DEACTIVATE_BOARD2 = 'DEACTIVATE_BOARD2'
 export const DEACTIVATE_BUTTON2 = 'DEACTIVATE_BUTTON2'
+export const UPDATE_ISPLAYING = 'UPDATE_ISPLAYING'
+export const SHIPSSET = 'SHIPSSET'
+
+export const CLICKED2TEST = (action) => {
+    // return {
+    //     type: CLICKED2,
+        
+    // }
+
+    return function(dispatch) {
+        return dispatch({type: CLICKED2, action})
+    }
+}
 
 

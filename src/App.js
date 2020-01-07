@@ -1,18 +1,10 @@
 import React from 'react'
-import Board from './components/Board'
-import Chat from './components/Chat'
-import PiecesContainer from './components/PiecesContainer'
-import Instructions from './components/Instructions'
 import PlayerTwo from './components/PlayerTwo'
-import Board2 from './components/Board2'
-import { UPDATE_STATE } from './actions/actionTypes'
-import { listenGameData } from './firebaseFunc'
-import P1counter from './components/P1counter'
-// import TurnDisplay from './components/TurnDisplay'
+import PlayerOne from './components/PlayerOne'
+import { UPDATE_STATE} from './actions/actionTypes'
 import { connect } from 'react-redux'
 import './App.css'
 import { FIREBASE } from './actions/actionTypes'
-import StartModal from './components/StartModal'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,73 +13,31 @@ import {
 
 class App extends React.Component {
 
-  updateToDbState (gameId, snapVal) {
-    console.log('updateToDbState:', gameId, snapVal)
-    this.props.updateState(snapVal)
+  constructor(){
+    super()
+    this.shipCounter = 0
   }
 
-  componentDidUpdate () {
-    console.log('app did update')
-    const gameId = this.props.state.squares.gameId
-    if (gameId) {
-      const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
-      listenGameData(gameId, updateToDbStateBoundToMe)
-    }
-  }
+  // updateToDbState (gameId, snapVal) {
+  //   console.log('updateToDbState:', gameId, snapVal)
+  //   this.props.updateState(snapVal)
+  // }
+
+  // componentDidUpdate () {
+  //   console.log('app did update', this.props.match)
+  //   const gameId = this.props.state.squares.gameId
+  //   if (gameId) {
+  //     const updateToDbStateBoundToMe = this.updateToDbState.bind(this)
+  //     listenGameData(gameId, updateToDbStateBoundToMe)
+  //   }
+
+  // }
 
   render () {
-    console.log('APP PROPS', this.props)
-    const { squares } = this.props.state
-    const placedShips = squares.activeBtn
-    let shipCounter = 0
-    for (let i = 0; i<= placedShips.length; i++) {
-      if (placedShips[i] === false) {
-        console.log(`${shipCounter} SHIP PLACED`)
-        shipCounter++
-      }
-    }
-
-    console.log('wuts ship counter', shipCounter)
-    
     return (
     <Router>
       <Switch>
-      <Route exact path='/'>
-      <React.Fragment>
-        <div className='d-flex app-container'>   
-          <div className= 'game-container'>
-            <div className="title"><h1> React-Redux <span style={{color: "#64B2F4"}}>Battleship</span></h1></div>
-              <div className="game-instructions-container">
-                <div className={ shipCounter === 5 ? 'game-info-hidden': 'game-info' }>
-                    <PiecesContainer />
-                  </div>
-                  <div className={ shipCounter === 5 ? 'counter-container': 'counter-container-hidden' }>
-                  <P1counter counter={this.props.state.p2total}/>
-                  </div>
-                <div className='game'>
-                  <div className='game-board'>
-                    <Board />
-                  </div>
-                  <div className='second-board'>
-                    {/* <Board2 props={ this.props.state } /> */}
-                    { this.props.state.squares.activeP2 ? <Board2 props={ this.props.state }/> : null}
-                  </div>
-                  <div className='instructions-container'>
-                    <div className="instructions">
-                      {/* <Instructions /> */}
-                      { this.props.state.squares.activeP2 ? null : <Instructions />}
-                    </div>
-                    <div className={ shipCounter === 5 ? 'start-btn-container': 'start-btn-container-closed' }>
-                      {/* <StartModal props={squares} /> */}
-                      { this.props.state.squares.activeP2 ? null : <StartModal props={squares} />}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              </div>
-            <Chat />
-        </div>
-      </React.Fragment>
+      <Route exact path='/' component={PlayerOne}>
       </Route>
       <Route path='/game/:gameId' component={PlayerTwo} />
       </Switch>

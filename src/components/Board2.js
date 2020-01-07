@@ -1,6 +1,7 @@
 import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
+
 // import { clickSquare } from '../actions/index'
 
 const initialState = {
@@ -20,8 +21,6 @@ class Board2 extends React.Component {
     }
 
 
-
-
     render() {      
         console.log('the props in board2', this.props.props.squares)
         // console.log(this.props.state, '***')
@@ -36,6 +35,11 @@ class Board2 extends React.Component {
         const colHovers = []; // holds col indexes that we want to highlight
         let colHoversVert = [];
 
+
+        
+
+            
+        
         //Code for hovering pieces
 
         if(this.props.props.squares.isHorizontal){
@@ -62,6 +66,7 @@ class Board2 extends React.Component {
 
 
         
+        
       
         for (let i = 0; i < 10; i++) { 
             squares2[i].map((singleSquare, idx) => {
@@ -70,6 +75,8 @@ class Board2 extends React.Component {
                 return mappedBoard.push(<Square key={singleSquare.key + `${idx}`} coordinate={singleSquare.key} color={singleSquare.color} square={singleSquare} onClick={this.clickItem} active={!this.props.props.squares.active} mouseOver={this.mouseOver} mouseOut={this.mouseOut}/>)
             })
         }
+
+        
 
     
 //     render() {     // console.log(this.props.state, '***')
@@ -91,19 +98,19 @@ class Board2 extends React.Component {
     }
 
 
-// const mapStateToProps2 = state => {
-//     return { state }
-// }
+const mapStateToProps = state => {
+    return { state }
+}
 
-const mapDispatchToProps2 = dispatch => {
+const mapDispatchToProps = dispatch => {
     return {
         clickSquare: (squareKey) => dispatch( {type: 'P1ATTACK', key: squareKey})
     }
 }
 
 export default connect(
-    // mapStateToProps2,
-    mapDispatchToProps2
+    mapStateToProps,
+    mapDispatchToProps
 )(Board2)
 
 

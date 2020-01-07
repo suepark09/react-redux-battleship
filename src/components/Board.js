@@ -1,7 +1,6 @@
 import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
-// import { clickSquare } from '../actions/index'
 
 const initialState = {
     currentHoverX: null,
@@ -10,7 +9,6 @@ const initialState = {
 
 class Board extends React.Component {
 
-
     state = initialState
     
    
@@ -18,6 +16,7 @@ class Board extends React.Component {
     clickItem = (e) => {
         this.props.clickSquare(e.target.value);
         this.setState(initialState)
+        this.shipCounter()
     }
 
     mouseOver = (e) => {
@@ -38,6 +37,27 @@ class Board extends React.Component {
             currentHoverX: null,
             currentHoverY: null
         })
+    }
+
+    shipCounter = () => {
+        // const { squares } = this.props.state
+        const placedShips = this.props.state.squares.activeBtn
+        let shipCounter = 0
+        for (let i = 0; i<= placedShips.length; i++) {
+          if (placedShips[i] === false) {
+            console.log(`${shipCounter} SHIP PLACED`)
+            shipCounter++
+          }
+        }
+
+        if(shipCounter === 5){
+            
+        }
+    
+        if(shipCounter === 5 && this.props.state.isPlaying === true){
+          this.props.clickActiveP1()
+          //firebase
+        }
     }
 
 
@@ -111,7 +131,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}, {type: 'P1ATTACK', key: squareKey} )
+        clickSquare: (squareKey) => dispatch({type: 'CLICKED', key: squareKey}, {type: 'P1ATTACK', key: squareKey} ),
+        clickActiveP1: () => dispatch({type: 'SHIPSSET'}),
        
     }
 }
