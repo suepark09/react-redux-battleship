@@ -38,14 +38,17 @@ class PlayerOne extends Component {
                       <Board  />
                     </div>
                     <div className='second-board'>
-                        <Board2 props={ this.props.state } />
+                        {/* <Board2 props={ this.props.state } /> */}
+                        { this.props.state.squares.isPlaying ? <Board2 props={ this.props.state }/> : null}
                     </div>
                     <div className='instructions-container'>
                       <div className="instructions">
-                        <Instructions />
+                        {/* <Instructions /> */}
+                        { this.props.state.squares.isPlaying ? null : <Instructions />}
                       </div>
                       <div className={ this.props.state.squares.player1Ready ? 'start-btn-container': 'start-btn-container-closed' }>
-                        <StartModal props={this.props.state.squares} />
+                        {/* <StartModal props={this.props.state.squares} /> */}
+                        { this.props.state.squares.isPlaying ? null : <StartModal props={ this.props.state.squares } />}
                       </div>
                     </div>
                   </div>

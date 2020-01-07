@@ -56,21 +56,9 @@ class PlayerTwo extends Component {
   }
 
   render () {
-<<<<<<< HEAD
     // let state = this.props.state.squares
   
 
-=======
-    const { squares } = this.props.state
-    const placedShips = squares.activeBtn2
-    let shipCounter = 0
-    for (let i = 0; i<= placedShips.length; i++) {
-      if (placedShips[i] === false) {
-        console.log(`${shipCounter} SHIP PLACED`)
-        shipCounter++
-      }
-    }
->>>>>>> master
 
     return (
       <React.Fragment>
@@ -80,10 +68,10 @@ class PlayerTwo extends Component {
               <h1> React-Redux <span style={{color: '#64B2F4'}}>Battleship</span></h1>
             </div>
             <div className='game-instructions-conatiner'>
-            <div className={ shipCounter === 5 ? 'game-info-hidden': 'game-info' }>
+            <div className={ this.props.state.squares.player2Ready ? 'game-info-hidden': 'game-info' }>
                 <P2PiecesContainer />
               </div>
-              <div className={ shipCounter === 5 ? 'counter-container': 'counter-container-hidden' }>
+              <div className={ this.props.state.squares.player2Ready ? 'counter-container': 'counter-container-hidden' }>
                 <P1counter counter={this.props.state.p2total}/>
               </div>
 

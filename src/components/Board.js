@@ -1,8 +1,6 @@
 import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
-import { SHIPSSET} from '../actions/actionTypes'
-// import { clickSquare } from '../actions/index'
 
 const initialState = {
     currentHoverX: null,
@@ -42,7 +40,7 @@ class Board extends React.Component {
     }
 
     shipCounter = () => {
-        const { squares } = this.props.state
+        // const { squares } = this.props.state
         const placedShips = this.props.state.squares.activeBtn
         let shipCounter = 0
         for (let i = 0; i<= placedShips.length; i++) {

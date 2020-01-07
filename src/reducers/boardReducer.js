@@ -1,5 +1,5 @@
 import { CLICKED, ORIENTATION, ACTIVATE, FIREBASE, DEACTIVATE_BOARD, P1ATTACK, P2ATTACK, DEACTIVATE_BUTTON, UPDATE_STATE, DEACTIVATE_BUTTON2, ACTIVATE2, DEACTIVATE_BOARD2, ORIENTATION2, CLICKED2, UPDATE_ISPLAYING, SHIPSSET  } from '../actions/actionTypes'
-import { keyGen, updateGameData, updatePlayer2Data } from '../firebaseFunc'
+import { keyGen } from '../firebaseFunc'
 
 
 const initialState = {

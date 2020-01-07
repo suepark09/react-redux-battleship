@@ -4,9 +4,9 @@ import '../App.css'
 import TurnDisplay from './TurnDisplay'
 import ScrollableFeed from 'react-scrollable-feed'
 
-const PORT = process.env.PORT || 5000
+// const PORT = process.env.PORT || 5000
 
-const socket = io.connect(`${PORT}`)
+const socket = io.connect('http://localhost:5000')
 
 class Chat extends React.Component {
     constructor() {

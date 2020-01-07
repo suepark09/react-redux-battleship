@@ -32,7 +32,7 @@ destroyer = (e) => {
 
 patrolBoat = (e) => {
     this.props.activate(this.ships[4])
-    let glow = document.getElementsByClassName( 'glow' );
+    // let glow = document.getElementsByClassName( 'glow' );
     // glow.style.backgroundColor = 'red'
 }
 
@@ -51,7 +51,6 @@ handleClickOrientation = () => {
     let battleship = this.props.state.squares.visibleLabel[this.ships[1].id] ? 'piece-label' : 'piece-label-hidden'
     let aircraftCarrier = this.props.state.squares.visibleLabel[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
 
-<<<<<<< HEAD
     
     // let state = this.props.state.squares
     // for(let i = 0; i < state.activeBtn.length; i++){
@@ -64,18 +63,6 @@ handleClickOrientation = () => {
     //         }    
     //         if(counter === 5){
     //             state.isPlaying = true
-=======
-    let state = this.props.state.squares
-    for(let i = 0; i < state.activeBtn.length; i++){
-        let counter = 0;
-        for(let i = 0; i < state.activeBtn.length; i++){
-            if(!state.activeBtn[i]){
-                counter++;
-                console.log('counted!!!', state.activeBtn, counter)
-            }    
-            if(counter === 5){
-                state.activeP1 = true
->>>>>>> master
                 
     //         }
     //         // state.activeBtn.push(true)

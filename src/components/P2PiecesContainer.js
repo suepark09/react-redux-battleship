@@ -1,12 +1,8 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import { connect } from 'react-redux'
-<<<<<<< HEAD
-import { updateGameData } from '../firebaseFunc'
 import { UPDATE_ISPLAYING } from '../actions/actionTypes'
-=======
 import '../App.css'
->>>>>>> master
 
 class P2PiecesContainer extends React.Component {
 
@@ -78,7 +74,6 @@ handleClickOrientation = () => {
 
  render() {
 
-<<<<<<< HEAD
     // for orientation, vertical is false and horizontal
     // is true. by default it is true. 
     // create function called orientation
@@ -91,7 +86,6 @@ handleClickOrientation = () => {
    
    
     console.log('wut r active buttons!', this.props.state)
-=======
     let patrolBoat = this.props.state.squares.visibleLabel2[this.ships[4].id] ? 'piece-label' : 'piece-label-hidden'
     let destroyer = this.props.state.squares.visibleLabel2[this.ships[3].id] ? 'piece-label' : 'piece-label-hidden'
     let submarine = this.props.state.squares.visibleLabel2[this.ships[2].id] ? 'piece-label' : 'piece-label-hidden'
@@ -99,7 +93,6 @@ handleClickOrientation = () => {
     let aircraftCarrier = this.props.state.squares.visibleLabel2[this.ships[0].id] ? 'piece-label' : 'piece-label-hidden'
    
 
->>>>>>> master
     return (
         <div className="ship-config-container">
             <div className="ship-selection-container">

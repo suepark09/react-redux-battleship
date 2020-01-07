@@ -1,5 +1,5 @@
-import { all, call, put, takeEvery, takeLatest, select} from 'redux-saga/effects'
-import { CLICKED2, CLICKED } from '../actions/actionTypes'
+import { all, takeEvery, select} from 'redux-saga/effects'
+import { CLICKED2 } from '../actions/actionTypes'
 import {updatePlayer2Data} from '../firebaseFunc'
 
 export function* watchBoard () {

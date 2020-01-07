@@ -1,8 +1,6 @@
 import React from 'react';
 import Square from './Square';
 import { connect } from 'react-redux';
-import {updatePlayer2Data} from '../firebaseFunc'
-// import { clickSquare } from '../actions/index'
 
 const initialState = {
     currentHoverX: null,
