@@ -142,7 +142,7 @@ handleClickOrientation = () => {
             </div>
             <div className="ship-orientation-container">
             <h5>Ship Orientation</h5>
-           
+            <button id="orientation-btn" onClick={ this.handleClickOrientation } className='selector'>Horizontal</button>
             </div>
 
    
