@@ -10,6 +10,7 @@ import { connect } from 'react-redux'
 import { UPDATE_STATE } from '../actions/actionTypes'
 import { listenGameData } from '../firebaseFunc'
 import P1counter from './P1Counter'
+import GithubIcon from '../img/github.png'
 
 class PlayerOne extends Component {
     state = {winner: 0}
@@ -57,12 +58,21 @@ class PlayerOne extends Component {
                       <div className={ this.props.state.squares.player1Ready ? 'start-btn-container': 'start-btn-container-closed' }>
                         { this.props.state.squares.player1Ready && !this.props.state.squares.player2Ready ? <StartModal props={ this.props.state.squares }/> : null  }
                       </div>
+                      
                     </div>
+                    
                   </div>
+                 
+                </div>
+                <div className="footer">
+                  <a id="github-link" href='https://github.com/suepark09/react-redux-battleship'><img id="github-icon" src={require('../img/github.png')} height="28px"  /> GitHub</a>
                 </div>
                 </div>
+          
               <Chat player={1} />
+           
           </div>
+         
           </React.Fragment>
         )
     }

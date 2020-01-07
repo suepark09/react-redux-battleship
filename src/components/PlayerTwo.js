@@ -67,6 +67,9 @@ class PlayerTwo extends Component {
                 </div>
             </div>
           </div>
+          <div className="footer">
+                  <a id="github-link" href='https://github.com/suepark09/react-redux-battleship'><img id="github-icon" src={require('../img/github.png')} height="28px"  /> GitHub</a>
+                </div>
           </div>
         <Chat player={2}/>
         </div>
