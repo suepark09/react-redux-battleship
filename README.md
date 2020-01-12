@@ -12,6 +12,8 @@ React application utilizing Redux.
 - Firebase Realtime Database
 - React/Redux
 - Redux-Sagas
+- Express
+- Socket.io
 
 # Game Initialization
 - **Player 1** visits app (OPTIONAL: session is created for first time visitor)
