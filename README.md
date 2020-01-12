@@ -5,6 +5,7 @@
 React application utilizing Redux.
 
 # Start Game
+- If you would like to have this locally, go ahead and fork or clone our repo! Once you have it downloaded, run the next 2 commands on your command line!
 - `npm install`
 - `npm start`
 
@@ -14,6 +15,22 @@ React application utilizing Redux.
 - Redux-Sagas
 - Express
 - Socket.io
+
+# Action Items
+- Move player turn indicator to the middle of the board for better visibility
+- Make sure reactbattleship.com domain name works
+- Add sounds for hits and misses
+- Message stating which type of ship was sunk
+- Update the title tag to notify when it is your turn
+- Make website mobile friendly
+
+## Team Members
+
+- [Jerome Dela Cruz](https://github.com/jjdelacruz1)
+- [Alvin Ng](https://github.com/ngalvin93)
+- [Andy Nguyen](https://github.com/apnguyen11)
+- [Sue Park](https://github.com/suepark09)
+
 
 # Game Initialization
 - **Player 1** visits app (OPTIONAL: session is created for first time visitor)
